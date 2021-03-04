@@ -1,0 +1,17 @@
+@import './App.scss';
+
+.ConteudoPesquisa {
+    display: flex;
+    @extend %centro-do-item;
+    @extend %inicio-section;
+
+    > .container {
+        flex-direction: column;
+
+        .DestaquesPesquisa, .LancamentoPesquisa, .ImoveisPesquisa, .NumeroPagina {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+}

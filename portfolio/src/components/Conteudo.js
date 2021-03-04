@@ -1,9 +1,15 @@
 import React from 'react';
-import FGRBanner from './FGRbanner/FGRBanner';
+import AjudaImovel from './Ajuda/Ajuda';
+import Newsletter from './Newsletter/Newsletter';
+import PesGeral from './PagPesqusia/PesGeral';
 
 function Conteudo() {
     return(
-        <FGRBanner />
+        <>  
+            <PesGeral />
+            <AjudaImovel />
+            <Newsletter />
+        </>
     );
 }
 

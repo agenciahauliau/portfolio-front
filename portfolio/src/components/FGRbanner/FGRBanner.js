@@ -5,7 +5,6 @@ import '../../assets/styles/FGRBanner.scss';
 
 function FGRBanner() {
     return(
-    <>
         <section className="FGRBanner">
             <div className="container">
                 <div className="textoFGRBanner">
@@ -20,7 +19,6 @@ function FGRBanner() {
                 </div>
             </div>
         </section>
-    </>
     )
 }
 

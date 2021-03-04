@@ -1,4 +1,4 @@
-@import './App.scss';
+@import './import.scss';
 
 header{ 
     .Navbar *, .pesquisa *  {
@@ -17,8 +17,8 @@ header{
         
         .navbar-conteiner {
             width: 100%;
-            max-width: 1080px;
             height: 90px;
+            max-width: 1280px;
             @extend %centro-do-item;
 
             * {
@@ -64,7 +64,7 @@ header{
 
         .pesquisa-container {
             width: 100%;
-            max-width: 1080px;
+            max-width: 1280px;
             min-height: 90px;
             flex-wrap: wrap;
             align-items: center;
@@ -83,11 +83,15 @@ header{
                 }
                 .texto-pesquisa {
                     width: 400px;
-                    color: $cor-preta;
+                    background: #fff1;
+                    border: solid #fff5 1px;
+                    border-right: 0;
                 }
                 .listVenda-pesquisa {
                     background: $cor-vermelha;
                     width: 100px;
+                    border: solid #fff5 1px;
+                    border-left: 0;
                     font-weight: 700;
                 }
                 button {

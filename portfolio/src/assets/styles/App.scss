@@ -1,15 +1,4 @@
-// paleta de cores
-$cor-preta: #252728;
-$cor-vermelha: #DB0423;
-
-// media screen size
-$celular: 480px;
-$tablet: 1080px;
-
-%centro-do-item {
-    justify-content: center;
-    align-items: center;
-}
+@import './import.scss';
 
 * {
     margin: 0;
@@ -43,8 +32,11 @@ $tablet: 1080px;
   img {
     aspect-ratio: attr(width) / attr(height);
   }
+  input {
+    border-radius: 0px;
+  }
   .container {
     display: flex;
     width: 100%;
-    max-width: 1080px;
+    max-width: 1280px;
 }

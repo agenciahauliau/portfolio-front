@@ -1,0 +1,30 @@
+@import './import.scss';
+
+.CardImoveis {
+
+    .InfoCardimoveis {
+        display: flex;
+        flex-direction: column;
+        padding: 0 5px;
+
+        > * {
+            margin: 4px 0;
+        }
+
+        .NomeImovel {
+            margin: 8px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .PrecosLancamento {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+
+    }
+}

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SlidesFGRBanner } from './SlidesFGRBanner';
 import '../../assets/styles/FGRBanner.scss'
 
-const SlideFGRBanner = ({ slides }) => {
+const SlideFGRBanner = props => {
+
+    const { slides } = props;
     const [current, setCurrent] = useState(0);
     const length = slides.length;
 
@@ -18,24 +20,45 @@ const SlideFGRBanner = ({ slides }) => {
         setCurrent(el);
     };
 
+    // const autoPlayRef = useRef()
+
+    // useEffect(() => {
+    //     autoPlayRef.current = nextSlide
+    // })
+
+    // useEffect(() => {
+    //     const play = () => {
+    //         autoPlayRef.current()
+    //     }
+
+    //     const interval = setInterval(play, 5000)
+    //     return () => clearInterval(interval)
+    // }, [])
+
     if (!Array.isArray(slides) || slides.length <= 0 ) {
         return null;
     }
 
     return (
         <>
-            <div className='prev botao' onClick={ prevSlide }></div>
-            <div className='next botao' onClick={ nextSlide }></div>
+            <div className="boxBotoes" >
+                {/* <div className='prev botao' onClick={ prevSlide }></div>
+                <div className='next botao' onClick={ nextSlide }></div> */}
+            </div>
+            <div className="boxSlide">
             {SlidesFGRBanner.map((slide, index) => {
                 return (
                     <div className={index === current ? 'slide active' : 'slide'} key={ index }>
-                        { index === current && (<img className="image" src={slide.image} alt='travel imagens'/>)}
+                        { index === current && (<img src={slide.image} alt='travel imagens'/>)}
                     </div>
                 )
             })}
-            <div className='positionSlide'>
+            </div>
+            <div className='boxPonto'>
                 {SlidesFGRBanner.map((slide, index) => {
-                    return <span className={index === current ? 'dots active' : ' dots'} onClick={() => onClickHandler(index)} ></span>
+                    return <div className={index === current ? 'pontos active' : 'pontos'} onClick={() => onClickHandler(index)} >
+                        <div className="dentro"></div>
+                    </div>
                 })}
             </div>
         </>
