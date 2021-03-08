@@ -2,7 +2,7 @@
 
 .CardImoveis {
     width: 100%;
-    max-width: 325px;
+    max-width: 300px;
     margin: 18px;
     display: flex;
     flex-direction: column;
@@ -34,4 +34,18 @@
             }
         }
     }    
+}
+
+.smallCards {
+
+    font-size: 0.7em;
+
+    .CardImoveis {
+        max-width: 200px;
+
+        .TopoCardImoveis{
+            height: 125px; 
+        }  
+    }
+
 }

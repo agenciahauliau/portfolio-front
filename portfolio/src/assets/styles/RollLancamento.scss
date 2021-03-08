@@ -1,0 +1,38 @@
+@import './App.scss';
+
+.RollLancamento {
+    width: 100%;
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    .container {
+        margin: auto;
+        flex-direction: column;
+    
+
+        .tituloRoll {
+            background: $cor-preta;
+
+            h1 {
+                color: #fff;
+                padding: 20px 20px 50px;
+            }
+        }
+
+        .cardsRoll {
+            margin-top: -50px;
+        }
+
+        .tituloRoll, .cardsRoll {
+            width: 100%;
+            display: flex;
+
+            .smallCards {
+                    margin: 0 15px;
+            }
+        }
+    }
+}

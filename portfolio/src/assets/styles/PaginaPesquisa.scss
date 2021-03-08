@@ -2,15 +2,15 @@
 
 .ConteudoPesquisa {
     display: flex;
+    flex-direction: column;
     @extend %centro-do-item;
     @extend %inicio-section;
 
-    > .container {
-        flex-direction: column;
-
-        .DestaquesPesquisa, .LancamentoPesquisa, .ImoveisPesquisa, .NumeroPagina {
-            display: flex;
-            justify-content: center;
+    .DestaquesPesquisa, .ImoveisPesquisa, .NumeroPagina {
+        
+        .container {
+            flex-wrap: wrap;
+            @extend %centro-do-item;
         }
     }
 
