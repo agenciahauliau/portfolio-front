@@ -1,19 +1,15 @@
 import React from 'react';
-import '../../assets/styles/AjudaImovel.scss'
+import '../../assets/styles/AjudaImovel.scss';
 
 function AjudaImovel() {
-    return(
+    return (
         <section className="AjudaImovel">
-            <div className="container"> 
-                <div className="textoAjudaImovel">
-
-                </div>
-                <div className="formAjudaImovel">
-                    
-                </div>
+            <div className="container">
+                <div className="textoAjudaImovel"></div>
+                <div className="formAjudaImovel"></div>
             </div>
         </section>
     );
 }
 
-export default  AjudaImovel;
+export default AjudaImovel;

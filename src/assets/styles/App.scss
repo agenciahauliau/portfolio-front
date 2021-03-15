@@ -1,6 +1,6 @@
 // paleta de cores
 $cor-preta: #252728;
-$cor-vermelha: #DB0423;
+$cor-vermelha: #db0423;
 
 // media screen size
 $celular: 480px;
@@ -16,34 +16,46 @@ $tablet: 1080px;
     padding: 0;
     border: 0;
     font-size: 100%;
-    font-family: "Karla", sans-serif;
+    font-family: 'Karla', sans-serif;
     vertical-align: baseline;
     list-style: none;
     box-sizing: border-box;
-  }
-  html {
+}
+html {
     scroll-behavior: smooth;
-  }
-  a {
+}
+a {
     color: #000;
     text-decoration: none;
-  }
-  p,
-  label,
-  button {
+}
+p,
+label,
+button {
     font-size: 1.2em;
     font-weight: 200;
-  }
-  h1 { font-size: 2em; }
-  h2 { font-size: 1.5em; }
-  h3 { font-size: 1.3em; }
-  h4 { font-size: 1em; }
-  h5 { font-size: 0.8em; }
-  h6 { font-size: 0.7em; }
-  img {
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.5em;
+}
+h3 {
+    font-size: 1.3em;
+}
+h4 {
+    font-size: 1em;
+}
+h5 {
+    font-size: 0.8em;
+}
+h6 {
+    font-size: 0.7em;
+}
+img {
     aspect-ratio: attr(width) / attr(height);
-  }
-  .container {
+}
+.container {
     display: flex;
     width: 100%;
     max-width: 1080px;

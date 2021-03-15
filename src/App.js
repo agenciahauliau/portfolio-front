@@ -1,13 +1,12 @@
 import React from 'react';
-import Conteudo from './components/Conteudo'
-
+import Conteudo from './components/Conteudo';
 
 function App() {
-  return (
-    <>
-      <Conteudo />
-    </>
-  );
+    return (
+        <>
+            <Conteudo />
+        </>
+    );
 }
 
 export default App;

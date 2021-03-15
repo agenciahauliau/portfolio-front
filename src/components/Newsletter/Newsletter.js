@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-function Newsletter() {
+function Newsletter() {}
 
-}
-
-export default  Newsletter;
+export default Newsletter;
