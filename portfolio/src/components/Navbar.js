@@ -1,6 +1,5 @@
 import React from 'react';
 import Menu from "./topo/Menu";
-import Pesquisa from './Pesquisa/Pesquisa';
 import '../assets/styles/Header.scss';
 
 
@@ -17,11 +16,6 @@ function Navbar() {
                     </div>
                 </div>
             </nav>
-            <section className="pesquisa">
-                <div className="pesquisa-container">
-                    <Pesquisa />
-                </div>
-            </section>
         </header>
     );
 }

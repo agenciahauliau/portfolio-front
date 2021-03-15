@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../assets/styles/CardImoveis.scss';
-import '../../assets/styles/ImoveisRevenda.scss';
+import '../../assets/styles/CardImoveisRevenda.scss';
 
 function CardRevenda() {
     return(

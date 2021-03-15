@@ -1,19 +1,17 @@
 @import './import.scss';
 
 header{ 
-    .Navbar *, .pesquisa *  {
-        color: #fff;
-        display: flex;
-    }
-}
-
-header{ 
     .Navbar {
         width: 100%;
         display: flex;
         justify-content: center;
         background: $cor-preta;
         border-bottom: 1px solid #555;
+
+        *  {
+            color: #fff;
+            display: flex;
+        }
         
         .navbar-conteiner {
             width: 100%;
@@ -54,90 +52,6 @@ header{
                     }
                 }
             }
-        }
-    }
-
-    .pesquisa {
-        background: $cor-preta;
-        display: flex;
-        justify-content: center;
-
-        .pesquisa-container {
-            width: 100%;
-            max-width: 1280px;
-            min-height: 90px;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 38px 0;
-
-            > * {
-                padding: 15px 0;
-            }
-
-            .barra-pesquisa {
-                width: 70%;
-
-                input {
-                    padding: 10px 15px;
-                    font-weight: 700;
-                }
-                .texto-pesquisa {
-                    width: 400px;
-                    background: #fff1;
-                    border: solid #fff5 1px;
-                    border-right: 0;
-                }
-                .listVenda-pesquisa {
-                    background: $cor-vermelha;
-                    width: 100px;
-                    border: solid #fff5 1px;
-                    border-left: 0;
-                    font-weight: 700;
-                }
-                button {
-                    background: none;
-                    @extend %centro-do-item;
-
-                    svg {
-                        width: 30px;
-                        margin: 0 38px;
-                        fill: #fff;
-                    }
-                }
-            }
-
-            .filtros-pesquisa {
-                width: 30%;
-                flex-direction: column;
-
-                > * {
-                    display: block;
-                    text-align: right;
-                }
-                p {
-                    font-weight: 200;
-                }
-            }
-
-            .quantidade-pesquisa {
-                width: min-content;
-                margin-right: 50px;
-
-                ul li a {
-                    margin: 0 15px;
-                }
-            }
-
-            .ordem-pesquisa {
-                @extend %centro-do-item;
-
-                svg {
-                    width: 30px;
-                    margin: 0 15px;
-                    fill: #fff;
-                }
-            }
-
         }
     }
 }
