@@ -1,0 +1,150 @@
+@import './import.scss';
+
+.Imovel {
+    display: flex;
+    @extend %centro-do-item;
+    @extend %inicio-section;
+    padding-top: 0;
+    position: relative;
+
+    .conteudoImovel {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    h2[class^=titulo] {
+        display: flex;
+        align-items: center;
+        margin-bottom: 28px;
+    }
+
+    h2[class^=titulo]::after {
+        content: '⠀⠀⠀⠀⠀⠀⠀⠀⠀';
+        width: 100px;
+        height: 1px;
+        margin-left: 15px;
+        background: $cor-vermelha;
+    }
+
+    .conteudoImovel > * {
+        width: 50%;
+    }
+
+    .topoImovel {
+        padding: 100px 20px 20px ;
+
+        .tituloImovel {
+            margin-bottom: 38px;
+        }
+
+        .infomacoesImovel {
+
+            > * {
+                margin: 22px 0;
+            }
+            .comodosImovel {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+    }
+
+    .boxImagemImovel {
+        position: relative;
+        
+        .imagemImovel {
+            position: absolute;
+            width: calc( 100vw / 2);
+            height: 400px;
+            padding-left: 50px;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .descricaoImovel {
+        padding: 20px;
+
+        p {
+            margin: 8px 0;
+        }
+    }
+
+    .formImovel {
+        display: flex;
+        justify-content: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+
+        * {
+            color: #fff;
+        }
+
+        .dentroFormImovel { 
+            position: absolute;
+            max-width: 400px;
+            padding: 28px;
+            background: $cor-preta;
+
+            > * {
+                margin: 38px 0;
+            }
+
+            .tituloForm {
+                margin-top: 0;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                
+                > * {
+                    margin: 15px 0;
+                }
+
+                > *:first-child {
+                    margin-top: 0;
+                }
+
+                > *:last-child {
+                    margin-bottom: 0;
+                }
+
+                > input {
+                    width: 100%;
+                    padding: 10px;
+                    background: none;
+                    border: 1px solid #fff
+                }
+
+                .checkFormImovel {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                button {
+                    padding: 8px;
+                    font-weight: 700;
+                    background: $cor-vermelha;
+                }
+            }
+
+            .informacoesCadastro {
+                font-size: 12px;
+
+                > * {
+                    margin: 12px 0;
+                }
+            }
+        }
+    }
+
+}

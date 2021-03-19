@@ -1,0 +1,58 @@
+@import './import.scss';
+
+header{ 
+    .Navbar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background: $cor-preta;
+        border-bottom: 1px solid #555;
+
+        *  {
+            color: #fff;
+            display: flex;
+        }
+        
+        .navbar-conteiner {
+            width: 100%;
+            height: 90px;
+            max-width: 1280px;
+            @extend %centro-do-item;
+
+            * {
+                height: min-content;
+            }
+            .logo-menu {
+                width: 250px;
+                margin-right: 50px;
+            }
+            .menu-lists {
+                width: 100%;
+                justify-content: space-between;
+
+                .icone-collapse {
+                    display: none;
+
+                    @media screen and (max-width: $celular) {
+                        display: flex;
+                    }
+
+                    svg {
+                        width: 30px;
+                        fill: #fff;
+                    }
+                }
+
+                ul li {
+                    margin: 0 10px;
+    
+                    svg {
+                        width: 24px;
+                        fill: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+

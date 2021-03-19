@@ -1,0 +1,58 @@
+@import './import.scss';
+
+.AjudaImovel{
+    display: flex;
+    @extend %centro-do-item;
+    @extend %inicio-section;
+    background-color: $cor-preta;
+
+    * {
+        color: #fff;
+    }
+
+    .container{
+
+        .textoAjudaImovel {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 100px;
+
+            > * {
+                margin: 8px 0;
+            }
+    
+        }
+        .formAjudaImovel {
+            width: 50%;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-end;
+
+                > * {
+                    margin: 8px 0;
+                    padding: 10px 15px;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 10px 15px;
+                    font-weight: 700;
+                    border: 1px solid #fff;
+                    background-color: #fff1;
+                }
+                
+                button {
+                    background: #DB0423;
+                    width: 100px;
+                    font-weight: 700;
+                }
+            }
+
+        }
+    }
+}
