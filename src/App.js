@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // imports SCSS
 import "./assets/Styles/App.scss";
@@ -6,7 +7,9 @@ import "./assets/Styles/App.scss";
 
 function App() {
   return (
-    <div>texst</div>
+    <Router>
+      <div>test</div>
+    </Router>
   );
 }
 
