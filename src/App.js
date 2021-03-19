@@ -1,36 +1,20 @@
-import React from 'react';
-import './assets/styles/Import.scss';
-import './assets/styles/Fonts.scss';
-import './assets/styles/App.scss';
-import Conteudo from './components/Conteudo';
-import Navbar from './components/Navbar';
-import {gql, useQuery} from '@apollo/client'
+import React from "react";
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './routes';
 
-export const query = gql`
-query {
-  imoveis{
-   _id
-   categoriaImovel
- }
-}
-`
+// imports SCSS
+import "./assets/styles/Fonts.scss";
+import "./assets/styles/App.scss";
 
+// imports components
+import Conteudo from "./Components/Conteudo";
+import Pesquisa from './Components/Paginas/Pesqusia/Pesquisa'
 
 function App() {
-
-  const {loading, data} = useQuery(query)
- 
-  if (loading) return <p>Loading Masterpieces...</p>
-
-
   return (
-    <>
-      {data.imoveis.map( imovel => (
-        <p>{imovel._id}</p>
-      ))}
-      <Navbar />
-      <Conteudo />
-    </>
+    <Router>
+      <Routes />
+    </Router>
   );
 }
 

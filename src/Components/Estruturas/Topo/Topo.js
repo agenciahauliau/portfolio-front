@@ -1,5 +1,8 @@
 import React from "react";
+//import SCSS
 import './Topo.scss';
+//import Imagens
+import logo from '../../../assets/imagens/logo.webp'
 
 function Topo() {
   return (
@@ -7,7 +10,7 @@ function Topo() {
       <nav className="Navbar">
         <div className="navbar-conteiner">
           <div className="logo-menu">
-            <h1>logo</h1>
+            <img src={logo} alt='Portfolio Imóveis' title='Portfolio Imóveis' />
           </div>
           <div className="menu-lists">
             <div className="icone-collapse">
