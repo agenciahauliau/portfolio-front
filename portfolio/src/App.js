@@ -1,6 +1,7 @@
 import React from 'react';
+import './assets/styles/Import.scss';
+import './assets/styles/Fonts.scss';
 import './assets/styles/App.scss';
-import './assets/styles/import.scss';
 import Conteudo from './components/Conteudo';
 import Navbar from './components/Navbar';
 import {gql, useQuery} from '@apollo/client'

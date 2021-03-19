@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideFGRBanner from './SlideFGRBanner';
 import { SlidesFGRBanner } from './SlidesFGRBanner';
-import '../../assets/styles/FGRBanner.scss';
+import './FGRBanner.scss';
 
 function FGRBanner() {
     return(

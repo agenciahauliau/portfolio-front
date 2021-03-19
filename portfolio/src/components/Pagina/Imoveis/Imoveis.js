@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ImoveisRevenda from './ImoveisRevenda';
-import '../../assets/styles/Imoveis.scss';
+import './Imoveis.scss';
 
 function Imoveis() {
     return(

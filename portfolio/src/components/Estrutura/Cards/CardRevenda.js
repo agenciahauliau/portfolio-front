@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../assets/styles/CardImoveis.scss';
-import '../../assets/styles/CardImoveisAluguel.scss';
+import './CardImoveis.scss';
+import './CardRevenda.scss';
 
-function CardAluguel() {
+function CardRevenda() {
     return(
         <>
             <div className='CardImoveis'>
@@ -25,11 +25,11 @@ function CardAluguel() {
                             <p><b>0</b> Garagens</p>
                         </div>
                     </div>
-                    <div className='EnderecoImoveis'> 
-                        <p>Endereço, rua, num, Bairro do imóvel, cidade do imóvel</p>
-                    </div>
                     <div className='PrecoImoveis'> 
                         <h3>R$ 00.000.000,00</h3>
+                    </div>
+                    <div className='EnderecoImoveis'> 
+                        <p>Endereço, rua, num, Bairro do imóvel, cidade do imóvel</p>
                     </div>
                 </div>
             </div>
@@ -37,4 +37,4 @@ function CardAluguel() {
     );
 }
 
-export default CardAluguel
+export default CardRevenda;
