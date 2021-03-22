@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from  'react-router-dom';
 //import SCSS
 import './Topo.scss';
 //import Imagens
-import logo from '../../../assets/imagens/logo.webp'
+import logo from '../../../assets/Imagens/logo.webp'
 
 function Topo() {
   return (
@@ -10,7 +11,9 @@ function Topo() {
       <nav className="Navbar">
         <div className="navbar-conteiner">
           <div className="logo-menu">
-            <img src={logo} alt='Portfolio Imóveis' title='Portfolio Imóveis' />
+            <Link to='/'>
+              <img src={logo} alt='Portfolio Imóveis' title='Portfolio Imóveis' />
+            </Link>
           </div>
           <div className="menu-lists">
             <div className="icone-collapse">
@@ -33,7 +36,11 @@ function Topo() {
             <div className="menu-lits-imoveis">
               <ul>
                 <li>Condomínio Jardins</li>
-                <li>Imóveis</li>
+                <li>
+                  <Link to='/imoveis'>
+                    Imóveis
+                  </Link>
+                </li>
                 <li>Anuncie</li>
               </ul>
             </div>

@@ -65,4 +65,4 @@ const SlideFGRBanner = props => {
     );
 };
 
-export default  SlideFGRBanner;
+export default SlideFGRBanner;

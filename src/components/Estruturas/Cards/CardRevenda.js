@@ -5,7 +5,7 @@ import './CardRevenda.scss';
 function CardRevenda() {
     return(
         <>
-            <div className='CardImoveis'>
+            <div className='CardImoveis Revenda'>
                 <div className='TopoCardImoveis'>
                     <img src='https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' />
                     <div className='TipoImovel'>

@@ -1,10 +1,16 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-export default function Rotas() {
+import Pesquisa from './components/Paginas/Pesquisa/Pesquisa' 
+import Imoveis from './components/Paginas/Imoveis/Imoveis' 
+import Home from './components/Paginas/Home/Home';
+
+export default function RotasPaginas () {
     return (
-        <Routes>
-            <Route path="/" element={<Pesquisa />} />
-        </Routes>
+        <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/imoveis" exact component={Pesquisa} />
+            <Route path="/imovel" exact component={Imoveis} />
+        </Switch>
     )
 }
