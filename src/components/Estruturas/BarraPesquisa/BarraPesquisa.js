@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./BarraPesquisa.scss";
 
 function BarraPesquisa() {
+
   return (
     <section className="pesquisa">
       <div className="pesquisa-container">

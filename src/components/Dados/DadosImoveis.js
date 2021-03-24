@@ -9,41 +9,11 @@ export const ImoveisPesquisaQuery = gql`
       descricaoImovel
       tipoNegociacao
       statusImovel
-      valorImovel
-      valorIPTU
-      valorCondominio
-      andarImovel
-      qtdeQuarto
-      qtdeBanheiro
-      qtdeVagas
-      nomeConstrutora
-      bairro
-      logradouro
-      numeroLogradouro
-      complemento
-      cep
-      cidade
-      uf
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-export const ImovelQuery = gql`
-query imovel($id: ID) {
-  imovel (dados: {
-      _id: $id
-  }){
-      _id
-      categoriaImovel
-      jardins
-      descricaoImovel
-      tipoNegociacao
-      statusImovel
       aceitaPermuta
       mobiliado
       valorImovel
+      valorEntrada
+      valorParcela
       valorIPTU
       valorCondominio
       areaTotal
@@ -53,6 +23,7 @@ query imovel($id: ID) {
       qtdeBanheiro
       qtdeSuites
       qtdeVagas
+      nomeImovel
       nomeConstrutora
       bairro
       logradouro
@@ -65,6 +36,52 @@ query imovel($id: ID) {
       comodidadesCondominio
       createdAt
       updatedAt
+    }
   }
-}
 `;
+
+export const ImovelQuery = gql`
+query imovel(
+    $_id: ID!
+  ) {
+    imovel(
+      dados: {
+        _id: $_id
+      }
+    ) {
+      _id
+      categoriaImovel
+      jardins
+      descricaoImovel
+      tipoNegociacao
+      statusImovel
+      aceitaPermuta
+      mobiliado
+      valorImovel
+      valorEntrada
+      valorParcela
+      valorIPTU
+      valorCondominio
+      areaTotal
+      areaConstruida
+      andarImovel
+      qtdeQuarto
+      qtdeBanheiro
+      qtdeSuites
+      qtdeVagas
+      nomeImovel
+      nomeConstrutora
+      bairro
+      logradouro
+      numeroLogradouro
+      complemento
+      cep
+      cidade
+      uf
+      comodidadesImovel
+      comodidadesCondominio
+      createdAt
+      updatedAt
+    }
+  }`
+  ;
