@@ -6,13 +6,13 @@ import ImoveisVenda from "./TiposImoveis/ImoveisVenda";
 import "./Imoveis.scss";
 
 
-function TipoNegocioImovel() {
-  return new URLSearchParams(useLocation().search).get("tipoNegociacao");
-}
+// function TipoNegocioImovel() {
+//   return new URLSearchParams(useLocation().search).get("tipoNegociacao");
+// }
 
-function JardinsImovel() {
-    return new URLSearchParams(useLocation().search).get("jardins");
-  }
+// function JardinsImovel() {
+//     return new URLSearchParams(useLocation().search).get("jardins");
+//   }
 
 function Imoveis() {
   return (

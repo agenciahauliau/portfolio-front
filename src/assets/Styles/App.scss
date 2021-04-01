@@ -1,43 +1,67 @@
-@import './Import.scss';
+@import "./Import.scss";
 
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font-family: "Karla", sans-serif;
-    vertical-align: baseline;
-    list-style: none;
-    box-sizing: border-box;
-  }
-  html {
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Karla", sans-serif;
+  vertical-align: baseline;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-size: 18px;
+
+  body {
     overflow-x: hidden;
   }
-  a {
-    color: #000;
-    text-decoration: none;
-  }
-  p,
-  label,
-  button {
-    font-size: 1.2em;
-    font-weight: 200;
-  }
-  h1 { font-size: 2em; }
-  h2 { font-size: 1.5em; }
-  h3 { font-size: 1.3em; }
-  h4 { font-size: 1em; }
-  h5 { font-size: 0.8em; }
-  h6 { font-size: 0.7em; }
-  img {
-    aspect-ratio: attr(width) / attr(height);
-  }
-  input {
-    border-radius: 0px;
-  }
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.3em;
+}
+h4 {
+  font-size: 1em;
+}
+h5 {
+  font-size: 0.8em;
+}
+h6 {
+  font-size: 0.7em;
+}
+img {
+  aspect-ratio: attr(width) / attr(height);
+}
+input {
+  border-radius: 0px;
+}
+.container {
+  display: flex;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
   .container {
-    display: flex;
-    width: 100%;
-    max-width: 1280px;
+    width: 1140px;
+  }
+}
+
+@media (max-width: 512px) {
+  html {
+    font-size: 12px;
+  }
 }

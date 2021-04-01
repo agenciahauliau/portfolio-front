@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { ImovelQuery } from "../../../Dados/DadosImoveis";
 import { useLocation } from "react-router-dom";
 
-import './ImoveisVenda.scss'
+import "./ImoveisVenda.scss";
 
 function IdImovel() {
   return new URLSearchParams(useLocation().search).get("id");
@@ -44,7 +44,7 @@ function ImoveisVenda() {
                 : " e " + data.imovel.qtdeVagas + " vagas na garagem")}
           </h1>
         </div>
-        <div className="infomacoesImovel">
+        <div className="informacoesImovel">
           <p className="endrecoImovel">
             {data.imovel.categoriaImovel} com {data.imovel.areaTotal + " m², "}
             localizado na {data.imovel.logradouro},
@@ -76,7 +76,7 @@ function ImoveisVenda() {
           <img src="https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
         </div>
       </div>
-      <div className="esquerdo descricaoImovel">
+      <div className="descricaoImovel">
         <h2 className="titulodescricaoImovel">Descrição</h2>
         <div className="textoDescricaoImovel">
           {data.imovel.descricaoImovel}
@@ -95,9 +95,13 @@ function ImoveisVenda() {
                 </h1>
               )}
             </div>
-            {data.imovel.valorCondominio !=0 || data.imovel.valorIPTU !=0 ? <ValoresAdicionais /> : "" }
+            {data.imovel.valorCondominio != 0 || data.imovel.valorIPTU != 0 ? (
+              <ValoresAdicionais />
+            ) : (
+              ""
+            )}
           </div>
-          
+
           <div className="tituloForm">
             <h3>
               Quer ter mais informações sobre o imóvel, mande mensagem agora que
@@ -106,9 +110,9 @@ function ImoveisVenda() {
           </div>
           <div>
             <form>
-              <input type="text" />
-              <input type="email" />
-              <input type="tel" />
+              <input type="text" placeholder="Nome completo"/>
+              <input type="email" placeholder="E-mail"/>
+              <input type="tel" placeholder="Telefone / Whatsapp"/>
               <div class="checkFormImovel">
                 <label>
                   <input type="checkbox" /> Telefone
@@ -149,23 +153,33 @@ function ImoveisVenda() {
           <h2 className="titulocaractsImoveis">Detalhes do Imóvel</h2>
           <div className="itens">
             {data.imovel.statusImovel && (
-              <p className="detalhesImoveis"> {data.imovel.statusImovel} </p>
+              <p>
+                <b> {data.imovel.statusImovel}</b>
+              </p>
             )}
             {!data.imovel.aceitaPermuta && (
-              <p className="detalhesImoveis">
+              <p>
                 <b>Aceita permuta:</b> Não
               </p>
             )}
-            {data.imovel.aceitaPermuta && <p>Aceita permuta: Sim</p>}
-            {!data.imovel.mobiliado && (
-              <p className="detalhesImoveis">
-                <b>Mobiliado:</b> Não
+            {data.imovel.aceitaPermuta && (
+              <p>
+                <b>Aceita permuta: </b>Sim
               </p>
             )}
-            {data.imovel.mobiliado && <p>Mobiliado: Sim</p>}
+            {!data.imovel.mobiliado && (
+              <p>
+                <b>Mobiliado: </b> Não
+              </p>
+            )}
+            {data.imovel.mobiliado && (
+              <p>
+                <b>Mobiliado: </b>Sim
+              </p>
+            )}
             {data.imovel.valorImovel != 0 && (
               <p className="detalhesImoveis">
-                <b>Valor do imóvel:</b>
+                <b>Valor: </b>
                 {data.imovel.valorImovel.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
@@ -173,8 +187,8 @@ function ImoveisVenda() {
               </p>
             )}
             {data.imovel.valorEntrada != 0 && (
-              <p className="detalhesImoveis">
-                <b>Valor da entrada:</b>
+              <p>
+                <b>Entrada:</b>
                 {data.imovel.valorEntrada.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
@@ -182,8 +196,8 @@ function ImoveisVenda() {
               </p>
             )}
             {data.imovel.valorParcela != 0 && (
-              <p className="detalhesImoveis">
-                <b>Valor da parcela:</b>
+              <p>
+                <b>Parcela:</b>
                 {data.imovel.valorParcela.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
@@ -191,8 +205,8 @@ function ImoveisVenda() {
               </p>
             )}
             {data.imovel.valorIPTU != 0 && (
-              <p className="detalhesImoveis">
-                <b>Valor do IPTU:</b>
+              <p>
+                <b>IPTU:</b>
                 {data.imovel.valorIPTU.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
@@ -200,8 +214,8 @@ function ImoveisVenda() {
               </p>
             )}
             {data.imovel.valorCondominio != 0 && (
-              <p className="detalhesImoveis">
-                <b>Valor do condomínio:</b>
+              <p>
+                <b>Condomínio:</b>
                 {data.imovel.valorCondominio.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
@@ -209,66 +223,66 @@ function ImoveisVenda() {
               </p>
             )}
             {data.imovel.areaTotal != 0 && (
-              <p className="detalhesImoveis">
+              <p>
                 <b>Área total:</b>
                 {data.imovel.areaTotal.toLocaleString("pt-br")}
               </p>
             )}
             {data.imovel.areaConstruida != 0 && (
-              <p className="detalhesImoveis">
+              <p>
                 <b>Área construída:</b>
                 {data.imovel.areaConstruida.toLocaleString("pt-br")}
               </p>
             )}
             {data.imovel.andarImovel != 0 && (
-              <p className="detalhesImoveis">
+              <p>
                 <b>Andar:</b> {data.imovel.andarImovel}
               </p>
             )}
             {data.imovel.qtdeQuarto != 0 && (
-              <p className="detalhesImoveis">
-                <b>Quantidade de quarto:</b> {data.imovel.qtdeQuarto}
+              <p>
+                <b>Quartos:</b> {data.imovel.qtdeQuarto}
               </p>
             )}
             {data.imovel.qtdeBanheiro != 0 && (
-              <p className="detalhesImoveis">
-                <b>Quantidade de banheiros:</b> {data.imovel.qtdeBanheiro}
+              <p>
+                <b>Banheiros:</b> {data.imovel.qtdeBanheiro}
               </p>
             )}
             {data.imovel.qtdeSuites != 0 && (
-              <p className="detalhesImoveis">
-                <b>Quantidade de suítes:</b> {data.imovel.qtdeSuites}
+              <p>
+                <b>Suítes:</b> {data.imovel.qtdeSuites}
               </p>
             )}
             {data.imovel.qtdeVagas != 0 && (
-              <p className="detalhesImoveis">
-                <b>Valor do vagas:</b> {data.imovel.qtdeVagas}
+              <p>
+                <b>Vagas na Garagem:</b> {data.imovel.qtdeVagas}
               </p>
             )}
             {data.nomeImovel && (
-              <p className="detalhesImoveis">
+              <p>
                 <b>Nome imóvel / condomínio:</b> {data.nomeImovel}
               </p>
             )}
             {data.nomeConstrutora && (
-              <p className="detalhesImoveis">
+              <p>
                 <b>Construtora:</b> {data.nomeConstrutora}
               </p>
             )}
-            <p className="detalhesImoveis">
-              {data.imovel.logradouro}, {data.imovel.numeroLogradouro}
-              {data.imovel.complemento && data.imovel.complemento}
-            </p>
-            <p className="detalhesImoveis">{data.imovel.bairro}</p>
-            <p className="detalhesImoveis">{data.imovel.cidade}</p>
-            <p className="detalhesImoveis">{data.imovel.uf}</p>
+            <div className="subitens endereco">
+              <p>
+                {data.imovel.logradouro}, {data.imovel.numeroLogradouro}
+                {data.imovel.complemento && data.imovel.complemento},
+                {data.imovel.bairro} - {data.imovel.cidade} - {data.imovel.cep} - {data.imovel.uf}
+              </p>
+            </div>
           </div>
         </div>
         <div className="caractsImoveis">
           <h2 className="titulocaractsImoveis">Características do Imóvel</h2>
           <div className="itens">
             {data.imovel.comodidadesImovel.map((comodidades) => (
-              <p className="caractCondominio">{comodidades}</p>
+              <p>{comodidades}</p>
             ))}
           </div>
         </div>
@@ -278,7 +292,7 @@ function ImoveisVenda() {
           </h2>
           <div className="itens">
             {data.imovel.comodidadesCondominio.map((condominio) => (
-              <p className="caractCondominio">{condominio}</p>
+              <p>{condominio}</p>
             ))}
           </div>
         </div>
@@ -288,7 +302,6 @@ function ImoveisVenda() {
 }
 
 function ValoresAdicionais() {
-
   const { loading, error, data } = useQuery(ImovelQuery, {
     variables: { _id: IdImovel() },
   });
@@ -297,30 +310,30 @@ function ValoresAdicionais() {
   if (error) return <p>Mas Bah</p>;
   return (
     <div className="valoresAdicionais">
-              {data.imovel.valorCondominio != 0 && (
-                <div>
-                  <p>Valor do condomínio:</p>
-                  <p>
-                    {data.imovel.valorCondominio.toLocaleString("pt-br", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
-                  </p>
-                </div>
-              )}
-              {data.imovel.valorIPTU != 0 && (
-                <div>
-                  <p>Valor do IPTU:</p>
-                  <p>
-                    {data.imovel.valorIPTU.toLocaleString("pt-br", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
-                  </p>
-                </div>
-              )}
-            </div>
-  )
+      {data.imovel.valorCondominio != 0 && (
+        <div>
+          <p>Valor do condomínio:</p>
+          <p>
+            {data.imovel.valorCondominio.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })}
+          </p>
+        </div>
+      )}
+      {data.imovel.valorIPTU != 0 && (
+        <div>
+          <p>Valor do IPTU:</p>
+          <p>
+            {data.imovel.valorIPTU.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })}
+          </p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default ImoveisVenda;
