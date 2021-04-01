@@ -6,8 +6,6 @@
 
   .conteudoImovel {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
     position: relative;
 
     .titulodescricaoImovel,
@@ -58,8 +56,6 @@
 
       .imagemImovel {
         width: calc(100% + 48px);
-        // width: calc((100vw - 1140px) / 2 + 100%);
-        // height: 528px;
         height: 100%;
         position: absolute;
         left: -24px;
@@ -119,7 +115,7 @@
             width: fit-content;
             align-self: flex-end;
             padding: 12px 24px;
-            margin: 24px 0 ;
+            margin: 24px 0 0;
             font-weight: 700;
             background: #DB0423;
             color: #fff;
@@ -127,6 +123,7 @@
         }
 
         .informacoesCadastro {
+          font-size: 0.7em;
           > *:first-child {
             margin-bottom: 12px;
           }
@@ -173,6 +170,56 @@
             color: #fff;
           }
         }
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .Imovel {  
+    .conteudoImovel {
+  
+      .topoImovel {
+        width: 50%;
+        min-height: 288px;
+        padding-right: 38px;
+        margin-bottom: 68px;
+        float: left;
+      }
+  
+      .boxImagemImovel {
+        width: 50%;
+        min-height: 336px;
+        float: right;
+  
+        .imagemImovel {
+          width: calc((100vw - 1140px) / 2 + 100%);
+          height: 528px;
+          left: 0;
+        }
+      }
+  
+      .descricaoImovel {
+        width: 50%;
+        padding-right: 38px;
+        float: left;
+      }
+  
+      .formImovel {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        float: right;
+  
+        .dentroFormImovel {
+          max-width: 400px;
+        }
+      }
+  
+      .outrosInformacoesImovel {
+        width: 50%;
+        padding-right: 38px;
+        float: left;
       }
     }
   }

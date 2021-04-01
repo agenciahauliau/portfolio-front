@@ -103,10 +103,10 @@ function ImoveisVenda() {
           </div>
 
           <div className="tituloForm">
-            <h3>
+            <h4>
               Quer ter mais informações sobre o imóvel, mande mensagem agora que
               entramos em contato
-            </h3>
+            </h4>
           </div>
           <div>
             <form>
@@ -286,16 +286,18 @@ function ImoveisVenda() {
             ))}
           </div>
         </div>
-        <div className="caractsCondominio">
-          <h2 className="titulocaractsCondominio">
-            Características do Condomínio
-          </h2>
-          <div className="itens">
-            {data.imovel.comodidadesCondominio.map((condominio) => (
-              <p>{condominio}</p>
-            ))}
+        {data.imovel.comodidadesCondominio != 0 && (
+          <div className="caractsCondominio">
+            <h2 className="titulocaractsCondominio">
+              Características do Condomínio
+            </h2>
+            <div className="itens">
+              {data.imovel.comodidadesCondominio.map((condominio) => (
+                <p>{condominio}</p>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
