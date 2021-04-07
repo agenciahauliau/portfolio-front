@@ -35,20 +35,40 @@ function Topo() {
             </div>
             <div className="menu-lits-imoveis">
               <ul>
-                <li>Condomínio Jardins</li>
+                <li>
+                  <Link to='/condominio-jardins'>
+                    Condomínio Jardins
+                  </Link>
+                  </li>
                 <li>
                   <Link to='/imoveis'>
                     Imóveis
                   </Link>
                 </li>
-                <li>Anuncie</li>
+                <li>
+                  <Link to='/anuncie'>
+                    Anuncie
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="menu-lits-info">
               <ul>
-                <li>Blog</li>
-                <li>Sobre</li>
-                <li>Contato</li>
+                <li>
+                  <Link to='/blog'>
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/sobre'>
+                    Sobre
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/contato'>
+                    Contato
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="menu-lits-social">

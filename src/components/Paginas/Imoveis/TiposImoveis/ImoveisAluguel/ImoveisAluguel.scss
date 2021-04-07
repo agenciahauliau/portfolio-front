@@ -1,0 +1,134 @@
+.conteudoImovel.ImovelAluguel {
+  grid-template-areas:
+    "topo"
+    "imagem"
+    "desc"
+    "form"
+    "info";
+
+  .topoImovel {
+    grid-area: topo;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 0;
+
+    .tituloImovel {
+      margin-bottom: 48px;
+    }
+
+    .precosRevenda {
+      padding: 19px 0;
+      margin-bottom: 19px;
+      border-top: 1px solid #272727;
+      border-bottom: 1px solid #272727;
+
+      .valorImovel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #fffa;
+      }
+
+      .valoresAdicionais {
+        border-bottom: 1px solid #fffa;
+
+        > * {
+          display: flex;
+          justify-content: space-between;
+          margin: 12px 0;
+        }
+      }
+    }
+
+    .informacoesImovel {
+      .endrecoImovel {
+        margin-bottom: 24px;
+      }
+
+      .comodosImovel {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .boxImagemImovel {
+    grid-area: imagem;
+    width: 100%;
+    min-height: 336px;
+    margin-bottom: 68px;
+    position: relative;
+
+    .imagemImovel {
+      width: calc(100% + 48px);
+      height: 100%;
+      position: absolute;
+      left: -24px;
+      z-index: -1;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .formImovel {
+    .dentroFormImovel {
+      max-width: 400px;
+      
+      .precosRevenda {
+        .valorImovel {
+          padding-bottom: 24px;
+          border-bottom: 1px solid #fffa;
+        }
+
+        .valoresAdicionais {
+          padding: 24px 0;
+          border-bottom: 1px solid #fffa;
+
+          > * {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 820px) {
+  .conteudoImovel.ImovelAluguel {
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+      "topo imagem"
+      "desc form"
+      "info form";
+
+    .topoImovel {
+      padding-right: 38px;
+      margin-bottom: 38px;
+      float: left;
+    }
+
+    .boxImagemImovel {
+      width: 50%;
+      float: right;
+
+      .imagemImovel {
+        width: calc((100vw - (100% * 2)) / 2 + 100%);
+        height: 528px;
+        left: 0;
+      }
+    }
+
+    .formImovel {
+      display: flex;
+      justify-content: center;
+      margin-top: -152px;
+    }
+  }
+}

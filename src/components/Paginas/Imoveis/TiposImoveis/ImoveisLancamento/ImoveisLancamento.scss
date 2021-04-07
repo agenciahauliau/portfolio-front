@@ -1,0 +1,151 @@
+.conteudoImovel.ImovelLancamento {
+  grid-template-areas:
+    "imagemLanc"
+    "topolanc"
+    "desc"
+    "infoLanc"
+    "form"
+    "info";
+
+  .boxImagemImovel {
+    grid-area: imagemLanc;
+    min-height: 336px;
+    margin-bottom: 0;
+    position: relative;
+
+    .imagemImovel {
+      width: calc(100% + 48px);
+      height: 100%;
+      position: absolute;
+      left: -24px;
+      z-index: -1;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .topoLancamentos {
+    grid-area: topolanc;
+    margin-bottom: 68px;
+    position: relative;
+
+    div {
+      width: calc(100% + 48px);
+      height: fit-content;
+      padding: 38px;
+      position: relative;
+      left: -24px;
+      background: #272727;
+      color: #fff;
+
+      P:last-child {
+        margin-top: 24px;
+      }
+    }
+  }
+
+  .informacoesLancamentoImovel {
+    grid-area: infoLanc;
+    position: relative;
+
+    > * {
+      margin-bottom: 68px;
+    }
+
+    .detalhesImoveis {
+      .itens {
+        display: flex;
+        flex-wrap: wrap;
+
+        > p {
+          width: 50%;
+          display: block;
+          margin-bottom: 12px;
+        }
+
+        .subitens.endereco {
+          width: 100%;
+          margin-top: 28px;
+        }
+      }
+    }
+  }
+
+  .formImovel {
+    .dentroFormImovel {
+      max-width: 400px;
+      
+      .precosRevenda {
+        .valorImovel {
+          padding-bottom: 24px;
+          border-bottom: 1px solid #fffa;
+        }
+
+        .valoresAdicionais {
+          padding: 24px 0;
+          border-bottom: 1px solid #fffa;
+
+          > * {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 820px) {
+  .conteudoImovel.ImovelLancamento {
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+      "imagemLanc imagemLanc"
+      "desc topolanc"
+      "infoLanc form"
+      "info form";
+
+    .topoLancamentos {
+      margin-top: -368px;
+
+      div {
+        left: 0;
+      }
+    }
+
+    .formImovel {
+      display: flex;
+      justify-content: center;
+      margin-top: -268px;
+    }
+
+    .boxImagemImovel {
+      min-height: 528px;
+      margin-bottom: 68px;
+
+      .imagemImovel {
+        width: 100vw;
+        height: 100%;
+        left: calc(-1 * (100vw / 2) + (100% / 2));
+      }
+    }
+
+    .topoLancamentos {
+      display: flex;
+      justify-content: center;
+      float: right;
+
+      div {
+        max-width: 400px;
+
+        P:last-child {
+          margin-top: 24px;
+        }
+      }
+    }
+  }
+}

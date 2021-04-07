@@ -1,0 +1,391 @@
+.paginaJardins {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    flex-direction: column;
+  }
+
+  .topoPJ {
+    height: 342px;
+    position: relative;
+    margin-bottom: 38px;
+
+    .bgTopo {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .tituloTopo {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #27272700, #272727bb);
+      color: #fff;
+
+      h1 {
+        font-weight: 800;
+      }
+
+      h2 {
+        font-weight: 200;
+      }
+
+      p {
+        display: block;
+        padding: 4px 8px;
+        margin: 8px;
+        background: #db0423;
+      }
+    }
+  }
+
+  .frasePJ {
+    padding: 24px;
+    margin-bottom: 38px;
+
+    .titulos {
+      h1 {
+        margin-bottom: 24px;
+      }
+    }
+
+    .logos {
+      display: flex;
+      align-items: center;
+
+      img {
+        padding: 10px;
+        width: 33%;
+      }
+
+      img:nth-child(2) {
+        padding: 20px;
+      }
+    }
+  }
+
+  .lancamentosPJ {
+    padding: 24px;
+    margin-bottom: 38px;
+
+    .titulo {
+      h2 {
+        font-weight: 200;
+      }
+    }
+
+    .imoveisLancamentoPJ {
+      margin: 24px 0;
+
+      .imoveisPJ {
+        max-width: 325px;
+        margin: auto;
+        margin-bottom: 28px;
+
+        .dataLancImovel {
+          margin-bottom: -20px;
+          font-size: 0.7em;
+          text-align: end;
+        }
+
+        .imgPJ {
+          width: 100%;
+          height: 225px;
+          padding: 24px 0 24px 24px;
+          position: relative;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .imgPJ::after {
+          content: "";
+          width: 50px;
+          height: 50px;
+          background: #db0423;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        }
+
+        .textoLancImovel {
+          display: flex;
+          justify-content: space-between;
+          margin-top: -20px;
+          margin-left: -12px;
+          text-align: end;
+
+          img {
+            width: auto;
+            height: 40px;
+            margin-top: -80px;
+            position: relative;
+            z-index: 1;
+          }
+
+          img.condominio {
+            height: 80px;
+            padding-right: 38px;
+            margin-top: -100px;
+          }
+        }
+      }
+    }
+
+    .imoveisPJ:nth-child(odd) {
+      .dataLancImovel {
+        text-align: start;
+      }
+
+      .imgPJ {
+        padding: 24px 24px 24px 0;
+      }
+
+      .imgPJ::after {
+        right: 0;
+        left: auto;
+      }
+    }
+  }
+
+  .casasJardinsPJ {
+    padding: 24px;
+    margin-bottom: 38px;
+    background: #272727;
+
+    * {
+      color: #fff;
+    }
+
+    .texto {
+      h1 {
+        margin-bottom: 12px;
+      }
+
+      h3 {
+        margin-bottom: 24px;
+      }
+      p {
+        margin-bottom: 38px;
+        font-weight: 200;
+      }
+    }
+
+    .casas {
+      width: max-content;
+      display: flex;
+
+      .listaCasas {
+        display: flex;
+        align-items: center;
+        width: max-content;
+
+        .casa {
+          width: 200px;
+          margin-right: 24px;
+
+          img {
+            width: 100%;
+            height: 125px;
+            object-fit: cover;
+          }
+
+          h4 {
+            margin-top: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .valorizacaoPJ {
+    padding: 24px;
+    margin-bottom: 38px;
+
+    .titulo {
+      h1 {
+        color: #db0423;
+        margin-bottom: 24px;
+      }
+
+      h2 {
+        font-weight: 200;
+      }
+    }
+  }
+
+  .todosPJ {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    margin-bottom: 38px;
+    background: #272727;
+
+    * {
+      color: #fff;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-weight: 200;
+    }
+
+    .condominio {
+      padding: 10px;
+      margin: 24px 0;
+
+      .informacoes {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .topo {
+          :first-child {
+            margin-bottom: 12px;
+          }
+
+          :last-child {
+            font-weight: 200;
+          }
+        }
+        .bottom {
+          display: flex;
+
+          p {
+            width: 80%;
+            font-weight: 200;
+          }
+          img {
+            width: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .frasePJ {
+    display: flex;
+    align-items: center;
+    .titulos {
+      width: 50%;
+      padding-right: 38px;
+    }
+
+    .logos {
+      width: 50%;
+      padding: 24px;
+    }
+  }
+
+  .lancamentosPJ {
+    .imoveisLancamentoPJ {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .imoveisPJ {
+        margin: 12px;
+
+        .imgPJ {
+          height: 250px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 820px) {
+  .paginaJardins {
+    .topoPJ {
+      width: calc((100vw - 1140px) + 1140px);
+      height: 570px;
+      left: calc(-1 * (100vw - 1140px) / 2);
+      font-size: 1.5em;
+    }
+    .lancamentosPJ {
+      .imoveisLancamentoPJ {
+        display: flex;
+
+        .imoveisPJ {
+          margin: 15px;
+
+          .imgPJ {
+            height: 250px;
+          }
+        }
+      }
+    }
+
+    .casasJardinsPJ {
+      width: calc((100vw - 1140px) + 1140px);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      left: calc(-1 * (100vw - 1140px) / 2);
+
+      .texto {
+        width: 50%;
+        padding-right: 38px;
+      }
+
+      .container {
+        flex-direction: row;
+      }
+
+      .casas {
+        width: 50%;
+
+        .listaCasas {
+          padding-left: 38px;
+
+          .casa {
+            width: 325px;
+
+            img {
+              height: 200px;
+            }
+          }
+        }
+      }
+    }
+
+    .todosPJ {
+      width: calc((100vw - 1140px) + 1140px);
+      align-items: center;
+      position: relative;
+      left: calc(-1 * (100vw - 1140px) / 2);
+
+      .condominios {
+        display: flex;
+        justify-content: center;
+        .condominio {
+          max-width: 325px;
+          margin: 48px 0 24px;
+          font-size: 0.7em;
+        }
+      }
+    }
+  }
+}

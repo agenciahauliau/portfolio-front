@@ -32,6 +32,8 @@ export const ImoveisPesquisaQuery = gql`
       cep
       cidade
       uf
+      imagemPrincipal
+      imagensAdicionais
       comodidadesImovel
       comodidadesCondominio
       createdAt
@@ -80,6 +82,8 @@ query imovel(
       uf
       comodidadesImovel
       comodidadesCondominio
+      imagemPrincipal
+      imagensAdicionais
       createdAt
       updatedAt
     }

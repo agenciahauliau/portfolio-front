@@ -5,7 +5,7 @@
   padding: 0 24px;
 
   .conteudoImovel {
-    width: 100%;
+    display: grid;
     position: relative;
 
     .titulodescricaoImovel,
@@ -23,58 +23,16 @@
       height: 2px;
       display: block;
       margin-left: 24px;
-      background-color: #DB0423;
-    }
-
-    .topoImovel {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 24px 0;
-
-      .tituloImovel {
-        margin-bottom: 48px;
-      }
-
-      .informacoesImovel {
-        .endrecoImovel {
-          margin-bottom: 24px;
-        }
-
-        .comodosImovel {
-          display: flex;
-          justify-content: space-between;
-        }
-      }
-    }
-
-    .boxImagemImovel {
-      width: 100%;
-      min-height: 336px;
-      margin-bottom: 68px;
-      position: relative;
-
-      .imagemImovel {
-        width: calc(100% + 48px);
-        height: 100%;
-        position: absolute;
-        left: -24px;
-        z-index: -1;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
+      background-color: #db0423;
     }
 
     .descricaoImovel {
+      grid-area: desc;
       margin-bottom: 68px;
     }
 
     .formImovel {
-      width: 100%;
+      grid-area: form;
       margin-bottom: 68px;
       position: relative;
 
@@ -96,7 +54,7 @@
           flex-direction: column;
 
           > * {
-            margin: 0 0 24px ;
+            margin: 0 0 24px;
           }
 
           > input {
@@ -117,7 +75,7 @@
             padding: 12px 24px;
             margin: 24px 0 0;
             font-weight: 700;
-            background: #DB0423;
+            background: #db0423;
             color: #fff;
           }
         }
@@ -132,7 +90,7 @@
     }
 
     .outrosInformacoesImovel {
-      position: relative;
+      grid-area: info;
 
       > * {
         margin-bottom: 68px;
@@ -175,51 +133,15 @@
   }
 }
 
-@media (min-width: 1200px) {
-  .Imovel {  
+@media (min-width: 820px) {
+  .Imovel {
     .conteudoImovel {
-  
-      .topoImovel {
-        width: 50%;
-        min-height: 288px;
-        padding-right: 38px;
-        margin-bottom: 68px;
-        float: left;
-      }
-  
-      .boxImagemImovel {
-        width: 50%;
-        min-height: 336px;
-        float: right;
-  
-        .imagemImovel {
-          width: calc((100vw - 1140px) / 2 + 100%);
-          height: 528px;
-          left: 0;
-        }
-      }
-  
       .descricaoImovel {
-        width: 50%;
         padding-right: 38px;
-        float: left;
       }
-  
-      .formImovel {
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        float: right;
-  
-        .dentroFormImovel {
-          max-width: 400px;
-        }
-      }
-  
+      
       .outrosInformacoesImovel {
-        width: 50%;
         padding-right: 38px;
-        float: left;
       }
     }
   }

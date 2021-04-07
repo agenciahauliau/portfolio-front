@@ -1,9 +1,13 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import ImoveisVenda from "./TiposImoveis/ImoveisVenda";
+import ImoveisVenda from "./TiposImoveis/ImoveisVenda/ImoveisVenda";
+import ImoveisAluguel from "./TiposImoveis/ImoveisAluguel/ImoveisAluguel";
+import ImoveisLancamento from "./TiposImoveis/ImoveisLancamento/ImoveisLancamento";
+import ImoveisJardins from "./TiposImoveis/ImoveisJardins/ImoveisJardins";
 
 import "./Imoveis.scss";
+
 
 
 // function TipoNegocioImovel() {
@@ -18,7 +22,7 @@ function Imoveis() {
   return (
     <section className="Imovel">
       <div className="container">
-        <ImoveisVenda />
+        <ImoveisJardins />
       </div>
     </section>
   );
