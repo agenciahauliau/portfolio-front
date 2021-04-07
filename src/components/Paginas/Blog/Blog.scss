@@ -1,0 +1,285 @@
+@import "../../../assets/Styles/Import.scss";
+
+.blog {
+  .populares {
+    .topo {
+      display: grid;
+      grid-template-columns: 50%;
+      grid-template-areas:
+        "um um"
+        "dois tres";
+      flex-wrap: wrap;
+      padding: 24px;
+      .artigo {
+        .imagemTitulo {
+          display: flex;
+          margin: 6px;
+          position: relative;
+          .imagem {
+            height: 250px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .titulo {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 12px;
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(180deg, #27272700, #272727bb);
+
+            .tag {
+              p {
+                width: 100%;
+                margin: 24px;
+                font-size: 0.7em;
+                text-align: end;
+              }
+            }
+            div {
+              h3 {
+                color: #fff;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+              }
+
+              .compartilhar {
+                display: none;
+                margin: 0 12px;
+                bottom: 0;
+                right: 0;
+                ul {
+                  display: flex;
+                  li {
+                    width: 18px;
+                    margin: 12px;
+
+                    svg {
+                      fill: #fff;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .artigo:not(:first-child) {
+        .imagemTitulo {
+          .imagem {
+            height: 150px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+      .artigo:nth-child(1) {
+        grid-area: um;
+      }
+
+      .artigo:nth-child(2) {
+        grid-area: dois;
+      }
+
+      .artigo:nth-child(3) {
+        grid-area: tres;
+      }
+    }
+  }
+  .maisLidas {
+    display: flex;
+    justify-content: center;
+    .artigosMaisLidos {
+      padding: 24px;
+      margin: 6px;
+      .artigo {
+        display: flex;
+        align-items: center;
+        margin: 12px 0;
+        .imagem {
+          margin-right: 12px;
+          .img {
+            width: 50px;
+            height: 50px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+        .titulo {
+          h4 {
+              font-weight: 200;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+  .conteudoBlog {
+    display: flex;
+    justify-content: center;
+
+    .artigos {
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      .artigo {
+        max-width: 325px;
+        margin: 24px 6px 48px;
+        .imagem {
+          position: relative;
+          .img {
+            height: 250px;
+
+            z-index: -1;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .tag {
+            margin: 12px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #fff;
+            font-size: 0.7em;
+            text-align: end;
+          }
+          .compartilhar {
+            position: absolute;
+            margin: 0 12px;
+            bottom: 0;
+            right: 0;
+            ul {
+              display: flex;
+              li {
+                width: 18px;
+                margin: 12px;
+
+                svg {
+                  fill: #fff;
+                }
+              }
+            }
+          }
+        }
+        .texto {
+          .titulo {
+            margin-top: 12px;
+
+            h4 {
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+          }
+
+          .titulo::after {
+            content: "";
+            width: 25%;
+            margin-top: 12px;
+            display: block;
+            border: 1px solid #db0423;
+          }
+          .resumo {
+            margin-top: 12px;
+            p {
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 820px) {
+  .blog {
+    .populares {
+      .topo {
+        grid-template-columns: calc(100% / 3);
+        grid-template-areas:
+          "um um um dois"
+          "um um um tres";
+        .artigo {
+          width: 100%;
+          .imagemTitulo {
+            .imagem {
+              width: 100%;
+              height: 456px;
+            }
+            .titulo {
+              width: 100%;
+
+              div {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                h3 {
+                  width: 50%;
+                  margin: 24px;
+                  font-size: 1.5em;
+                }
+
+                .compartilhar {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+
+        .artigo:not(:first-child) {
+          .imagemTitulo {
+            .imagem {
+              height: 223px;
+            }
+          }
+        }
+      }
+    }
+    .maisLidas {
+      .artigosMaisLidos {
+        display: flex;
+        align-items: center;
+        h3 {
+          width: 400px;
+        }
+        .artigo {
+          margin: 0 12px;
+        }
+        .artigo:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    .conteudoBlog {
+      .artigos {
+        .artigo {
+          margin: 24px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+@import "../../../../assets/Styles/Import.scss";
+
+.post {
+  display: flex;
+  justify-content: center;
+
+  .artigo {
+    width: 100%;
+    position: relative;
+    padding: 24px;
+
+    .topo {
+      padding: 38px 0;
+
+      .imagemDestacada {
+        .imagem {
+          .img {
+            height: 532px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+      .texto {
+        margin-bottom: 38px;
+        .info {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 24px;
+
+          > * {
+            width: 50%;
+          }
+
+          .tag {
+            text-align: end;
+          }
+        }
+        .compartilhar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 24px;
+            ul {
+              display: flex;
+              li {
+                width: 24px;
+                margin: 12px;
+              }
+              li:first-child {
+                margin-left: 0;
+              }
+            }
+          }
+      }
+    }
+
+    .conteudo {
+      
+      .conteudoArtigo {
+        .texto {
+          p {
+            margin-bottom: 12px;
+            line-height: 1.5em;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 820px) {
+  .post {
+    .artigo {
+      padding: 0;
+      .topo {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        padding: 0;
+        margin-bottom: 48px;
+
+        .imagemDestacada {
+          width: 38%;
+          .imagem {
+            .img {
+              width: calc(100% + (100vw - 1140px) / 2);
+              position: relative;
+              left: calc(-1 * (100vw - 1140px) / 2);
+            }
+          }
+        }
+        .texto {
+          width: 62%;
+          padding: 38px;
+          margin-bottom: 0;
+
+          .compartilhar{
+              justify-content: flex-start;
+            ul{
+              li:first-child {
+                margin-left: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

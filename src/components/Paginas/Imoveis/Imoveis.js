@@ -22,7 +22,7 @@ function Imoveis() {
   return (
     <section className="Imovel">
       <div className="container">
-        <ImoveisJardins />
+        <ImoveisVenda />
       </div>
     </section>
   );

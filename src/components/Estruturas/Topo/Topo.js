@@ -36,7 +36,7 @@ function Topo() {
             <div className="menu-lits-imoveis">
               <ul>
                 <li>
-                  <Link to='/condominio-jardins'>
+                  <Link to='/condominio+jardins'>
                     Condomínio Jardins
                   </Link>
                   </li>
@@ -46,7 +46,7 @@ function Topo() {
                   </Link>
                 </li>
                 <li>
-                  <Link to='/anuncie'>
+                  <Link to='/anuncie+seu+imovel'>
                     Anuncie
                   </Link>
                 </li>
@@ -55,12 +55,12 @@ function Topo() {
             <div className="menu-lits-info">
               <ul>
                 <li>
-                  <Link to='/blog'>
+                  <Link to='/artigos'>
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link to='/sobre'>
+                  <Link to='/sobre+nos'>
                     Sobre
                   </Link>
                 </li>

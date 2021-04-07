@@ -32,7 +32,7 @@ function Pesquisa() {
                 </div>
                 <Link
                   to={
-                    "/imovel?titulo=" +
+                    "/imoveis/imovel?titulo=" +
                     imovel.categoriaImovel.replaceAll(" ", "+") +
                     (imovel.qtdeQuarto === 0
                       ? ""
