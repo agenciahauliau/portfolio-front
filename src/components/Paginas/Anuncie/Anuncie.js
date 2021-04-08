@@ -20,7 +20,7 @@ const Anuncie = (props) => {
                   <h1>Imóvel para vender ou alugar? Deixa com a gente!</h1>
                   <p>
                     Sem tempo para participar das visitas? Não sabe como divulgar o seu imóvel? Não tem problema! 
-                    Aqui na Portfolio você conta com os melhores Consultores Imobiliários do mercado para tomar conta de tudo pra você.
+                    Aqui na Portfolio você conta com os melhores Consultores Imobiliários do mercado para cuidar de tudo pra você.
                   </p>
                 </div>
                 <div>
