@@ -1,7 +1,5 @@
-@import '../../../assets/Styles/Import.scss';
-
 .pesquisa {
-    background: $cor-preta;
+    background: #272727;
     display: flex;
     justify-content: center;
 
@@ -36,7 +34,7 @@
                 border-right: 0;
             }
             .listVenda-pesquisa {
-                background: $cor-vermelha;
+                background: #db0423;
                 width: 100px;
                 border: solid #fff5 1px;
                 border-left: 0;
@@ -44,7 +42,8 @@
             }
             button {
                 background: none;
-                @extend %centro-do-item;
+                justify-content: center;
+				align-items: center;
 
                 svg {
                     width: 30px;
@@ -77,7 +76,8 @@
         }
 
         .ordem-pesquisa {
-            @extend %centro-do-item;
+            justify-content: center;
+				align-items: center;
 
             svg {
                 width: 30px;

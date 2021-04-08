@@ -1,9 +1,8 @@
-@import './import.scss';
-
 .news {
     display: flex;
-    @extend %centro-do-item;
-    @extend %inicio-section;
+    justify-content: center;
+	align-items: center;
+    padding: 80px 0;
 
     .container{
 
@@ -21,7 +20,7 @@
                 
                 input {
                     width: 100%;
-                    border: 1px solid $cor-preta;
+                    border: 1px solid #272727;
                     padding: 10px 15px;
                     font-weight: 700;
                 }
@@ -35,7 +34,8 @@
 
         .textoNews {
             display: flex;
-            @extend %centro-do-item;
+            justify-content: center;
+			align-items: center;
             width: 50%;
             padding-left: 100px;
 

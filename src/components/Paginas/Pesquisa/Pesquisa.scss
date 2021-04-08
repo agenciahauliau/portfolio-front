@@ -1,16 +1,16 @@
-@import '../../../assets/styles/Import.scss';
-
 .ConteudoPesquisa {
     display: flex;
     flex-direction: column;
-    @extend %centro-do-item;
-    @extend %inicio-section;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
 
     .DestaquesPesquisa, .ImoveisPesquisa, .NumeroPagina {
         
         .container {
             flex-wrap: wrap;
-            @extend %centro-do-item;
+            justify-content: center;
+    align-items: center;
         }
     }
 
