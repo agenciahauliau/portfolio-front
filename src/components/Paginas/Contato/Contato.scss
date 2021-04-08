@@ -1,0 +1,150 @@
+.contato {
+  .containerContato {
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 90px);
+
+    align-items: center;
+    .bg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: url(../../../assets/Imagens/linhas.svg) no-repeat fixed center /
+          cover,
+        #272727;
+      z-index: -2;
+      video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        position: absolute;
+        z-index: -1;
+        opacity: 0.3;
+        filter: grayscale(1) blur(2px);
+      }
+    }
+
+    .info {
+      width: 90%;
+      margin: 24px 0;
+      background: #27272722;
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 0 0 1000px #ffffff03, 0 0 50px #00000005;
+
+      .imagem {
+        height: 125px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .textoForm {
+        padding: 12px;
+        color: #fff;
+
+        h1 {
+          width: 80%;
+          margin: 24px 0 12px;
+        }
+
+        > P {
+          margin-bottom: 48px;
+        }
+
+        p {
+          font-weight: 200;
+        }
+
+        .redesSociais {
+          width: 80%;
+          margin-bottom: 24px;
+          p {
+            margin-bottom: 12px;
+          }
+          ul {
+            display: flex;
+            li {
+              width: 24px;
+              margin-right: 24px;
+              svg {
+                fill: #fff;
+              }
+            }
+          }
+        }
+
+        .postal {
+          width: 80%;
+          margin-bottom: 24px;
+
+          > p:first-child {
+            margin-bottom: 12px;
+          }
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          input,
+          textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 10px 18px;
+            background: #ffffff22;
+            border: none;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 200;
+          }
+
+          label {
+            margin-top: 8px;
+            padding: 10px 0;
+            color: #fff;
+          }
+
+          button {
+            width: fit-content;
+            padding: 12px 18px;
+            margin: 12px 0;
+            align-self: flex-end;
+            background: #db0423;
+            color: #fff;
+            font-weight: 800;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 820px) {
+  .contato {
+    .containerContato {
+      height: calc(100vh - 90px);
+
+      .info {
+        display: flex;
+        height: 90%;
+        .imagem {
+          width: 30%;
+          height: 100%;
+        }
+
+        .textoForm {
+          width: 70%;
+          padding: 38px;
+          margin-left: 48px;
+          color: #fff;
+
+          form {
+            width: 70%;
+          }
+        }
+      }
+    }
+  }
+}
