@@ -17,11 +17,10 @@ const Anuncie = (props) => {
             <div className="coluna">
               <div className="texto">
               <div className="titulo">
-                  <h1>Deixe seu imóvel com a melhor imobiliária</h1>
+                  <h1>Imóvel para vender ou alugar? Deixa com a gente!</h1>
                   <p>
-                    Se surpreenda com o melhor processo de negociação do seu
-                    imóvel, por que achamos que você precisa aproveitar o melhor
-                    da vida em quanto lidamos com tudo para você
+                    Sem tempo para participar das visitas? Não sabe como divulgar o seu imóvel? Não tem problema! 
+                    Aqui na Portfolio você conta com os melhores Consultores Imobiliários do mercado para tomar conta de tudo pra você.
                   </p>
                 </div>
                 <div>
