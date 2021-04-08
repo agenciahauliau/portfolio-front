@@ -18,11 +18,11 @@ function Contato() {
             <img src={Boutique} />
           </div>
           <div className="textoForm">
-            <h1>Entre em contato com agora</h1>
-            <p>Mande mensagem e tire todas as suas dúvidas</p>
+            <h1>Fale com a gente.</h1>
+            <p>Deixe a sua mensagem ou dúvidas e entraremos em contato.</p>
             <div className="redesSociais">
               <p>
-                Procure agente nas redes sociais <b>@portfolioimb</b>
+                Nos encontre nas redes sociais <b>@portfolioimb</b>
               </p>
               <ul>
                 <li>
