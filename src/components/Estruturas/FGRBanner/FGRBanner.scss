@@ -1,9 +1,7 @@
-@import './import.scss';
-
 .FGRBanner {
     display: flex;
-    @extend %centro-do-item;
-    @extend %inicio-section;
+    justify-content: center;
+	align-items: center;
 
     .container {
 

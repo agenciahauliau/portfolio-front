@@ -1,10 +1,8 @@
-@import './import.scss';
-
 .AjudaImovel{
     display: flex;
-    @extend %centro-do-item;
-    @extend %inicio-section;
-    background-color: $cor-preta;
+    justify-content: center;
+	align-items: center;
+    background-color: #272727;
 
     * {
         color: #fff;
