@@ -74,7 +74,7 @@
 
       .imagemTexto {
         width: 38%;
-        height: calc(100vh - 90px);
+        min-height: calc(100vh - 90px);
         .imagem {
           height: 100%;
           img {

@@ -1,48 +1,59 @@
 .news {
-    display: flex;
-    justify-content: center;
-	align-items: center;
-    padding: 80px 0;
+  .container {
+    flex-direction: column;
+    .formNews {
+      padding-right: 20px;
 
-    .container{
+      form {
+        display: flex;
+        margin: 12px 0;
 
-        .formNews {
-            width: 50%;
-            padding-right: 20px;
-
-            form {
-                display: flex;
-                margin: 15px 0;
-
-                > * {
-                    margin: 8px 0;
-                }
-                
-                input {
-                    width: 100%;
-                    border: 1px solid #272727;
-                    padding: 10px 15px;
-                    font-weight: 700;
-                }
-                
-                button {
-                    width: 60px;
-                    background-color: chartreuse;
-                }
-            }
+        > * {
+          margin: 8px 0;
         }
 
-        .textoNews {
-            display: flex;
-            justify-content: center;
-			align-items: center;
-            width: 50%;
-            padding-left: 100px;
-
-            p {
-                width: 70%;
-            }
+        input {
+          width: 100%;
+          border: 1px solid #272727;
+          padding: 6px 12px 0;
         }
 
+        button {
+          width: 48px;
+          padding: 12px;
+          background-color: #db0423;
+          fill: #fff;
+        }
+      } 
     }
+  }
+}
+
+@media screen and (min-width: 820px) {
+  .news {
+    .container {
+      flex-direction: row;
+      padding: 96px 0;
+      margin: auto;
+
+      .formNews {
+        width: 50%;
+        padding-right: 20px;
+        form{
+          margin: 12px 0 0;
+        }
+      }
+
+      .textoNews {
+        display: flex;
+        align-items: flex-end;
+        width: 50%;
+        padding-left: 96px;
+
+        p {
+          width: 70%;
+        }
+      }
+    }
+  }
 }

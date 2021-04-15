@@ -6,7 +6,7 @@ function BarraAjuda() {
     <section className="AjudaImovel">
       <div className="container">
         <div className="textoAjudaImovel">
-          <h2>Não encontrou o imóvel que queria?</h2>
+          <h1>Não encontrou o imóvel que queria?</h1>
           <p>
             Mande seu contato e entraremos em contato, para te ajudar a achar
             seu imóvel, com nosso atendimento personalizado do jeito que você
@@ -15,8 +15,8 @@ function BarraAjuda() {
         </div>
         <div className="formAjudaImovel">
           <form>
-            <input tyoe="text" />
-            <input tyoe="tel" />
+            <input tyoe="text" placeholder="Nome Completo" />
+            <input tyoe="tel" placeholder="Telefone / WhatsApp" />
             <button>Enviar</button>
           </form>
         </div>

@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faSink, faWarehouse } from "@fortawesome/free-solid-svg-icons";
 
 import BarraPesquisa from "../../Estruturas/BarraPesquisa/BarraPesquisa";
+import FGRBanner from "../../Estruturas/FGRBanner/FGRBanner";
+import BarraAjuda from "../../Estruturas/BarraAjuda/BarraAjuda";
+import Newsletter from "../../Estruturas/Newsletter/Newsletter";
 
 //import SCSS
 import "./Pesquisa.scss";
@@ -101,11 +104,10 @@ function Pesquisa() {
             ))}
           </div>
         </div>
-
-        <div className="NumeroPagina">
-          <div>asdfadf</div>
-        </div>
       </section>
+      <FGRBanner />
+      <BarraAjuda />
+      <Newsletter />
     </>
   );
 }

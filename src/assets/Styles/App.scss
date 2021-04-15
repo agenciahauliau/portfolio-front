@@ -45,24 +45,29 @@ img {
   aspect-ratio: attr(width) / attr(height);
 }
 input {
+  font-size: 1em;
+  font-weight: 200;
   border-radius: 0px;
 }
 .container {
   display: flex;
   width: 100%;
+  padding: 24px;
 }
 
-@media (min-width: 1200px) {
+@media screen and (min-width: 820px) {
   html {
-    font-size: 18px;
+    font-size: 14px;
   }
+
   .container {
+    display: flex;
     width: 1140px;
   }
 }
 
-@media (max-width: 820px) {
+@media screen and (min-width: 1200px) {
   html {
-    font-size: 14px;
+    font-size: 18px;
   }
 }

@@ -1,13 +1,16 @@
 import { gql } from "@apollo/client";
 
 export const ImoveisPesquisaQuery = gql`
-  query {
+  query imoveis {
     imoveis {
       _id
+      nomeImovel
+      imagemPrincipal
       categoriaImovel
       jardins
       descricaoImovel
       tipoNegociacao
+      statusLancamento
       statusImovel
       aceitaPermuta
       mobiliado
@@ -23,7 +26,6 @@ export const ImoveisPesquisaQuery = gql`
       qtdeBanheiro
       qtdeSuites
       qtdeVagas
-      nomeImovel
       nomeConstrutora
       bairro
       logradouro
@@ -32,10 +34,23 @@ export const ImoveisPesquisaQuery = gql`
       cep
       cidade
       uf
-      imagemPrincipal
-      imagensAdicionais
+      galerias {
+        tipoGaleria
+        nomeGaleria
+        arquivos
+        arquivoDestaque
+      }
+      imgPlantaCondominio
       comodidadesImovel
       comodidadesCondominio
+      previsaoLancamento
+      tipologias {
+        quartos
+        suites
+        tamanho
+        valorEntrada
+        valorParcela
+      }
       createdAt
       updatedAt
     }
@@ -43,19 +58,16 @@ export const ImoveisPesquisaQuery = gql`
 `;
 
 export const ImovelQuery = gql`
-query imovel(
-    $_id: ID!
-  ) {
-    imovel(
-      dados: {
-        _id: $_id
-      }
-    ) {
+  query imovel($_id: ID!) {
+    imovel(dados: { _id: $_id }) {
       _id
+      nomeImovel
+      imagemPrincipal
       categoriaImovel
       jardins
       descricaoImovel
       tipoNegociacao
+      statusLancamento
       statusImovel
       aceitaPermuta
       mobiliado
@@ -71,7 +83,6 @@ query imovel(
       qtdeBanheiro
       qtdeSuites
       qtdeVagas
-      nomeImovel
       nomeConstrutora
       bairro
       logradouro
@@ -80,12 +91,25 @@ query imovel(
       cep
       cidade
       uf
+      galerias {
+        tipoGaleria
+        nomeGaleria
+        arquivos
+        arquivoDestaque
+      }
+      imgPlantaCondominio
       comodidadesImovel
       comodidadesCondominio
-      imagemPrincipal
-      imagensAdicionais
+      previsaoLancamento
+      tipologias {
+        quartos
+        suites
+        tamanho
+        valorEntrada
+        valorParcela
+      }
       createdAt
       updatedAt
     }
-  }`
-  ;
+  }
+`;

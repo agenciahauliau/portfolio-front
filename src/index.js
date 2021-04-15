@@ -11,7 +11,7 @@ import {
 const client = new ApolloClient({
   link: new HttpLink({
     uri:
-      "https://back-portfolio-imb-br-dot-rangell-consultoria-ti.rj.r.appspot.com/v1/graphql",
+      "https://api.portfolio.imb.br/v1/graphql",
   }),
   cache: new InMemoryCache(),
 });

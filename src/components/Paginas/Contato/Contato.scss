@@ -8,7 +8,9 @@
     .bg {
       width: 100%;
       height: 100%;
-      position: absolute;
+      position: fixed;
+      top: 0;
+      left: 0;
       background: url(../../../assets/Imagens/linhas.svg) no-repeat fixed center /
           cover,
         #272727;
@@ -31,16 +33,6 @@
       backdrop-filter: blur(10px);
       box-shadow: inset 0 0 0 1000px #ffffff03, 0 0 50px #00000005;
 
-      .imagem {
-        height: 125px;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
       .textoForm {
         padding: 12px;
         color: #fff;
@@ -60,7 +52,7 @@
 
         .redesSociais {
           width: 80%;
-          margin-bottom: 24px;
+          margin: 24px 0;
           p {
             margin-bottom: 12px;
           }
@@ -124,24 +116,19 @@
 @media (min-width: 820px) {
   .contato {
     .containerContato {
-      height: calc(100vh - 90px);
-
       .info {
         display: flex;
-        height: 90%;
-        .imagem {
-          width: 30%;
-          height: 100%;
-        }
+        height: 95%;
 
         .textoForm {
-          width: 70%;
+          width: 100%;
+          display: flex;
           padding: 38px;
-          margin-left: 48px;
           color: #fff;
 
           form {
-            width: 70%;
+            width: 100%;
+            padding: 24px;
           }
         }
       }
