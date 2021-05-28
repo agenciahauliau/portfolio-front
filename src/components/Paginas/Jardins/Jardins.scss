@@ -4,6 +4,7 @@
 
   .container {
     flex-direction: column;
+    padding: 0;
   }
 
   .topoPJ {
@@ -38,6 +39,7 @@
       }
 
       h2 {
+        margin-bottom: 12px;
         font-weight: 200;
       }
 

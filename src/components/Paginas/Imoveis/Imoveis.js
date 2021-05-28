@@ -8,21 +8,25 @@ import ImoveisJardins from "./TiposImoveis/ImoveisJardins/ImoveisJardins";
 
 import "./Imoveis.scss";
 
-
-
-// function TipoNegocioImovel() {
-//   return new URLSearchParams(useLocation().search).get("tipoNegociacao");
-// }
+function Negocio() {
+  return new URLSearchParams(useLocation().search).get("tipoNegociacao");
+}
 
 // function JardinsImovel() {
-//     return new URLSearchParams(useLocation().search).get("jardins");
-//   }
+//   return new URLSearchParams(useLocation().search).get("jardins");
+// }
 
 function Imoveis() {
   return (
     <section className="Imovel">
       <div className="container">
-        <ImoveisVenda />
+        {Negocio() === "Venda" ? (
+          <ImoveisVenda />
+        ) : Negocio() === "Lancamento" ? (
+          <ImoveisLancamento />
+        ) : (
+          <ImoveisAluguel />
+        )}
       </div>
     </section>
   );

@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
+import { useQuery } from "@apollo/client";
+import { infoImoveis } from "../../Dados/DadosImoveis";
+
 import "./BarraPesquisa.scss";
 
 function BarraPesquisa() {
+  const { loading, data } = useQuery(infoImoveis);
+  if (loading) return <p>Loading Masterpieces...</p>;
+
+  let bairros = [];
+  let nomeConstrutoras = [];
+  let cidades = [];
+  let ufs = [];
+
+  for (let imovel of data.imoveis) {
+    imovel.bairro && bairros.push(imovel.bairro);
+    imovel.nomeConstrutora && nomeConstrutoras.push(imovel.nomeConstrutora);
+    imovel.cidade && cidades.push(imovel.cidade);
+    imovel.uf && ufs.push(imovel.uf);
+  }
+
   return (
     <section className="pesquisa">
       <div className="pesquisa-container">
-        <div className="barra-pesquisa">
+        {/* <div className="barra-pesquisa">
           <form>
             <input className="texto-pesquisa" type="text" />
             <select className="listVenda-pesquisa" list="tipoVenda">
@@ -33,51 +51,187 @@ function BarraPesquisa() {
               </svg>
             </button>
           </form>
-        </div>
+        </div> */}
         <div className="filtros-pesquisa">
-          <h4>Adicionar filtros</h4>
-          <p className="filtros-adicionados">
-            3 quartos, 2 garagens ....
-          </p>
-        </div>
-        <div className="quantidade-pesquisa">
-          <ul>
-            <li>Mostrar:</li>
-            <li>
-              <a href="">12</a>
-            </li>
-            <li>
-              <a href="">24</a>
-            </li>
-            <li>
-              <a href="">48</a>
-            </li>
-          </ul>
-        </div>
-        <div className="ordem-pesquisa">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            viewBox="0 0 394.971 394.971"
-          >
-            <g>
-              <g>
-                <g>
-                  <circle cx="56.424" cy="197.486" r="51.2" />
-                  <path d="M379.298,187.037H143.151c-5.771,0-10.449,4.678-10.449,10.449s4.678,10.449,10.449,10.449h236.147     c5.771,0,10.449-4.678,10.449-10.449S385.069,187.037,379.298,187.037z" />
-                  <circle cx="56.424" cy="51.2" r="51.2" />
-                  <path d="M143.151,61.649h236.147c5.771,0,10.449-4.678,10.449-10.449s-4.678-10.449-10.449-10.449H143.151     c-5.771,0-10.449,4.678-10.449,10.449S137.38,61.649,143.151,61.649z" />
-                  <circle cx="56.424" cy="343.771" r="51.2" />
-                  <path d="M379.298,333.322H143.151c-5.771,0-10.449,4.678-10.449,10.449s4.678,10.449,10.449,10.449h236.147     c5.771,0,10.449-4.678,10.449-10.449S385.069,333.322,379.298,333.322z" />
-                </g>
-              </g>
-            </g>
-          </svg>
-          <h4>Ordenar por:</h4>
-          <ul>
-            <li>Maior preço</li>
-          </ul>
+          <p>Filtros</p>
+
+          <div className="PainelFiltros">
+            <form action="/imoveis" method="GET">
+              <div className="categoriaImovelDiv">
+                <label>
+                  <p>Sala Comercial</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Sala+Comercial"
+                  />
+                </label>
+                <label>
+                  <p>Área Comercial</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Área+Comercial"
+                  />
+                </label>
+                <label>
+                  <p>Cobertura</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Cobertura"
+                  />
+                </label>
+                <label>
+                  <p>Apartamento Padrão</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Apartamento+Padrão"
+                  />
+                </label>
+                <label>
+                  <p>Chácaras</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Chácaras"
+                  />
+                </label>
+                <label>
+                  <p>Casa Residencial</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Casa+Residencial"
+                  />
+                </label>
+                <label>
+                  <p>Lote urbano</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Lote+urbano"
+                  />
+                </label>
+                <label>
+                  <p>Casa em Condomínio</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Casa+em+Condomínio"
+                  />
+                </label>
+                <label>
+                  <p>Lote em Condomínio</p>
+                  <input
+                    type="radio"
+                    name="categoriaImovel"
+                    value="Lote+em+Condomínio"
+                  />
+                </label>
+              </div>
+              <div className="tipoNegociacaolDiv">
+                <label>
+                  <p>Para Alugar</p>
+                  <input type="radio" name="tipoNegociacao" value="Alugar" />
+                </label>
+                <label>
+                  <p>Para Vender</p>
+                  <input type="radio" name="tipoNegociacao" value="Venda" />
+                </label>
+                <label>
+                  <p>Lançamento Imobiliário</p>
+                  <input
+                    type="radio"
+                    name="tipoNegociacao"
+                    value="Lançamento"
+                  />
+                </label>
+              </div>
+              <div className="statusImovelDiv">
+                <label>
+                  <p>Pronto para Morar</p>
+                  <input
+                    type="radio"
+                    name="statusImovel"
+                    value="Pronto para Morar"
+                  />
+                </label>
+                <label>
+                  <p>Entrega em Breve</p>
+                  <input
+                    type="radio"
+                    name="statusImovel"
+                    value="Entrega em Breve"
+                  />
+                </label>
+                <label>
+                  <p>Pronto para Construir</p>
+                  <input
+                    type="radio"
+                    name="statusImovel"
+                    value="Pronto para Construir"
+                  />
+                </label>
+                <label>
+                  <p>Lançamento</p>
+                  <input
+                    type="radio"
+                    vname="statusImovel"
+                    alue="Lançamento"
+                  />
+                </label>
+                <label>
+                  <p>Entregue</p>
+                  <input type="radio" name="statusImovel" value="Entregue" />
+                </label>
+              </div>
+              <div className="aceitaPermutaDiv">
+                <label>
+                  <p>Sim</p>
+                  <input type="radio" name="aceitaPermuta" value="true" />
+                </label>
+                <label>
+                  <p>Não</p>
+                  <input type="radio" name="aceitaPermuta" value="false" />
+                </label>
+              </div>
+              <div className="mobiliadoDiv">
+                <label>
+                  <p>Sim</p>
+                  <input type="radio" name="mobiliado" value="true" />
+                </label>
+                <label>
+                  <p>Não</p>
+                  <input type="radio" name="mobiliado" value="false" />
+                </label>
+              </div>
+              <select name="nomeConstrutora" id="nomeConstrutora">
+                {[...new Set(nomeConstrutoras)].map((construtoraOptions) => (
+                  <option value={construtoraOptions}>
+                    {construtoraOptions}
+                  </option>
+                ))}
+              </select>
+              <select name="bairro" id="bairro">
+                {[...new Set(bairros)].map((bairroOptions) => (
+                  <option value={bairroOptions}>{bairroOptions}</option>
+                ))}
+              </select>
+              <select name="cidade" id="cidade">
+                {[...new Set(cidades)].map((cidadeOptions) => (
+                  <option value={cidadeOptions}>{cidadeOptions}</option>
+                ))}
+              </select>
+              <select name="uf" id="uf">
+                {[...new Set(ufs)].map((ufOptions) => (
+                  <option value={ufOptions}>{ufOptions}</option>
+                ))}
+              </select>
+              <input type="submit" />
+            </form>
+          </div>
         </div>
       </div>
     </section>

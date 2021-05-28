@@ -11,7 +11,7 @@ function Blog() {
           <div className="artigo">
             <div className="imagemTitulo">
               <div className="imagem">
-                <img src="https://images.pexels.com/photos/7037705/pexels-photo-7037705.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                <img src="https://images.pexels.com/photos/7037705/pexels-photo-7037705.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
               </div>
               <div className="titulo">
                 <div className="tag">
@@ -90,7 +90,7 @@ function Blog() {
           <div className="artigo">
             <div className="imagemTitulo">
               <div className="imagem">
-                <img src="https://images.pexels.com/photos/7037705/pexels-photo-7037705.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                <img src="https://images.pexels.com/photos/7037705/pexels-photo-7037705.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
               </div>
               <div className="titulo">
                 <div className="tag">
@@ -169,7 +169,7 @@ function Blog() {
           <div className="artigo">
             <div className="imagemTitulo">
               <div className="imagem">
-                <img src="https://images.pexels.com/photos/7037705/pexels-photo-7037705.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                <img src="https://images.pexels.com/photos/7037705/pexels-photo-7037705.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
               </div>
               <div className="titulo">
                 <div className="tag">
@@ -255,7 +255,7 @@ function Blog() {
               <div className="artigo">
                 <div className="imagem">
                   <div className="img">
-                    <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                    <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
                   </div>
                 </div>
                 <div className="titulo">
@@ -269,7 +269,7 @@ function Blog() {
               <div className="artigo">
                 <div className="imagem">
                   <div className="img">
-                    <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                    <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
                   </div>
                 </div>
                 <div className="titulo">
@@ -283,7 +283,7 @@ function Blog() {
               <div className="artigo">
                 <div className="imagem">
                   <div className="img">
-                    <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                    <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
                   </div>
                 </div>
                 <div className="titulo">
@@ -297,7 +297,7 @@ function Blog() {
               <div className="artigo">
                 <div className="imagem">
                   <div className="img">
-                    <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                    <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
                   </div>
                 </div>
                 <div className="titulo">
@@ -316,7 +316,7 @@ function Blog() {
             <div className="artigo">
               <div className="imagem">
                 <div className="img">
-                  <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                  <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
                 </div>
                 <div className="tag">tag da postagem</div>
                 <div className="compartilhar">
@@ -404,7 +404,7 @@ function Blog() {
             <div className="artigo">
               <div className="imagem">
                 <div className="img">
-                  <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                  <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
                 </div>
                 <div className="tag">tag da postagem</div>
                 <div className="compartilhar">
@@ -492,7 +492,7 @@ function Blog() {
             <div className="artigo">
               <div className="imagem">
                 <div className="img">
-                  <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                  <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="imagem" />
                 </div>
                 <div className="tag">tag da postagem</div>
                 <div className="compartilhar">

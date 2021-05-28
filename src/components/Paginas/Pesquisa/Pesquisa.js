@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { ImoveisPesquisaQuery } from "../../Dados/DadosImoveis";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faSink, faWarehouse } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,9 +14,40 @@ import Newsletter from "../../Estruturas/Newsletter/Newsletter";
 import "./Pesquisa.scss";
 import "../../Estruturas/Cards/CardImoveis.scss";
 
+function FilterImovel() {
+  const chaves = new URLSearchParams(useLocation().search);
+
+  let resultado = {};
+
+  for (let key of chaves.keys()) {
+    const valorChave = chaves.get(key);
+
+    function test() {
+      if (valorChave === "true") {
+        return true;
+      } else if (valorChave === "false") {
+        return false;
+      } else if (isNaN(valorChave)) {
+        return valorChave;
+      } else {
+        return +valorChave;
+      }
+    }
+    resultado[key] = test();
+    resultado.statusLancamento = "aprovado";
+  }
+  return resultado;
+}
+
 function Pesquisa() {
-  const { loading, data } = useQuery(ImoveisPesquisaQuery);
+  const { loading, error, data } = useQuery(ImoveisPesquisaQuery, {
+    variables: {
+      input: FilterImovel(),
+    },
+  });
+
   if (loading) return <p>Loading Masterpieces...</p>;
+  if (error) return <p>Mas Bah</p>;
 
   return (
     <>
@@ -27,7 +58,7 @@ function Pesquisa() {
             {data.imoveis.map((imovel) => (
               <div className="CardImoveis">
                 <div className="TopoCardImoveis">
-                  <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                  <img src={imovel.imagemPrincipal} />
                   <div className="TipoImovel">
                     <p>{imovel.categoriaImovel}</p>
                     <img src="" />

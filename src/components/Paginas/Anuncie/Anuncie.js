@@ -8,7 +8,7 @@ const Anuncie = (props) => {
       <div className="containerParceiro">
         <div className="imagemTexto">
           <div className="imagem">
-            <img src="https://images.pexels.com/photos/1546166/pexels-photo-1546166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+            <img src="https://images.pexels.com/photos/1546166/pexels-photo-1546166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="imagem" />
           </div>
         </div>
 
@@ -53,8 +53,8 @@ const Anuncie = (props) => {
                 <option value="Lote urbano">Lote urbano</option>
                 <option value="Casa em Condomínio">Casa em Condomínio</option>
                 <option value="Lote em Condomínio">Lote em Condomínio</option>
-                <option value="volvo">Venda</option>
-                <option value="saab">Aluguel</option>
+                <option value="Venda">Venda</option>
+                <option value="Aluguel">Aluguel</option>
               </select>
 
               <label for="descricaoImovel">

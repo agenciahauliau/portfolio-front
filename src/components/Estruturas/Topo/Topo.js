@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./Topo.scss";
 //import Imagens
 import logo from "../../../assets/Imagens/logo.webp";
-import { render } from "@testing-library/react";
 
 class Topo extends React.Component {
   constructor(props) {
