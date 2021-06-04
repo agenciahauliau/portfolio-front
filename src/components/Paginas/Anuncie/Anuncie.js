@@ -34,13 +34,13 @@ const Anuncie = (props) => {
               <input type="text" placeholder="Telefone / Whatsapp" />
               <input type="text" placeholder="E-mail" />
 
-              <label for="tipoNegociacao">Venda ou aluguel?</label>
+              <label htmlFor="tipoNegociacao">Venda ou aluguel?</label>
               <select name="tipoNegociacao" id="tipoNegociacao">
                 <option value="Venda">Venda</option>
                 <option value="Aluguel">Aluguel</option>
               </select>
 
-              <label for="categoriaImovel">
+              <label htmlFor="categoriaImovel">
                 Em qual dessas categoria seu imóvel se encaixa?
               </label>
               <select name="categoriaImovel" id="categoriaImovel">
@@ -57,7 +57,7 @@ const Anuncie = (props) => {
                 <option value="Aluguel">Aluguel</option>
               </select>
 
-              <label for="descricaoImovel">
+              <label htmlFor="descricaoImovel">
                 Conte um pouco sobre seu imóvel
                 <textarea
                   name="descricaoImovel"

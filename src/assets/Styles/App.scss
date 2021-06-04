@@ -10,8 +10,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
-  font-size: 12px;
+  font-size: 13px;
 
   body {
     overflow-x: hidden;
@@ -50,24 +49,22 @@ input {
   border-radius: 0px;
 }
 .container {
-  display: flex;
   width: 100%;
   padding: 24px;
 }
 
 @media screen and (min-width: 820px) {
   html {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .container {
-    display: flex;
     width: 1140px;
   }
 }
 
 @media screen and (min-width: 1200px) {
   html {
-    font-size: 16px;
+    font-size: 18px;
   }
 }

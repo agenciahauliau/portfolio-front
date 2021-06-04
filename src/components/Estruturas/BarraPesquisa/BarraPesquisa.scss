@@ -1,193 +1,41 @@
 .pesquisa {
   padding: 0 24px;
   background: #272727;
+  overflow: hidden;
 
-  * {
-    color: #fff;
-    display: flex;
-  }
-
-  .pesquisa-container {
+  .pesquisaContainer {
     width: 100%;
     min-height: 90px;
-    flex-wrap: wrap;
-    align-items: center;
     padding: 38px 0;
 
-    > * {
-      padding: 15px 0;
-    }
-
-    .barra-pesquisa {
-      width: 100%;
-
-      input {
-        padding: 6px 12px;
-      }
-      .texto-pesquisa {
-        width: 150px;
-        background: #fff1;
-        border: solid #fff5 1px;
-        border-right: 0;
-      }
-      .listVenda-pesquisa {
-        width: 76px;
-        background: #db0423;
-        border: solid #fff5 1px;
-        border-left: 0;
-        font-weight: 700;
-      }
-      button {
-        background: none;
-        justify-content: center;
-        align-items: center;
-
-        svg {
-          width: 30px;
-          margin: 0 38px;
-          fill: #fff;
-        }
-      }
-    }
-
-    .filtros-pesquisa {
-      width: 100%;
-      flex-direction: column;
-
-      > * {
-        display: block;
-        text-align: right;
-      }
-      p {
-        font-weight: 200;
-      }
-      .PainelFiltros{
-        form{
-          display: flex;
-          flex-direction: column;
-
-          > * {
-            margin: 24px 0;
-          }
-        }
-      }
-    }
-
-    .quantidade-pesquisa {
+    input.chaveFiltro {
       display: none;
     }
 
-    .ordem-pesquisa {
-      width: 50%;
-      align-items: center;
-      order: 2;
-
-      svg {
-        width: 24px;
-        margin: 0 15px;
-        fill: #fff;
+    label.chaveFiltro {
+      width: fit-content;
+      p {
+        width: fit-content;
+        padding: 8px 12px;
+        margin: auto;
+        background: #db0423;
+        color: #fff;
       }
+    }
 
-      h4,
-      ul {
-        display: none;
-      }
+    .filtrosPesquisa {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      
+    }
+
+    input:checked ~ .filtrosPesquisa {
+      height: 0;
     }
   }
 }
 
 @media screen and (min-width: 820px) {
-  .pesquisa {
-    background: #272727;
-    display: flex;
-    justify-content: center;
-
-    * {
-      color: #fff;
-      display: flex;
-    }
-
-    .pesquisa-container {
-      width: 100%;
-      max-width: 1280px;
-      min-height: 90px;
-      flex-wrap: wrap;
-      align-items: center;
-      padding: 38px 0;
-
-      > * {
-        padding: 15px 0;
-      }
-
-      .barra-pesquisa {
-        width: 70%;
-
-        
-        .texto-pesquisa {
-          width: 400px;
-          background: #fff1;
-          border: solid #fff5 1px;
-          border-right: 0;
-        }
-        .listVenda-pesquisa {
-          background: #db0423;
-          width: 100px;
-          border: solid #fff5 1px;
-          border-left: 0;
-          font-weight: 700;
-        }
-        button {
-          background: none;
-          justify-content: center;
-          align-items: center;
-
-          svg {
-            width: 30px;
-            margin: 0 38px;
-            fill: #fff;
-          }
-        }
-      }
-
-      .filtros-pesquisa {
-        width: 30%;
-        flex-direction: column;
-        order: 0;
-
-        > * {
-          display: block;
-          text-align: right;
-        }
-        p {
-          font-weight: 200;
-        }
-      }
-
-      .quantidade-pesquisa {
-        width: min-content;
-        display: block;
-        margin-right: 50px;
-
-        ul li a {
-          margin: 0 15px;
-        }
-      }
-
-      .ordem-pesquisa {
-        justify-content: center;
-        align-items: center;
-
-        svg {
-          width: 30px;
-          margin: 0 15px;
-          fill: #fff;
-        }
-
-        h4,
-        ul {
-          display: block;
-        }
-      }
-    }
-  }
 }
