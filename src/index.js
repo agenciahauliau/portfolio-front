@@ -11,30 +11,20 @@ import {
 const client = new ApolloClient({
   link: new HttpLink({
     uri:
-      "https://api.portfolio.imb.br/v1/graphql",
+      "https://back-portfolio-imb-br-dot-rangell-consultoria-ti.rj.r.appspot.com/v1/graphql",
   }),
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
         fields: {
           imoveis: {
-            merge: (existing = [], incoming, { args }) => {
-              // On initial load or when adding a recipe, offset is 0 and only take the incoming data to avoid duplication
-              if (args.offset == 0) {
-                return [...incoming];
-              }
-              // This is only for pagination
-              return [...existing, ...incoming];
+            merge(existing, incoming) {
+              return incoming;
             },
           },
           leads: {
-            merge: (existing = [], incoming, { args }) => {
-              // On initial load or when adding a recipe, offset is 0 and only take the incoming data to avoid duplication
-              if (args.offset == 0) {
-                return [...incoming];
-              }
-              // This is only for pagination
-              return [...existing, ...incoming];
+            merge(existing, incoming) {
+              return incoming;
             },
           },
         },
@@ -42,23 +32,13 @@ const client = new ApolloClient({
       Imovel: {
         fields: {
           galerias: {
-            merge: (existing = [], incoming, { args }) => {
-              // On initial load or when adding a recipe, offset is 0 and only take the incoming data to avoid duplication
-              if (args.offset == 0) {
-                return [...incoming];
-              }
-              // This is only for pagination
-              return [...existing, ...incoming];
+            merge(existing, incoming) {
+              return incoming;
             },
           },
           tipologias: {
-            merge: (existing = [], incoming, { args }) => {
-              // On initial load or when adding a recipe, offset is 0 and only take the incoming data to avoid duplication
-              if (args.offset == 0) {
-                return [...incoming];
-              }
-              // This is only for pagination
-              return [...existing, ...incoming];
+            merge(existing, incoming) {
+              return incoming;
             },
           },
         },

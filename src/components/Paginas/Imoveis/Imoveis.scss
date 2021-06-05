@@ -38,9 +38,11 @@
 
       .dentroFormImovel {
         width: calc(100% + 48px);
+        max-width: 400px;
         height: fit-content;
         padding: 38px;
-        position: relative;
+        position: sticky;
+        top: 12px;
         left: -24px;
         background: #272727;
         color: #fff;
