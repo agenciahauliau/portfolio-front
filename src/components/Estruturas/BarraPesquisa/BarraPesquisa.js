@@ -3,14 +3,16 @@ import { useQuery } from "@apollo/client";
 import { infoImoveis } from "../../Dados/DadosImoveis";
 
 import "./BarraPesquisa.scss";
+import { render } from "@testing-library/react";
 
-const BarraPesquisa = (props) => {
-  const { loading, data } = useQuery(infoImoveis);
+function BarraPesquisa() {
+  const { loading, data } = useQuery(infoImoveis, {
+    returnPartialData: true
+  });
   if (loading) return <p>Loading Masterpieces...</p>;
 
   const imoveis = data.imoveis;
 
-  
   let bairros = [];
   let nomeConstrutoras = [];
   let cidades = [];
@@ -26,14 +28,6 @@ const BarraPesquisa = (props) => {
     imovel.categoriaImovel && categoriasImoveis.push(imovel.categoriaImovel);
     imovel.statusImovel && statusImoveis.push(imovel.statusImovel);
   }
-  
-  const typ = document.querySelectorAll('.tresa')
-
-  typ.forEach(function(ty){
-    ty.addEventListener('click', function(){
-      console.log(ty)
-    })
-  })
 
   return(
     <section className="pesquisa">
@@ -46,14 +40,14 @@ const BarraPesquisa = (props) => {
           <form action="/imoveis" method="GET">
             <div className="filtrosPrincipais">
               {[...new Set(cidades)].map((tes) => 
-                <p key={tes} className="tresa">{tes}</p>
+                <div className="tresa" onClick={ () => console.log(tes) } >{tes}</div>
               )}
               </div>
           </form>
         </div>
       </div>
     </section>
-  )
+  )  
 }
 
 export default BarraPesquisa;

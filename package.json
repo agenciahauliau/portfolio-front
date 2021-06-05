@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.9",
+    "fsevents": "2.3.2",
     "graphql": "^15.5.0",
     "node-sass": "^6.0.0",
     "npm": "^7.16.0",

@@ -34,7 +34,7 @@ function ImoveisJardins() {
           <h1>{data.imovel.nomeImovel}</h1>
           <div>
             <h3>{data.imovel.cidade}</h3>
-            <div class="previsaoLancamento">
+            <div className="previsaoLancamento">
               <h4>Previsão lançamento</h4>
               <p>setembro de 2021</p>
             </div>
@@ -68,7 +68,7 @@ function ImoveisJardins() {
               <input type="text" placeholder="Nome completo" />
               <input type="email" placeholder="E-mail" />
               <input type="tel" placeholder="Telefone / Whatsapp" />
-              <div class="checkFormImovel">
+              <div className="checkFormImovel">
                 <label>
                   <input type="checkbox" /> Telefone
                 </label>

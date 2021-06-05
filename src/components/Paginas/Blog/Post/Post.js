@@ -76,7 +76,7 @@ function Post() {
             <div className="imagemDestacada">
             <div className="imagem">
               <div className="img">
-                <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                <img src="https://images.pexels.com/photos/4904345/pexels-photo-4904345.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="titulo do texto"  title="titulo do texto"/>
               </div>
             </div>
           </div>

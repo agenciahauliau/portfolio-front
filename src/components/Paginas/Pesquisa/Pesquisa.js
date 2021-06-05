@@ -44,6 +44,7 @@ function Pesquisa() {
     variables: {
       input: FilterImovel(),
     },
+    returnPartialData: true
   });
 
   if (loading) return <p>Loading Masterpieces...</p>;
@@ -51,14 +52,14 @@ function Pesquisa() {
 
   return (
     <>
-      <BarraPesquisa />
+    <BarraPesquisa />
       <section className="ConteudoPesquisa">
         <div className="DestaquesPesquisa">
           <div className="container">
             {data.imoveis.map((imovel) => (
               <div className="CardImoveis">
                 <div className="TopoCardImoveis">
-                  <img src={imovel.imagemPrincipal} />
+                  <img src={imovel.imagemPrincipal}  alt=""/>
                   <div className="TipoImovel">
                     <p>{imovel.categoriaImovel}</p>
                     <img src="" />

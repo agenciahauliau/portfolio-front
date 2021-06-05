@@ -16,11 +16,12 @@ function ImoveisLancamento() {
 
   if (loading) return <p>Loading Masterpieces...</p>;
   if (error) return <p>Mas Bah</p>;
+
   return (
     <div className="conteudoImovel ImovelLancamento">
       <div className="boxImagemImovel">
         <div className="imagemImovel">
-          <img src={data.imovel.imagemPrincipal} />
+        <img src={data.imovel.imagemPrincipal} />
         </div>
       </div>
       <div className="topoLancamentos">
@@ -192,7 +193,7 @@ function ImoveisLancamento() {
               <input type="text" placeholder="Nome completo" />
               <input type="email" placeholder="E-mail" />
               <input type="tel" placeholder="Telefone / Whatsapp" />
-              <div class="checkFormImovel">
+              <div className="checkFormImovel">
                 <label>
                   <input type="checkbox" /> Telefone
                 </label>

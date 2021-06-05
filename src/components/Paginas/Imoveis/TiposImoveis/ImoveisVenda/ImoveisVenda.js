@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { ImovelQuery } from "../../../../Dados/DadosImoveis";
@@ -10,46 +12,51 @@ function IdImovel() {
 }
 
 function ImoveisVenda() {
+
   const { loading, error, data } = useQuery(ImovelQuery, {
     variables: { _id: IdImovel() },
+    returnPartialData: true
   });
 
   if (loading) return <p>Loading Masterpieces...</p>;
   if (error) return <p>Mas Bah</p>;
+
+  const tituloImovel = data.imovel.categoriaImovel +
+    (data.imovel.qtdeQuarto === 0
+      ? ""
+      : data.imovel.qtdeQuarto === 1
+      ? ", com " + data.imovel.qtdeQuarto + " quarto"
+      : ", com " + data.imovel.qtdeQuarto + " quartos") +
+    (data.imovel.qtdeSuites === 0
+      ? ""
+      : data.imovel.qtdeSuites === 1
+      ? ", sendo " + data.imovel.qtdeSuites + " suíte"
+      : ", sendo " + data.imovel.qtdeSuites + " suítes") +
+    (data.imovel.qtdeBanheiro === 0
+      ? ""
+      : data.imovel.qtdeBanheiro === 1
+      ? ", com " + data.imovel.qtdeBanheiro + " banheiro"
+      : ", com " + data.imovel.qtdeBanheiro + " banheiros") +
+    (data.imovel.qtdeVagas === 0
+      ? ""
+      : data.imovel.qtdeVagas === 1
+      ? " e " + data.imovel.qtdeVagas + " vaga na garagem"
+      : " e " + data.imovel.qtdeVagas + " vagas na garagem");
+
+
+  
   return (
     <div className="conteudoImovel ImovelVenda">
       <div className="topoImovel">
         <div className="tituloImovel">
-          <h1>
-            {data.imovel.categoriaImovel +
-              (data.imovel.qtdeQuarto === 0
-                ? ""
-                : data.imovel.qtdeQuarto === 1
-                ? ", com " + data.imovel.qtdeQuarto + " quarto"
-                : ", com " + data.imovel.qtdeQuarto + " quartos") +
-              (data.imovel.qtdeSuites === 0
-                ? ""
-                : data.imovel.qtdeSuites === 1
-                ? ", sendo " + data.imovel.qtdeSuites + " suíte"
-                : ", sendo " + data.imovel.qtdeSuites + " suítes") +
-              (data.imovel.qtdeBanheiro === 0
-                ? ""
-                : data.imovel.qtdeBanheiro === 1
-                ? ", com " + data.imovel.qtdeBanheiro + " banheiro"
-                : ", com " + data.imovel.qtdeBanheiro + " banheiros") +
-              (data.imovel.qtdeVagas === 0
-                ? ""
-                : data.imovel.qtdeVagas === 1
-                ? " e " + data.imovel.qtdeVagas + " vaga na garagem"
-                : " e " + data.imovel.qtdeVagas + " vagas na garagem")}
-          </h1>
+          <h1>{tituloImovel}</h1>
         </div>
         <div className="informacoesImovel">
           <p className="endrecoImovel">
             {data.imovel.categoriaImovel} com {data.imovel.areaTotal + " m², "}
             localizado na {data.imovel.logradouro},
             {data.imovel.numeroLogradouro}
-            {data.imovel.complemento && data.imovel.complemento} -
+            {data.imovel.complemento && data.imovel.complemento} - 
             {data.imovel.bairro} — {data.imovel.cidade}
           </p>
           <div className="comodosImovel">
@@ -73,7 +80,11 @@ function ImoveisVenda() {
       </div>
       <div className="boxImagemImovel">
         <div className="imagemImovel">
-          <img src="https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+          <img
+            src={data.imovel.imagemPrincipal}
+            alt={tituloImovel}
+            alt={tituloImovel}
+          />
         </div>
       </div>
       <div className="descricaoImovel">
@@ -95,7 +106,8 @@ function ImoveisVenda() {
                 </h1>
               )}
             </div>
-            {data.imovel.valorCondominio !== 0 || data.imovel.valorIPTU !== 0 ? (
+            {data.imovel.valorCondominio !== 0 ||
+            data.imovel.valorIPTU !== 0 ? (
               <ValoresAdicionais />
             ) : (
               ""
@@ -110,10 +122,10 @@ function ImoveisVenda() {
           </div>
           <div>
             <form>
-              <input type="text" placeholder="Nome completo"/>
-              <input type="email" placeholder="E-mail"/>
-              <input type="tel" placeholder="Telefone / Whatsapp"/>
-              <div class="checkFormImovel">
+              <input type="text" placeholder="Nome completo" />
+              <input type="email" placeholder="E-mail" />
+              <input type="tel" placeholder="Telefone / Whatsapp" />
+              <div className="checkFormImovel">
                 <label>
                   <input type="checkbox" /> Telefone
                 </label>
@@ -273,20 +285,21 @@ function ImoveisVenda() {
               <p>
                 {data.imovel.logradouro}, {data.imovel.numeroLogradouro}
                 {data.imovel.complemento && data.imovel.complemento},
-                {data.imovel.bairro} - {data.imovel.cidade} - {data.imovel.cep} - {data.imovel.uf}
+                {data.imovel.bairro} - {data.imovel.cidade} - {data.imovel.cep}{" "}
+                - {data.imovel.uf}
               </p>
             </div>
           </div>
         </div>
         {data.imovel.comodidadesCondominio != 0 && (
-        <div className="caractsImoveis">
-          <h2 className="titulocaractsImoveis">Características do Imóvel</h2>
-          <div className="itens">
-            {data.imovel.comodidadesImovel.map((comodidades) => (
-              <p>{comodidades}</p>
-            ))}
+          <div className="caractsImoveis">
+            <h2 className="titulocaractsImoveis">Características do Imóvel</h2>
+            <div className="itens">
+              {data.imovel.comodidadesImovel.map((comodidades) => (
+                <p>{comodidades}</p>
+              ))}
+            </div>
           </div>
-        </div>
         )}
         {data.imovel.comodidadesCondominio != 0 && (
           <div className="caractsCondominio">
@@ -306,15 +319,17 @@ function ImoveisVenda() {
 }
 
 function ValoresAdicionais() {
+
   const { loading, error, data } = useQuery(ImovelQuery, {
     variables: { _id: IdImovel() },
   });
 
   if (loading) return <p>Loading Masterpieces...</p>;
   if (error) return <p>Mas Bah</p>;
+
   return (
     <div className="valoresAdicionais">
-      {data.imovel.valorCondominio !== 0 && (
+      {data.imovel.valorCondominio && (
         <div>
           <p>Valor do condomínio:</p>
           <p>
@@ -325,7 +340,7 @@ function ValoresAdicionais() {
           </p>
         </div>
       )}
-      {data.imovel.valorIPTU !== 0 && (
+      {data.imovel.valorIPTU && (
         <div>
           <p>Valor do IPTU:</p>
           <p>
