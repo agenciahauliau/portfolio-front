@@ -55,7 +55,7 @@ export const infoImoveis = gql`
   }
 `;
 
-export const ImoveisPesquisaQuery = gql`
+export const QIPesquisa = gql`
   query imoveis_com_filtro($input: SearchImovelInput, $quantidade: Float) {
     imoveis(filtros: $input, quantidade: $quantidade) {
       _id

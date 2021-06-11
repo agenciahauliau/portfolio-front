@@ -1,20 +1,14 @@
-/** @format */
-
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { ImovelQuery } from "../../../../Dados/DadosImoveis";
-import { useLocation } from "react-router-dom";
+import { QParamsImovel } from "../../../../Helpers/Functions"
 
 import "./ImoveisVenda.scss";
-
-function IdImovel() {
-  return new URLSearchParams(useLocation().search).get("id");
-}
 
 function ImoveisVenda() {
 
   const { loading, error, data } = useQuery(ImovelQuery, {
-    variables: { _id: IdImovel() },
+    variables: { _id: QParamsImovel() },
     returnPartialData: true
   });
 
@@ -321,7 +315,7 @@ function ImoveisVenda() {
 function ValoresAdicionais() {
 
   const { loading, error, data } = useQuery(ImovelQuery, {
-    variables: { _id: IdImovel() },
+    variables: { _id: QParamsImovel() },
   });
 
   if (loading) return <p>Loading Masterpieces...</p>;

@@ -24,13 +24,39 @@
     }
 
     .filtrosPesquisa {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+      form {
+        input[type="radio"] {
+          display: none;
+        }
 
-      
+        .filtrosPrincipais {
+          .tipoNeg {
+            width: fit-content;
+            display: flex;
+            .divInput {
+              input[type="radio"]:checked {
+                & ~ .divLabel {
+                  border: 1px solid #fff5;
+                  box-shadow: 0 10px 10px -5px #db042355;
+                }
+              }
+              .divLabel {
+                padding: 1px;
+                margin: 5px;
+                color: #fff;
+                border: 1px solid #fff2;
+                transition: 0.3s ease;
+                label {
+                  display: block;
+                  padding: 6px 10px;
+                  transition: 0.3s ease;
+                }
+              }
+            }
+          }
+        }
+      }
     }
-
     input:checked ~ .filtrosPesquisa {
       height: 0;
     }

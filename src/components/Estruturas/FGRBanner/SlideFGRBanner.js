@@ -77,7 +77,7 @@ const SlideFGRBanner = (props) => {
         })}
       </div>
       <div className="boxPonto">
-        {SlidesFGRBanner.map((slide, index) => {
+        {SlidesFGRBanner.map((index) => {
           return (
             <div
               className={index === current ? "pontos active" : "pontos"}

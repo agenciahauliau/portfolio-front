@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { infoImoveis } from "../../Dados/DadosImoveis";
+import { toggleClass, capitalize } from "../../Helpers/Functions";
 
 import "./BarraPesquisa.scss";
-import { render } from "@testing-library/react";
 
 function BarraPesquisa() {
   const { loading, data } = useQuery(infoImoveis, {
-    returnPartialData: true
+    returnPartialData: true,
   });
-  if (loading) return <p>Loading Masterpieces...</p>;
 
-  const imoveis = data.imoveis;
+  if (loading) return <p>Loading Masterpieces...</p>;
 
   let bairros = [];
   let nomeConstrutoras = [];
@@ -20,16 +19,20 @@ function BarraPesquisa() {
   let categoriasImoveis = [];
   let statusImoveis = [];
 
-  for (let imovel of imoveis) {
-    imovel.bairro && bairros.push(imovel.bairro);
-    imovel.nomeConstrutora && nomeConstrutoras.push(imovel.nomeConstrutora);
-    imovel.cidade && cidades.push(imovel.cidade);
-    imovel.tipoNegociacao && tiposNegociacao.push(imovel.tipoNegociacao);
-    imovel.categoriaImovel && categoriasImoveis.push(imovel.categoriaImovel);
-    imovel.statusImovel && statusImoveis.push(imovel.statusImovel);
+  for (let imovel of data.imoveis) {
+    imovel.bairro && bairros.push(imovel.bairro.trim().toLowerCase());
+    imovel.nomeConstrutora &&
+      nomeConstrutoras.push(imovel.nomeConstrutora.trim().toLowerCase());
+    imovel.cidade && cidades.push(imovel.cidade.trim().toLowerCase());
+    imovel.tipoNegociacao &&
+      tiposNegociacao.push(imovel.tipoNegociacao.trim().toLowerCase());
+    imovel.categoriaImovel &&
+      categoriasImoveis.push(imovel.categoriaImovel.trim().toLowerCase());
+    imovel.statusImovel &&
+      statusImoveis.push(imovel.statusImovel.trim().toLowerCase());
   }
 
-  return(
+  return (
     <section className="pesquisa">
       <div className="pesquisaContainer">
         <input type="checkbox" className="chaveFiltro" id="filtro" />
@@ -39,15 +42,38 @@ function BarraPesquisa() {
         <div className="filtrosPesquisa">
           <form action="/imoveis" method="GET">
             <div className="filtrosPrincipais">
-              {[...new Set(cidades)].map((tes) => 
-                <div className="tresa" onClick={ () => console.log(tes) } >{tes}</div>
-              )}
+              <div className="tipoNeg">
+                {[...new Set(tiposNegociacao)].map((tNeg) => (
+                  <div className="divInput">
+                    <input
+                      type="radio"
+                      key={tNeg}
+                      id={tNeg}
+                      name="tNeg"
+                      className="chavePesquisa"
+                    />
+                    <div className="divLabel">
+                      <label
+                        key={tNeg}
+                        htmlFor={tNeg}
+                        className="chavePesquisa"
+                        onClick={toggleClass}
+                      >
+                        {capitalize(tNeg)}
+                      </label>
+                    </div>
+                  </div>
+                ))}
+                {[...new Set(categoriasImoveis)].map((catImo) => (
+                  <div></div>
+                ))}
               </div>
+            </div>
           </form>
         </div>
       </div>
     </section>
-  )  
+  );
 }
 
 export default BarraPesquisa;
