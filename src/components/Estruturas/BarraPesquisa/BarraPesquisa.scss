@@ -25,11 +25,13 @@
 
     .filtrosPesquisa {
       form {
-        input[type="radio"] {
+        input[type="radio"],
+        input[type="checkbox"] {
           display: none;
         }
 
         .filtrosPrincipais {
+          display: flex;
           .tipoNeg {
             width: fit-content;
             display: flex;
@@ -51,6 +53,47 @@
                   padding: 6px 10px;
                   transition: 0.3s ease;
                 }
+              }
+            }
+          }
+          .filterElment {
+            width: fit-content;
+            padding: 4px;
+            margin: 12px;
+            .selectFiltro {
+              margin-bottom: 12px;
+            }
+            .selectValue {
+              .valueSelected {
+                width: fit-content;
+                display: none;
+                padding: 5px;
+                margin: 5px;
+                background: #db0423;
+                color: #fff;
+                position: relative;
+                .button {
+                  width: 12px;
+                  position: absolute;
+                  right: -6px;
+                  top: -6px;
+                }
+              }
+              .valueSelected.selected {
+                display: block;
+              }
+            }
+            .checkboxValues {
+              width: fit-content;
+              max-height: 250px;
+              padding: 5px;
+              background: #fff8;
+              overflow: hidden;
+              label.selected {
+                display: none;
+              }
+              label.filtro {
+                display: none;
               }
             }
           }

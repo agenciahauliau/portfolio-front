@@ -42,7 +42,7 @@ export const toggleClass = (el) => {
 };
 
 export function capitalize(str) {
-  const ignore = ["de", "da", "das", "do", "dos"];
+  const ignore = ["de", "da", "das", "do", "dos", "em"];
   let arrWords = str.toLowerCase().split(" ");
 
   for (const i in arrWords) {
