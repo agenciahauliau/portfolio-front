@@ -1,26 +1,285 @@
 .ConteudoPesquisa {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
 
-    .DestaquesPesquisa, .ImoveisPesquisa, .NumeroPagina {
-        
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .paginacao{
-            width: 100%;
-            ul{
-                display: flex;
-                justify-content: space-between;
-            }
-        }
+  .DestaquesPesquisa,
+  .ImoveisPesquisa,
+  .NumeroPagina {
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
     }
 
+    .paginacao {
+      width: 100%;
+      .paginationBttns {
+        width: 50%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        li {
+          padding: 5px;
+        }
+        .paginationActive {
+          background: #db0423;
+          font-weight: 800;
+          a {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+h3 {
+  font-size: 2em;
+}
+.formulario .textoFormulario {
+  width: 60%;
+  padding: 38px;
+  padding-right: 100px;
+}
+.formulario .textoFormulario h3 {
+  padding: 40px;
+  position: relative;
+  font-weight: 400;
+  z-index: 1;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both;
+}
+.formulario .camposForm {
+  width: 40%;
+}
+.formulario form {
+  display: flex;
+  flex-direction: column;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
+}
+.formulario form p {
+  font-weight: 700;
+}
+.formulario form .checkbox,
+.formulario form .radio {
+  display: flex;
+  flex-wrap: wrap;
+}
+.labelCheckbox,
+.labelRadio {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  margin-left: 20px;
+  cursor: pointer;
+  color: #555;
+}
+.labelCheckbox:first-child,
+.labelRadio:first-child {
+  margin-left: 0;
+}
+.labelCheckbox input,
+.labelRadio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #27272755;
+  border: solid 1px #fff;
+  transition: 0.2s ease;
+}
+.labelCheckbox:hover input ~ .checkmark,
+.labelRadio:hover input ~ .checkmark {
+  background-color: #9b0017;
+  border: 1px solid var(--preto);
+  transition: 0.2s ease;
+}
+input:checked ~ .checkmark {
+  background-color: var(--vermelho);
+  transition: 0.2s ease;
+}
+input:checked ~ .checkmark:after {
+  display: block;
+}
+.formulario form > div {
+  margin: 15px 0;
+}
+.formulario form .textInput input {
+  width: 100%;
+  border: 1px solid #555;
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 0;
+}
+.labelRadio .checkmark {
+  border-radius: 50%;
+}
+.buttonForm {
+  display: flex;
+  justify-content: flex-end;
+}
+.buttonForm button {
+  background-color: var(--vermelho);
+  width: fit-content;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  overflow: hidden;
+  outline: none;
+  padding: 0 25px;
+  position: relative;
+  transition: background-color 150ms, color 150ms ease-in-out;
+  white-space: nowrap;
+  font-weight: 700;
+}
+.buttonForm button ul {
+  float: left;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  transition: transform 300ms cubic-bezier(0, 0.65, 0.7, 0.9);
+  transform-style: preserve-3d;
+}
+.buttonForm button li {
+  --rotateX: 0deg;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: block;
+  transition: opacity 150ms;
+  transform-origin: 50% 50%;
+  transform: rotateX(var(--rotateX)) translateZ(10px);
+  width: 100%;
+}
+.alert {
+  color: red;
+  font-weight: 200;
+}
+.infoImo .conteudo > * {
+  margin: 20px 0;
+}
+.infoImo h2 {
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+}
+.infoImo .caract {
+  display: flex;
+}
+.primeira,
+.segunda {
+  display: flex;
+  width: 50%;
+}
+.infoImo .caract .item {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 28px;
+}
+.infoImo .caract .primeira .item:first-child {
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.6s both;
+}
+.infoImo .caract .primeira .item:last-child {
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s both;
+}
+.infoImo .caract .segunda .item:first-child {
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.7s both;
+}
+.infoImo .caract .segunda .item:last-child {
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.8s both;
+}
+.infoImo .caract .item svg {
+  width: 70px;
+  margin-bottom: 18px;
+  fill: #fff;
+}
+.infoImo .caract .item p {
+  width: 100%;
+  text-align: center;
+  font-weight: 200;
+}
+.infoImo .conteudo > p {
+  width: 50%;
+  text-align: center;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s both;
+}
+.infoImo a {
+  width: fit-content;
+  padding: 15px;
+  background: var(--vermelho);
+  color: #fff;
+  font-weight: 700;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+}
+@media only screen and (max-width: 1024px) {
+  .infoImo .caract {
+    flex-wrap: wrap;
+  }
+  .primeira,
+  .segunda {
+    width: 100%;
+  }
+  .infoImo p {
+    font-size: 2em;
+    width: 100%;
+  }
+  .infoImo .conteudo > p {
+    font-size: 2em;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .infoImo .conteudo > h2 {
+    margin: 10px;
+  }
+  .infoImo .caract {
+    flex-direction: column;
+  }
+  .primeira,
+  .segunda {
+    flex-direction: column;
+  }
+  .infoImo .caract .item {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px 0;
+  }
+  .infoImo .caract .item:nth-child(2),
+  .infoImo .caract .item:nth-child(4) {
+    flex-direction: row-reverse;
+  }
+  .infoImo .caract .item svg {
+    width: 60px;
+    margin-bottom: 0;
+  }
+  .infoImo .caract .item p {
+    width: 60%;
+    text-align: start;
+  }
+  .infoImo .caract .item:nth-child(1) p,
+  .infoImo .caract .item:nth-child(1) p {
+    text-align: end;
+  }
+  .infoImo button {
+    width: fit-content;
+    padding: 15px;
+    background: var(--vermelho);
+    color: #fff;
+    font-weight: 700;
+  }
 }

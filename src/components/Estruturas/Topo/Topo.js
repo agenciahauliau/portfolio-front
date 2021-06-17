@@ -13,6 +13,9 @@ class Topo extends React.Component {
   toggle() {
     this.setState({ addClass: !this.state.addClass });
   }
+  remove() {
+    this.setState({ addClass: false });
+  }
   render() {
     let menuAtivo = ["icone-collapse"];
     if (this.state.addClass) {
@@ -22,7 +25,7 @@ class Topo extends React.Component {
       <header>
         <nav className="Navbar">
           <div className="navbar-conteiner">
-            <div className="logo-menu">
+            <div className="logo-menu" onClick={this.remove.bind(this)}>
               <Link to="/">
                 <img
                   src={logo}
@@ -47,33 +50,33 @@ class Topo extends React.Component {
               </div>
               <div className="menu-list-imoveis">
                 <ul>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <Link to="/condominio+jardins">Condomínio Jardins</Link>
                   </li>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <Link to="/imoveis">Imóveis</Link>
                   </li>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <Link to="/anuncie+seu+imovel">Anuncie</Link>
                   </li>
                 </ul>
               </div>
               <div className="menu-list-info">
                 <ul>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <Link to="/artigos">Blog</Link>
                   </li>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <Link to="/sobre+nos">Sobre</Link>
                   </li>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <Link to="/contato">Contato</Link>
                   </li>
                 </ul>
               </div>
               <div className="menu-list-social">
                 <ul>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <a
                       href="https://www.instagram.com/portfolioimb/"
                       aria-label="Abrir instagram Portfolio Imóveis"
@@ -92,7 +95,7 @@ class Topo extends React.Component {
                       </svg>{" "}
                     </a>
                   </li>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <a
                       href="https://www.facebook.com/portfolioimb/"
                       aria-label="Abrir Facebook Portfolio Imóveis"
@@ -111,7 +114,7 @@ class Topo extends React.Component {
                       </svg>{" "}
                     </a>
                   </li>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <a
                       href="https://twitter.com/portfolioimb/"
                       aria-label="Abrir Twitter Portfolio Imóveis"
@@ -130,7 +133,7 @@ class Topo extends React.Component {
                       </svg>{" "}
                     </a>
                   </li>
-                  <li>
+                  <li onClick={this.remove.bind(this)}>
                     <a
                       href="https://api.whatsapp.com/send?phone=+556240035444"
                       aria-label="Abrir Twitter Portfolio Imóveis"

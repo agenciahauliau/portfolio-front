@@ -26,15 +26,16 @@ function Pesquisa() {
     returnPartialData: true,
   });
 
-  const quantidadeImovel = data.imoveis.length
 
-  const [imoveisTRE, imovelTA] = useState(data.imoveis.slice(0, quantidadeImovel));
   const [pageNumber, setPageNumber] = useState(0);
+
+  if (loading) return <p>Loading Masterpieces...</p>;
+  if (error) return <p>Mas Bah</p>;
 
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
 
-  const imoveisPP = imoveisTRE
+  const imoveisPP = data.imoveis
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .map((imovel) => {
       return (
@@ -138,17 +139,11 @@ function Pesquisa() {
       );
     });
 
-  const pageCount = Math.ceil(imoveisTRE.length / usersPerPage);
+  const pageCount = Math.ceil(data.imoveis.length / usersPerPage);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-
-  if (loading) return <p>Loading Masterpieces...</p>;
-  if (error) return <p>Mas Bah</p>;
-
-
-
 
   return (
     <>
@@ -159,8 +154,8 @@ function Pesquisa() {
             {imoveisPP}
             <div className="paginacao">
               <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
+                previousLabel={"<"}
+                nextLabel={">"}
                 pageCount={pageCount}
                 onPageChange={changePage}
                 containerClassName={"paginationBttns"}
