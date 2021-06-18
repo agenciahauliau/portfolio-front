@@ -1,139 +1,105 @@
-.topoHome {
-  padding: 18px;
-  background: #272727;
-  color: #fff;
-
-  .textoTopoHome {
-    h1 {
-      padding: 8px 12px;
-    }
-    p {
-      padding: 8px 12px;
-    }
-  }
-  .imagemTopoHome {
-    width: 100%;
-    margin: 18px auto -36px;
-  }
-}
-
-.infoImo {
-  background: #272727;
-  color: #fff;
-}
-
-.infoImo .conteudo > * {
-  margin: 20px 0;
-}
-.infoImo h2 {
-  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
-}
-.infoImo .caract {
-  display: flex;
-}
-.primeira,
-.segunda {
-  display: flex;
-  width: 50%;
-}
-.infoImo .caract .item {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  margin: 28px;
-}
-.infoImo .caract .primeira .item:first-child {
-  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.6s both;
-}
-.infoImo .caract .primeira .item:last-child {
-  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s both;
-}
-.infoImo .caract .segunda .item:first-child {
-  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.7s both;
-}
-.infoImo .caract .segunda .item:last-child {
-  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 0.8s both;
-}
-.infoImo .caract .item svg {
-  width: 70px;
-  margin-bottom: 18px;
-  fill: #fff;
-}
-.infoImo .caract .item p {
-  width: 100%;
-  text-align: center;
-  font-weight: 200;
-}
-.infoImo .conteudo > p {
-  width: 50%;
-  text-align: center;
-  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s both;
-}
-.infoImo a {
-  width: fit-content;
-  padding: 15px;
-  background: var(--vermelho);
-  color: #fff;
-  font-weight: 700;
-  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
-}
-@media only screen and (max-width: 1024px) {
-  .infoImo .caract {
-    flex-wrap: wrap;
-  }
-  .primeira,
-  .segunda {
-    width: 100%;
-  }
-  .infoImo p {
-    font-size: 2em;
-    width: 100%;
-  }
-  .infoImo .conteudo > p {
-    font-size: 2em;
-    width: 100%;
-  }
-}
-@media only screen and (max-width: 767px) {
-  .infoImo .conteudo > h2 {
-    margin: 10px;
-  }
-  .infoImo .caract {
-    flex-direction: column;
-  }
-  .primeira,
-  .segunda {
-    flex-direction: column;
-  }
-  .infoImo .caract .item {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 10px 0;
-  }
-  .infoImo .caract .item:nth-child(2),
-  .infoImo .caract .item:nth-child(4) {
-    flex-direction: row-reverse;
-  }
-  .infoImo .caract .item svg {
-    width: 60px;
-    margin-bottom: 0;
-  }
-  .infoImo .caract .item p {
-    width: 60%;
-    text-align: start;
-  }
-  .infoImo .caract .item:nth-child(1) p,
-  .infoImo .caract .item:nth-child(1) p {
-    text-align: end;
-  }
-  .infoImo button {
-    width: fit-content;
-    padding: 15px;
-    background: var(--vermelho);
-    color: #fff;
-    font-weight: 700;
-  }
+.Home {
+	.infoImo {
+		padding: 24px;
+		background: #272727;
+		color: #fff;
+		.conteudo {
+			h2 {
+				margin-bottom: 36px;
+				text-align: center;
+			}
+			.caract {
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+				.item {
+					display: flex;
+					margin: 8px 0;
+					svg {
+						width: 89px;
+						fill: #fff;
+					}
+					p {
+						padding: 18px 24px;
+						font-weight: 200;
+					}
+					&:nth-child(2n) {
+						flex-direction: row-reverse;
+						p {
+							text-align: right;
+						}
+					}
+				}
+			}
+			.button {
+				padding: 8px;
+				p {
+					padding: 12px;
+					font-size: 1.2em;
+					font-weight: 200;
+					text-align: center;
+				}
+				a {
+					padding: 12px 24px;
+					background: #db0423;
+					color: #fff;
+				}
+			}
+		}
+	}
+	.BlocoVenda {
+		padding: 24px;
+		.textoBloco {
+			text-align: center;
+			h2 {
+				padding: 8px;
+				position: relative;
+				&::after {
+					content: ' ';
+					width: 50px;
+					height: 3px;
+					position: absolute;
+					bottom: 0;
+					left: 50%;
+					transform: translateX(-50%);
+					background: #db0423;
+				}
+			}
+			p {
+				padding: 8px;
+			}
+		}
+		.Cards {
+			.CardImoveisHome {
+				margin: 24px auto;
+				.TopoCardImoveis {
+					width: 100%;
+					height: 175px;
+					position: relative;
+					svg {
+						width: 24px;
+						margin: 12px;
+						position: absolute;
+						top: 0;
+						left: 0;
+						fill: #fff;
+					}
+				}
+				.InfoCardImoveis {
+					padding: 4px;
+					.PCImoveis {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						margin: 4px 0;
+					}
+				}
+				.verMais {
+					a {
+						background: #db0423;
+					}
+				}
+			}
+		}
+	}
 }

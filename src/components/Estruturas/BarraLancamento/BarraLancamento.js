@@ -9,9 +9,7 @@ function BarraLancamento() {
           <h1>Lançamentos</h1>
         </div>
         <div className="cardsRoll">
-          <div className="smallCards">
-
-          </div>
+          <div className="smallCards"></div>
         </div>
       </div>
     </section>

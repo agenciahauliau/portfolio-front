@@ -26,8 +26,8 @@
         box-shadow: inset 0 0 0 1000px #ffffff03, 0 0 50px #00000005;
 
         .coluna {
-            display: flex;
-            flex-direction: column;
+          display: flex;
+          flex-direction: column;
           .texto {
             color: #fff;
             > * {
@@ -119,9 +119,9 @@
               justify-content: space-between;
               color: #fff;
               .titulo {
-                  h1{
-                    margin-top: 48px;
-                  }
+                h1 {
+                  margin-top: 48px;
+                }
                 p {
                   margin-top: 48px;
                 }

@@ -28,9 +28,18 @@ function Jardins() {
               </h1>
             </div>
             <div className="logos">
-              <img src="https://portfolio.imb.br/assets/img/logo-fgr-incorporacao.webp" alt="FGR Incorporações" />
-              <img src="https://portfolio.imb.br/assets/img/selo-condominio-jardins-fgr.webp" alt="Condomínio Jardins - FGR Incorporações" />
-              <img src="https://portfolio.imb.br/assets/img/logo-casas-jardins-fgr.webp" alt="Casas Jardins - FGR Incorporações"/>
+              <img
+                src="https://portfolio.imb.br/assets/img/logo-fgr-incorporacao.webp"
+                alt="FGR Incorporações"
+              />
+              <img
+                src="https://portfolio.imb.br/assets/img/selo-condominio-jardins-fgr.webp"
+                alt="Condomínio Jardins - FGR Incorporações"
+              />
+              <img
+                src="https://portfolio.imb.br/assets/img/logo-casas-jardins-fgr.webp"
+                alt="Casas Jardins - FGR Incorporações"
+              />
             </div>
           </div>
           <div className="lancamentosPJ">
@@ -44,7 +53,10 @@ function Jardins() {
                   <p>data provável de lançamento</p>
                 </div>
                 <div className="imgPJ">
-                  <img src="https://images.pexels.com/photos/358636/pexels-photo-358636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="iamgem"  />
+                  <img
+                    src="https://images.pexels.com/photos/358636/pexels-photo-358636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                    alt="iamgem"
+                  />
                 </div>
                 <div className="textoLancImovel">
                   <img
@@ -63,7 +75,10 @@ function Jardins() {
                   <p>data provável de lançamento</p>
                 </div>
                 <div className="imgPJ">
-                  <img src="https://images.pexels.com/photos/358636/pexels-photo-358636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="iamgem" />
+                  <img
+                    src="https://images.pexels.com/photos/358636/pexels-photo-358636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                    alt="iamgem"
+                  />
                 </div>
                 <div className="textoLancImovel">
                   <img
@@ -98,15 +113,24 @@ function Jardins() {
               <div className="casas">
                 <div className="listaCasas">
                   <div className="casa">
-                    <img src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="iamgem" />
+                    <img
+                      src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                      alt="iamgem"
+                    />
                     <h4>Casas Jardins França e Itália</h4>
                   </div>
                   <div className="casa">
-                    <img src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="iamgem" />
+                    <img
+                      src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                      alt="iamgem"
+                    />
                     <h4>Casas Jardins França e Itália</h4>
                   </div>
                   <div className="casa">
-                    <img src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="iamgem" />
+                    <img
+                      src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                      alt="iamgem"
+                    />
                     <h4>Casas Jardins França e Itália</h4>
                   </div>
                 </div>

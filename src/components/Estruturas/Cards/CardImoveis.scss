@@ -34,7 +34,6 @@
   }
 
   .InfoCardImoveis {
-
     .CaractImovel {
       width: 100%;
       display: flex;
@@ -43,16 +42,14 @@
     }
 
     .EnderecoImoveis {
-        margin: 12px 0;
-        font-size: 12px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+      margin: 12px 0;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
-
-
   }
 }
 

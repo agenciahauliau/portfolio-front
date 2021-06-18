@@ -1,37 +1,36 @@
 .RollLancamento {
-    width: 100%;
-    margin: 50px 0;
-    display: flex;
+  width: 100%;
+  margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  .container {
+    margin: auto;
     flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    
 
-    .container {
-        margin: auto;
-        flex-direction: column;
-    
+    .tituloRoll {
+      background: $272727;
 
-        .tituloRoll {
-            background: $272727;
-
-            h1 {
-                color: #fff;
-                padding: 20px 20px 50px;
-            }
-        }
-
-        .cardsRoll {
-            margin-top: -50px;
-        }
-
-        .tituloRoll, .cardsRoll {
-            width: 100%;
-            display: flex;
-
-            .smallCards {
-                    margin: 0 15px;
-            }
-        }
+      h1 {
+        color: #fff;
+        padding: 20px 20px 50px;
+      }
     }
+
+    .cardsRoll {
+      margin-top: -50px;
+    }
+
+    .tituloRoll,
+    .cardsRoll {
+      width: 100%;
+      display: flex;
+
+      .smallCards {
+        margin: 0 15px;
+      }
+    }
+  }
 }

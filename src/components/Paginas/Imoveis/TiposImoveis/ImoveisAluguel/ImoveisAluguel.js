@@ -41,7 +41,6 @@ function ImoveisAluguel() {
       : data.imovel.qtdeVagas === 1
       ? " e " + data.imovel.qtdeVagas + " vaga na garagem"
       : " e " + data.imovel.qtdeVagas + " vagas na garagem");
-      
 
   return (
     <div className="conteudoImovel ImovelAluguel">
@@ -97,7 +96,11 @@ function ImoveisAluguel() {
       </div>
       <div className="boxImagemImovel">
         <div className="imagemImovel">
-          <img src={data.imovel.imagemPrincipal} alt={tituloImovel} title={tituloImovel} />
+          <img
+            src={data.imovel.imagemPrincipal}
+            alt={tituloImovel}
+            title={tituloImovel}
+          />
         </div>
       </div>
       <div className="descricaoImovel">

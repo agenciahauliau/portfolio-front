@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faSink, faWarehouse } from "@fortawesome/free-solid-svg-icons";
 import { QParamsPesquisa } from "../../Helpers/Functions";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 
 import BarraPesquisa from "../../Estruturas/BarraPesquisa/BarraPesquisa";
 import FGRBanner from "../../Estruturas/FGRBanner/FGRBanner";
@@ -16,16 +16,13 @@ import Newsletter from "../../Estruturas/Newsletter/Newsletter";
 import "./Pesquisa.scss";
 import "../../Estruturas/Cards/CardImoveis.scss";
 
-
 function Pesquisa() {
-
   const { loading, error, data } = useQuery(QIPesquisa, {
     variables: {
       input: QParamsPesquisa(),
     },
     returnPartialData: true,
   });
-
 
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -41,29 +38,32 @@ function Pesquisa() {
       return (
         <div className="CardImoveis">
           <div className="TopoCardImoveis">
-            <img src={imovel.imagemPrincipal} alt={
-              imovel.categoriaImovel +
-              (imovel.qtdeQuarto === 0
-                ? ""
-                : imovel.qtdeQuarto === 1
+            <img
+              src={imovel.imagemPrincipal}
+              alt={
+                imovel.categoriaImovel +
+                (imovel.qtdeQuarto === 0
+                  ? ""
+                  : imovel.qtdeQuarto === 1
                   ? ", com " + imovel.qtdeQuarto + " quarto"
                   : ", com " + imovel.qtdeQuarto + " quartos") +
-              (imovel.qtdeSuites === 0
-                ? ""
-                : imovel.qtdeSuites === 1
+                (imovel.qtdeSuites === 0
+                  ? ""
+                  : imovel.qtdeSuites === 1
                   ? ", sendo " + imovel.qtdeSuites + " suíte"
                   : ", sendo " + imovel.qtdeSuites + " suítes") +
-              (imovel.qtdeBanheiro === 0
-                ? ""
-                : imovel.qtdeBanheiro === 1
+                (imovel.qtdeBanheiro === 0
+                  ? ""
+                  : imovel.qtdeBanheiro === 1
                   ? ", com " + imovel.qtdeBanheiro + " banheiro"
                   : ", com " + imovel.qtdeBanheiro + " banheiros") +
-              (imovel.qtdeVagas === 0
-                ? ""
-                : imovel.qtdeVagas === 1
+                (imovel.qtdeVagas === 0
+                  ? ""
+                  : imovel.qtdeVagas === 1
                   ? " e " + imovel.qtdeVagas + " vaga na garagem"
                   : " e " + imovel.qtdeVagas + " vagas na garagem")
-            } />
+              }
+            />
             <div className="TipoImovel">
               <p>{imovel.categoriaImovel}</p>
             </div>
@@ -75,23 +75,23 @@ function Pesquisa() {
               (imovel.qtdeQuarto === 0
                 ? ""
                 : imovel.qtdeQuarto === 1
-                  ? "+com+" + imovel.qtdeQuarto + "+quarto"
-                  : "+com+" + imovel.qtdeQuarto + "+quartos") +
+                ? "+com+" + imovel.qtdeQuarto + "+quarto"
+                : "+com+" + imovel.qtdeQuarto + "+quartos") +
               (imovel.qtdeSuites === 0
                 ? ""
                 : imovel.qtdeSuites === 1
-                  ? "+com+" + imovel.qtdeSuites + "+suite"
-                  : "+com+" + imovel.qtdeSuites + "+suites") +
+                ? "+com+" + imovel.qtdeSuites + "+suite"
+                : "+com+" + imovel.qtdeSuites + "+suites") +
               (imovel.qtdeBanheiro === 0
                 ? ""
                 : imovel.qtdeBanheiro === 1
-                  ? "+com+" + imovel.qtdeBanheiro + "+banheiro"
-                  : "+com+" + imovel.qtdeBanheiro + "+banheiros") +
+                ? "+com+" + imovel.qtdeBanheiro + "+banheiro"
+                : "+com+" + imovel.qtdeBanheiro + "+banheiros") +
               (imovel.qtdeVagas === 0
                 ? ""
                 : imovel.qtdeVagas === 1
-                  ? "+com+" + imovel.qtdeVagas + "+vaga+na+garagem"
-                  : "+com+" + imovel.qtdeVagas + "+vagas+na+garagem") +
+                ? "+com+" + imovel.qtdeVagas + "+vaga+na+garagem"
+                : "+com+" + imovel.qtdeVagas + "+vagas+na+garagem") +
               "&tipoNegociacao=" +
               imovel.tipoNegociacao +
               "&id=" +
@@ -102,8 +102,7 @@ function Pesquisa() {
               <div className="CaractImovel">
                 <div className="quarto">
                   <p>
-                    <b>{imovel.qtdeQuarto}</b>{" "}
-                    <FontAwesomeIcon icon={faBed} />
+                    <b>{imovel.qtdeQuarto}</b> <FontAwesomeIcon icon={faBed} />
                   </p>
                 </div>
                 <div className="banheiro">

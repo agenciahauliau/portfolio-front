@@ -8,7 +8,11 @@ const Anuncie = (props) => {
       <div className="containerParceiro">
         <div className="imagemTexto">
           <div className="imagem">
-            <img src="https://images.pexels.com/photos/1546166/pexels-photo-1546166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Casas em condomínio" title="Casas em condomínio"/>
+            <img
+              src="https://images.pexels.com/photos/1546166/pexels-photo-1546166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt="Casas em condomínio"
+              title="Casas em condomínio"
+            />
           </div>
         </div>
 
@@ -16,11 +20,13 @@ const Anuncie = (props) => {
           <form>
             <div className="coluna">
               <div className="texto">
-              <div className="titulo">
+                <div className="titulo">
                   <h1>Imóvel para vender ou alugar? Deixa com a gente!</h1>
                   <p>
-                    Sem tempo para participar das visitas? Não sabe como divulgar o seu imóvel? Não tem problema! 
-                    Aqui na Portfolio você conta com os melhores Consultores Imobiliários do mercado para cuidar de tudo pra você.
+                    Sem tempo para participar das visitas? Não sabe como
+                    divulgar o seu imóvel? Não tem problema! Aqui na Portfolio
+                    você conta com os melhores Consultores Imobiliários do
+                    mercado para cuidar de tudo pra você.
                   </p>
                 </div>
                 <div>

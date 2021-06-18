@@ -32,7 +32,7 @@ export function QParamsPesquisa() {
 }
 
 export const toggleClass = (el) => {
-  if ( !el.target["clicado"] || el.target["clicado"] === false) {
+  if (!el.target["clicado"] || el.target["clicado"] === false) {
     el.target["clicado"] = true;
     el.target.parentElement.classList.add("active");
   } else {
@@ -47,8 +47,7 @@ export function capitalize(str) {
 
   for (const i in arrWords) {
     if (ignore.indexOf(arrWords[i]) === -1) {
-      arrWords[i] =
-        arrWords[i].charAt(0).toUpperCase() + arrWords[i].slice(1);
+      arrWords[i] = arrWords[i].charAt(0).toUpperCase() + arrWords[i].slice(1);
     }
   }
   return arrWords.join(" ");

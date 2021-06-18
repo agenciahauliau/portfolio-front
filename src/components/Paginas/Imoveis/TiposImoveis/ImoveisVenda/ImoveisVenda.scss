@@ -1,10 +1,10 @@
 .conteudoImovel.ImovelVenda {
   grid-template-areas:
-      "topo"
-      "imagem"
-      "desc"
-      "form"
-      "info";
+    "topo"
+    "imagem"
+    "desc"
+    "form"
+    "info";
 
   .topoImovel {
     grid-area: topo;

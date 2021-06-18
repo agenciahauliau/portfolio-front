@@ -7,7 +7,10 @@ function CardAluguel() {
     <>
       <div className="CardImoveis Aluguel">
         <div className="TopoCardImoveis">
-          <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="iamge" />
+          <img
+            src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            alt="iamge"
+          />
           <div className="TipoImovel">
             <p>Casa em condomínio</p>
             <img src="" />

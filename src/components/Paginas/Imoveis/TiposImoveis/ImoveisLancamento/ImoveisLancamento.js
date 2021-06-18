@@ -21,16 +21,15 @@ function ImoveisLancamento() {
     <div className="conteudoImovel ImovelLancamento">
       <div className="boxImagemImovel">
         <div className="imagemImovel">
-        <img src={data.imovel.imagemPrincipal} />
+          <img src={data.imovel.imagemPrincipal} />
         </div>
       </div>
       <div className="topoLancamentos">
         <div>
-            <h1>{data.imovel.nomeImovel}</h1>
-            <p>{data.imovel.nomeConstrutora}</p>
-            <p className="endrecoImovel">
-              {data.imovel.logradouro},
-            {data.imovel.numeroLogradouro}
+          <h1>{data.imovel.nomeImovel}</h1>
+          <p>{data.imovel.nomeConstrutora}</p>
+          <p className="endrecoImovel">
+            {data.imovel.logradouro},{data.imovel.numeroLogradouro}
             {data.imovel.complemento && data.imovel.complemento} -
             {data.imovel.bairro} — {data.imovel.cidade}
           </p>
@@ -179,7 +178,7 @@ function ImoveisLancamento() {
             </div>
           </div>
         </div>
-        </div>
+      </div>
       <div className="formImovel">
         <div className="dentroFormImovel">
           <div className="tituloForm">
@@ -223,15 +222,15 @@ function ImoveisLancamento() {
         </div>
       </div>
       <div className="outrosInformacoesImovel">
-      {data.imovel.comodidadesCondominio !== 0 && (
-        <div className="caractsImoveis">
-          <h2 className="titulocaractsImoveis">Características do Imóvel</h2>
-          <div className="itens">
-            {data.imovel.comodidadesImovel.map((comodidades) => (
-              <p>{comodidades}</p>
-            ))}
+        {data.imovel.comodidadesCondominio !== 0 && (
+          <div className="caractsImoveis">
+            <h2 className="titulocaractsImoveis">Características do Imóvel</h2>
+            <div className="itens">
+              {data.imovel.comodidadesImovel.map((comodidades) => (
+                <p>{comodidades}</p>
+              ))}
+            </div>
           </div>
-        </div>
         )}
         {data.imovel.comodidadesCondominio !== 0 && (
           <div className="caractsCondominio">

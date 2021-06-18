@@ -1,90 +1,89 @@
 .conteudoImovel.ImovelJardins {
-    grid-template-columns: 100%;
-    grid-template-areas:
+  grid-template-columns: 100%;
+  grid-template-areas:
     "imagem"
-    'topoJardins'
+    "topoJardins"
     "desc"
     "infoJardins"
     "form"
     "info";
 
-    .boxImagemImovel {
-        grid-area: imagem;
+  .boxImagemImovel {
+    grid-area: imagem;
 
-        .imagemImovel {
-          width: calc(100% + 48px);
-          height: 266px;
-          padding: 12px 24px;
-          position: relative;
-          left: -24px;
-    
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-        }
+    .imagemImovel {
+      width: calc(100% + 48px);
+      height: 266px;
+      padding: 12px 24px;
+      position: relative;
+      left: -24px;
 
-        .imagemImovel:before {
-            content: "";
-            width: 100px;
-            height: 100px;
-            background: #db0423;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: -1;
-        }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
-
-    .topoJardins {
-        grid-area: topoJardins;
-        margin-bottom: 38px;
-
-        .infoTopoJardins{
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          padding: 0 0px 0 24px;
-          margin-top: -24px;          
-          margin-bottom: 24px;
-          position: relative;
-
-          img {
-            width: 70px;
-            height: 40px;
-            background: green;
-          }
-
-          p {
-            color: #db0423;;
-            height: fit-content;
-            text-align: end;
-          }
-        }
-
-        .infoNomeJardins {
-
-          > h1 {
-            margin-bottom: 12px;
-          }
-
-          > div {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding-right: 12px;
-            
-            .previsaoLancamento{
-              text-align: end;
-            }
-          }
-        }
     }
 
-    .informacoesJardinsImovel {
-      grid-area: infoJardins;
-    }  
+    .imagemImovel:before {
+      content: "";
+      width: 100px;
+      height: 100px;
+      background: #db0423;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+    }
+  }
+
+  .topoJardins {
+    grid-area: topoJardins;
+    margin-bottom: 38px;
+
+    .infoTopoJardins {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 0px 0 24px;
+      margin-top: -24px;
+      margin-bottom: 24px;
+      position: relative;
+
+      img {
+        width: 70px;
+        height: 40px;
+        background: green;
+      }
+
+      p {
+        color: #db0423;
+        height: fit-content;
+        text-align: end;
+      }
+    }
+
+    .infoNomeJardins {
+      > h1 {
+        margin-bottom: 12px;
+      }
+
+      > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding-right: 12px;
+
+        .previsaoLancamento {
+          text-align: end;
+        }
+      }
+    }
+  }
+
+  .informacoesJardinsImovel {
+    grid-area: infoJardins;
+  }
 }
 
 @media (min-width: 820px) {
@@ -102,11 +101,11 @@
       grid-area: topoJardins;
       margin-bottom: 38px;
 
-      .infoTopoJardins{
+      .infoTopoJardins {
         padding: 0 50px 0 75px;
-        margin-top: -75px;          
+        margin-top: -75px;
         margin-bottom: 24px;
-      
+
         img {
           width: 100px;
           height: 80px;
@@ -150,13 +149,11 @@
           padding-right: 38px;
           font-size: 1em !important;
         }
-
       }
     }
-    
 
     .outrosInformacoesImovel .detalhesImoveis .itens > p {
-        width: 25% !important;
+      width: 25% !important;
     }
   }
 }

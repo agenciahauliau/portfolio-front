@@ -98,7 +98,7 @@ function ImoveisJardins() {
         </div>
       </div>
       <div className="outrosInformacoesImovel">
-      <div className="detalhesImoveis">
+        <div className="detalhesImoveis">
           <h2 className="titulocaractsImoveis">Detalhes do Imóvel</h2>
           <div className="itens">
             {data.imovel.statusImovel && (

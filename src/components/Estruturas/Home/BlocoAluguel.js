@@ -1,7 +1,7 @@
 import React from "react";
 
-function Sobre() {
+function BlocoVenda() {
   return <div></div>;
 }
 
-export default Sobre;
+export default BlocoVenda;

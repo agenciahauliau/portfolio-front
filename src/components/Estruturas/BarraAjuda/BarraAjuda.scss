@@ -1,7 +1,7 @@
 .AjudaImovel {
   background-color: #272727;
 
-  .container{
+  .container {
     flex-direction: column;
   }
 
@@ -20,7 +20,6 @@
       }
     }
     .formAjudaImovel {
-
       form {
         display: flex;
         flex-direction: column;
@@ -58,9 +57,9 @@
     }
 
     .container {
-        padding: 72px 0;
-        margin: auto;
-        flex-direction: row;
+      padding: 72px 0;
+      margin: auto;
+      flex-direction: row;
 
       .textoAjudaImovel {
         width: 50%;

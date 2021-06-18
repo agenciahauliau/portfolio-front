@@ -1,21 +1,21 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { ImovelQuery } from "../../../../Dados/DadosImoveis";
-import { QParamsImovel } from "../../../../Helpers/Functions"
+import { QParamsImovel } from "../../../../Helpers/Functions";
 
 import "./ImoveisVenda.scss";
 
 function ImoveisVenda() {
-
   const { loading, error, data } = useQuery(ImovelQuery, {
     variables: { _id: QParamsImovel() },
-    returnPartialData: true
+    returnPartialData: true,
   });
 
   if (loading) return <p>Loading Masterpieces...</p>;
   if (error) return <p>Mas Bah</p>;
 
-  const tituloImovel = data.imovel.categoriaImovel +
+  const tituloImovel =
+    data.imovel.categoriaImovel +
     (data.imovel.qtdeQuarto === 0
       ? ""
       : data.imovel.qtdeQuarto === 1
@@ -37,8 +37,6 @@ function ImoveisVenda() {
       ? " e " + data.imovel.qtdeVagas + " vaga na garagem"
       : " e " + data.imovel.qtdeVagas + " vagas na garagem");
 
-
-  
   return (
     <div className="conteudoImovel ImovelVenda">
       <div className="topoImovel">
@@ -50,7 +48,7 @@ function ImoveisVenda() {
             {data.imovel.categoriaImovel} com {data.imovel.areaTotal + " m², "}
             localizado na {data.imovel.logradouro},
             {data.imovel.numeroLogradouro}
-            {data.imovel.complemento && data.imovel.complemento} - 
+            {data.imovel.complemento && data.imovel.complemento} -
             {data.imovel.bairro} — {data.imovel.cidade}
           </p>
           <div className="comodosImovel">
@@ -313,7 +311,6 @@ function ImoveisVenda() {
 }
 
 function ValoresAdicionais() {
-
   const { loading, error, data } = useQuery(ImovelQuery, {
     variables: { _id: QParamsImovel() },
   });

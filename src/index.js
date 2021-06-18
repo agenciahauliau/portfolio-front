@@ -10,8 +10,7 @@ import {
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri:
-      "https://back-portfolio-imb-br-dot-rangell-consultoria-ti.rj.r.appspot.com/v1/graphql",
+    uri: "https://back-portfolio-imb-br-dot-rangell-consultoria-ti.rj.r.appspot.com/v1/graphql",
   }),
   cache: new InMemoryCache({
     typePolicies: {
@@ -48,7 +47,6 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,
