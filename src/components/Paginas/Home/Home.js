@@ -1,5 +1,5 @@
 import React from 'react';
-import BlocoCasaJardins from '../../Estruturas/Home/BlocoCasaJardins';
+import BlocoTopo from '../../Estruturas/Home/BlocoTopo';
 import BlocoJardins from '../../Estruturas/Home/BlocoJardins';
 import BlocoInfo from '../../Estruturas/Home/BlocoInfo';
 import BlocoVenda from '../../Estruturas/Home/BlocoVenda';
@@ -11,7 +11,7 @@ import './Home.scss';
 export default function Home() {
 	return (
 		<div className="Home">
-			<BlocoCasaJardins />
+			<BlocoTopo />
 			<BlocoJardins />
 			<BlocoInfo />
 			<BlocoVenda />
