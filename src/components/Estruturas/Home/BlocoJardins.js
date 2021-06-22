@@ -20,25 +20,27 @@ export const BlocoJardins = (BJardins) => {
 
 	return (
 		<div className="blocoJardins">
-			{data.imoveis.map((imovel) => (
-				<div className="jardins">
-					<Link
-						to={
-							'/imoveis/imovel?jardins=' +
-							imovel.nomeImovel +
-							'&construtora=' +
-							imovel.nomeConstrutora +
-							'&id=' +
-							imovel._id
-						}
-					>
-						<div className="imagemJardins">
-							<img src={imovel.imagemPrincipal} alt={imovel.nomeImovel} title={imovel.nomeImovel} />
-						</div>
-						<p>{imovel.nomeImovel}</p>
-					</Link>
-				</div>
-			))}
+			<div className="container">
+				{data.imoveis.map((imovel) => (
+					<div className="jardins">
+						<Link
+							to={
+								'/imoveis/imovel?jardins=' +
+								imovel.nomeImovel +
+								'&construtora=' +
+								imovel.nomeConstrutora +
+								'&id=' +
+								imovel._id
+							}
+						>
+							<div className="imagemJardins">
+								<img src={imovel.imagemPrincipal} alt={imovel.nomeImovel} title={imovel.nomeImovel} />
+							</div>
+							<p>{imovel.nomeImovel}</p>
+						</Link>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };

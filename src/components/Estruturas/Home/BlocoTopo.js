@@ -14,15 +14,17 @@ export default function BlocoTopo() {
 
 	return (
 		<div className="topoHome">
-			<div className="textoTopoHome">
-				<h1>Sua casa Jardins do jeito que sempre quis</h1>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut laoreet tellus. Cras iaculis vehicula
-					tortor, cursus placerat lacus dignissim in.
-				</p>
-			</div>
-			<div className="imagemTopoHome">
-				<img src={FGR} />
+			<div className="container">
+				<div className="textoTopoHome">
+					<h1>Sua casa Jardins do jeito que sempre quis</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut laoreet tellus. Cras iaculis vehicula
+						tortor, cursus placerat lacus dignissim in.
+					</p>
+				</div>
+				<div className="imagemTopoHome">
+					<img src={FGR} />
+				</div>
 			</div>
 		</div>
 	);

@@ -17,7 +17,7 @@ function BlocoVenda() {
 	if (loading) return 'load';
 
 	return (
-		<div className="BlocoVenda">
+		<div className="BlocoAluguel">
 			<div className="textoBloco">
 				<h2>Imóveis para aluguar</h2>
 				<p>Conheças nossos imóveis para aluguar</p>
