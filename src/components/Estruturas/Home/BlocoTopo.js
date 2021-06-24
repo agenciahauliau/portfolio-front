@@ -1,11 +1,11 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QIPesquisa } from '../../Dados/DadosImoveis';
+import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../Dados/DadosImoveis';
 
 import FGR from '../../../assets/Imagens/820_FAS-V1_12-Foto_red24.02.jpg';
 
 export default function BlocoTopo() {
-	const { loading, error, data } = useQuery(QIPesquisa, {
+	const { loading, error, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
 		returnPartialData: true,
 	});
 

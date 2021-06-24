@@ -1,109 +1,108 @@
 .pesquisa {
-  padding: 0 24px;
-  background: #272727;
-  overflow: hidden;
+	padding: 0 24px;
+	background: #272727;
 
-  .pesquisaContainer {
-    width: 100%;
-    min-height: 90px;
-    padding: 38px 0;
+	.pesquisaContainer {
+		width: 100%;
+		min-height: 90px;
+		padding: 38px 0;
 
-    input.chaveFiltro {
-      display: none;
-    }
+		input.chaveFiltro {
+			display: none;
+		}
 
-    label.chaveFiltro {
-      width: fit-content;
-      p {
-        width: fit-content;
-        padding: 8px 12px;
-        margin: auto;
-        background: #db0423;
-        color: #fff;
-      }
-    }
+		label.chaveFiltro {
+			width: fit-content;
+			p {
+				width: fit-content;
+				padding: 8px 12px;
+				margin: auto;
+				background: #db0423;
+				color: #fff;
+			}
+		}
 
-    .filtrosPesquisa {
-      form {
-        input[type="radio"],
-        input[type="checkbox"] {
-          display: none;
-        }
+		.filtrosPesquisa {
+			form {
+				input[type='radio'],
+				input[type='checkbox'] {
+					display: none;
+				}
 
-        .filtrosPrincipais {
-          display: flex;
-          .tipoNeg {
-            width: fit-content;
-            display: flex;
-            .divInput {
-              input[type="radio"]:checked {
-                & ~ .divLabel {
-                  border: 1px solid #fff5;
-                  box-shadow: 0 10px 10px -5px #db042355;
-                }
-              }
-              .divLabel {
-                padding: 1px;
-                margin: 5px;
-                color: #fff;
-                border: 1px solid #fff2;
-                transition: 0.3s ease;
-                label {
-                  display: block;
-                  padding: 6px 10px;
-                  transition: 0.3s ease;
-                }
-              }
-            }
-          }
-          .filterElment {
-            width: fit-content;
-            padding: 4px;
-            margin: 12px;
-            .selectFiltro {
-              margin-bottom: 12px;
-            }
-            .selectValue {
-              .valueSelected {
-                width: fit-content;
-                display: none;
-                padding: 5px;
-                margin: 5px;
-                background: #db0423;
-                color: #fff;
-                position: relative;
-                .button {
-                  width: 12px;
-                  position: absolute;
-                  right: -6px;
-                  top: -6px;
-                }
-              }
-              .valueSelected.selected {
-                display: block;
-              }
-            }
-            .checkboxValues {
-              width: fit-content;
-              max-height: 250px;
-              padding: 5px;
-              background: #fff8;
-              overflow: hidden;
-              label.selected {
-                display: none;
-              }
-              label.filtro {
-                display: none;
-              }
-            }
-          }
-        }
-      }
-    }
-    input:checked ~ .filtrosPesquisa {
-      height: 0;
-    }
-  }
+				.filtrosPrincipais {
+					display: flex;
+					.tipoNeg {
+						width: fit-content;
+						display: flex;
+						.divInput {
+							input[type='radio']:checked {
+								& ~ .divLabel {
+									border: 1px solid #fff5;
+									box-shadow: 0 10px 10px -5px #db042355;
+								}
+							}
+							.divLabel {
+								padding: 1px;
+								margin: 5px;
+								color: #fff;
+								border: 1px solid #fff2;
+								transition: 0.3s ease;
+								label {
+									display: block;
+									padding: 6px 10px;
+									transition: 0.3s ease;
+								}
+							}
+						}
+					}
+					.filterElment {
+						width: fit-content;
+						padding: 4px;
+						margin: 12px;
+						.selectFiltro {
+							margin-bottom: 12px;
+						}
+						.selectValue {
+							.valueSelected {
+								width: fit-content;
+								display: none;
+								padding: 5px;
+								margin: 5px;
+								background: #db0423;
+								color: #fff;
+								position: relative;
+								.button {
+									width: 12px;
+									position: absolute;
+									right: -6px;
+									top: -6px;
+								}
+							}
+							.valueSelected.selected {
+								display: block;
+							}
+						}
+						.checkboxValues {
+							width: fit-content;
+							max-height: 250px;
+							padding: 5px;
+							background: #fff8;
+							overflow: hidden;
+							label.selected {
+								display: none;
+							}
+							label.filtro {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+		}
+		input:checked ~ .filtrosPesquisa {
+			height: 0;
+		}
+	}
 }
 
 @media screen and (min-width: 820px) {

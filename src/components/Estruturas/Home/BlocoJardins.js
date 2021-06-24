@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { QIPesquisa } from '../../Dados/DadosImoveis';
+import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../Dados/DadosImoveis';
 import { Link } from 'react-router-dom';
 
 export const BlocoJardins = (BJardins) => {
-	const { loading, data } = useQuery(QIPesquisa, {
+	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
 		variables: {
 			input: {
 				jardins: true,
