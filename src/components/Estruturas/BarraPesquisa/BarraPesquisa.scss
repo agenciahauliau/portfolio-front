@@ -1,109 +1,207 @@
 .pesquisa {
-	padding: 0 24px;
+	padding: 24px 12px;
 	background: #272727;
+	input.chaveFiltro {
+		display: none;
 
-	.pesquisaContainer {
-		width: 100%;
-		min-height: 90px;
-		padding: 38px 0;
+		& ~ .divChaveFiltro {
+			width: fit-content;
+			padding: 1px;
+			margin: 5px auto;
+			color: #fff;
+			border: 1px solid #fff2;
+			transition: 0.3s ease;
+			label.chaveFiltro {
+				display: block;
+				transition: 0.3s ease;
+				p {
+					width: fit-content;
+					padding: 8px 12px;
+					margin: auto;
+					color: #fff;
+				}
+			}
+		}
+	}
 
-		input.chaveFiltro {
-			display: none;
+	input[type='checkbox']:checked {
+		& ~ .divChaveFiltro {
+			border: 1px solid #fff5;
+			box-shadow: 0 10px 10px -5px #db042355;
 		}
 
-		label.chaveFiltro {
-			width: fit-content;
+		& ~ .form {
+			display: block;
+		}
+	}
+
+	.form {
+		width: 100%;
+		height: 100%;
+		display: none;
+		padding: 24px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		background: #272727;
+		.topoMFiltros {
+			display: flex;
+			justify-content: space-between;
+			border-bottom: 1px solid #fff2;
 			p {
-				width: fit-content;
-				padding: 8px 12px;
-				margin: auto;
-				background: #db0423;
+				padding: 8px;
+				font-size: 1.2em;
 				color: #fff;
 			}
-		}
-
-		.filtrosPesquisa {
-			form {
-				input[type='radio'],
-				input[type='checkbox'] {
-					display: none;
-				}
-
-				.filtrosPrincipais {
-					display: flex;
-					.tipoNeg {
-						width: fit-content;
-						display: flex;
-						.divInput {
-							input[type='radio']:checked {
-								& ~ .divLabel {
-									border: 1px solid #fff5;
-									box-shadow: 0 10px 10px -5px #db042355;
-								}
-							}
-							.divLabel {
-								padding: 1px;
-								margin: 5px;
-								color: #fff;
-								border: 1px solid #fff2;
-								transition: 0.3s ease;
-								label {
-									display: block;
-									padding: 6px 10px;
-									transition: 0.3s ease;
-								}
-							}
-						}
+			.secharFiltros {
+				svg {
+					width: 34px;
+					margin: 0 8px;
+					path {
+						stroke: #fff;
 					}
-					.filterElment {
-						width: fit-content;
-						padding: 4px;
-						margin: 12px;
-						.selectFiltro {
-							margin-bottom: 12px;
-						}
-						.selectValue {
-							.valueSelected {
-								width: fit-content;
-								display: none;
-								padding: 5px;
-								margin: 5px;
-								background: #db0423;
+				}
+			}
+		}
+		.filtros {
+			display: flex;
+			flex-wrap: wrap;
+			margin-top: 24px;
+			.areaInput {
+				width: 100%;
+				.primeiroSelect {
+					width: 100%;
+					margin: 8px 0;
+					background: #fff2;
+					box-shadow: 0 3px 9px -3px #db042322;
+					.select__control {
+						border: none;
+						border-radius: 0;
+						background: none;
+						.select__value-container {
+							.select__placeholder {
 								color: #fff;
-								position: relative;
-								.button {
-									width: 12px;
-									position: absolute;
-									right: -6px;
-									top: -6px;
+							}
+							.select__multi-value {
+								background: none;
+								.select__multi-value__label {
+									color: #fff;
+								}
+								.select__multi-value__remove {
+									svg {
+										fill: yellow;
+									}
 								}
 							}
-							.valueSelected.selected {
-								display: block;
-							}
 						}
-						.checkboxValues {
-							width: fit-content;
-							max-height: 250px;
-							padding: 5px;
-							background: #fff8;
-							overflow: hidden;
-							label.selected {
-								display: none;
-							}
-							label.filtro {
-								display: none;
-							}
+						.select__indicators {
+							display: none;
 						}
 					}
 				}
 			}
 		}
-		input:checked ~ .filtrosPesquisa {
-			height: 0;
+		.segundoFiltro {
+			.areaInput {
+				width: 100%;
+				.segundoSelect {
+					width: 100%;
+					margin: 8px 0;
+					background: #fff2;
+					box-shadow: 0 3px 9px -3px #db042322;
+					.select__control {
+						border: none;
+						border-radius: 0;
+						background: none;
+						.select__value-container {
+							.select__placeholder {
+								color: #fff;
+							}
+							.select__multi-value {
+								background: none;
+								.select__multi-value__label {
+									color: #fff;
+								}
+								.select__multi-value__remove {
+									svg {
+										fill: yellow;
+									}
+								}
+							}
+						}
+						.select__indicators {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+		form {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			padding: 24px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			border-top: 1px solid #fff2;
+
+			.tipoSelect {
+				width: 55%;
+				margin: 8px 0;
+				background: #db0423;
+
+				box-shadow: 0 3px 9px -3px #db042322;
+				.select__control {
+					border: none;
+					border-radius: 0;
+					background: none;
+					.select__value-container {
+						.select__single-value {
+							font-weight: 600;
+							color: #fff;
+						}
+						.select__multi-value {
+							background: none;
+							.select__multi-value__label {
+								color: #fff;
+							}
+							.select__multi-value__remove {
+								svg {
+									fill: yellow;
+								}
+							}
+						}
+					}
+					.select__indicators {
+						svg {
+							fill: #fff;
+						}
+					}
+				}
+				.select__control.select__control--menu-is-open {
+					.select__indicators {
+						svg {
+							transform: scaleX(-1);
+						}
+					}
+				}
+			}
+			.buttonFiltro {
+				margin: 8px 24px;
+				button {
+					width: 36px;
+					height: 36px;
+					padding: 4px;
+					background: none;
+					svg {
+						fill: #fff;
+					}
+				}
+			}
 		}
 	}
 }
-
 @media screen and (min-width: 820px) {
 }

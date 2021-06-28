@@ -8,8 +8,8 @@ export const BlocoJardins = (BJardins) => {
 		variables: {
 			input: {
 				jardins: true,
-				categoriaImovel: 'Lote em Condomínio',
-				nomeConstrutora: 'FGR Construtora',
+				categoriaImovel: { in: 'Lote em Condomínio' },
+				nomeConstrutora: { in: 'FGR Construtora' },
 			},
 			quantidade: /Android (\d+.*)|iPhone OS|iPhoneOS (\d+(?:\_+\d+)+)/.test(navigator.appVersion) ? 4 : 8,
 		},
@@ -21,7 +21,7 @@ export const BlocoJardins = (BJardins) => {
 	return (
 		<div className="blocoJardins">
 			<div className="container">
-				{data.imoveis.map((imovel) => (
+				{data.imoveis_condicional.map((imovel) => (
 					<div className="jardins">
 						<Link
 							to={

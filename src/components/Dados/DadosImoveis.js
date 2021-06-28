@@ -61,8 +61,8 @@ export const GQL_LISTAR_IMOVEIS = gql`
 `;
 
 export const GQL_BUSCAR_IMOVEIS_COM_FILTRO = gql`
-	query imoveis_com_filtro($input: SearchImovelInput, $quantidade: Float) {
-		imoveis(filtros: $input, quantidade: $quantidade) {
+	query imoveis_condicional($input: SearchImovelCondInput, $quantidade: Float) {
+		imoveis_condicional(filtros: $input, quantidade: $quantidade) {
 			_id
 			nomeImovel
 			imagemPrincipal

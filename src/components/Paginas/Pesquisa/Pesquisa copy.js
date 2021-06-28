@@ -18,7 +18,11 @@ import '../../Estruturas/Cards/CardImoveis.scss';
 function Pesquisa() {
 	const { loading, error, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
 		variables: {
-			input: QParamsPesquisa(),
+			input: {
+				categoriaImovel: {
+					in: 'Lote em Condomínio',
+				},
+			},
 		},
 		returnPartialData: true,
 	});
@@ -31,7 +35,7 @@ function Pesquisa() {
 	const usersPerPage = 10;
 	const pagesVisited = pageNumber * usersPerPage;
 
-	const imoveisPP = data.imoveis_condicional.slice(pagesVisited, pagesVisited + usersPerPage).map((imovel) => {
+	const imoveisPP = data.imoveis.slice(pagesVisited, pagesVisited + usersPerPage).map((imovel) => {
 		return (
 			<div className="CardImoveis">
 				<div className="TopoCardImoveis">
@@ -129,7 +133,7 @@ function Pesquisa() {
 		);
 	});
 
-	const pageCount = Math.ceil(data.imoveis_condicional.length / usersPerPage);
+	const pageCount = Math.ceil(data.imoveis.length / usersPerPage);
 
 	const changePage = ({ selected }) => {
 		setPageNumber(selected);

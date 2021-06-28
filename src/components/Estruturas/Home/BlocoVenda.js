@@ -8,7 +8,7 @@ function BlocoVenda() {
 	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
 		variables: {
 			input: {
-				tipoNegociacao: 'Venda',
+				tipoNegociacao: { in: 'Venda' },
 			},
 			quantidade: /Android (\d+.*)|iPhone OS|iPhoneOS (\d+(?:\_+\d+)+)/.test(navigator.appVersion) ? 3 : 6,
 		},
@@ -25,7 +25,7 @@ function BlocoVenda() {
 					<p>Conheças nossos imóveis a venda</p>
 				</div>
 				<div className="Cards">
-					{data.imoveis.map((imovel, i) => (
+					{data.imoveis_condicional.map((imovel, i) => (
 						<Link
 							to={
 								'/imoveis/imovel?titulo=' +

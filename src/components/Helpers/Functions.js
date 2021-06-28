@@ -6,6 +6,18 @@ export function QParamsImovel() {
 	return new URLSearchParams(useLocation().search).get('id');
 }
 
+function BSF(dado) {
+	if (dado === 'true') {
+		return true;
+	} else if (dado === 'false') {
+		return false;
+	} else if (isNaN(dado)) {
+		return dado;
+	} else {
+		return +dado;
+	}
+}
+
 export function QParamsPesquisa() {
 	const chaves = new URLSearchParams(useLocation().search);
 
@@ -13,19 +25,17 @@ export function QParamsPesquisa() {
 
 	for (let key of chaves.keys()) {
 		const valorChave = chaves.get(key);
+		const VChaves = valorChave.split(',');
 
-		function test() {
-			if (valorChave === 'true') {
-				return true;
-			} else if (valorChave === 'false') {
-				return false;
-			} else if (isNaN(valorChave)) {
-				return valorChave;
-			} else {
-				return +valorChave;
-			}
+		let IN = [];
+		for (let VChave of VChaves) {
+			IN.push(BSF(VChave));
 		}
-		resultado[key] = test();
+		console.log(IN);
+
+		resultado[key] = {};
+		resultado[key].in = IN;
+
 		resultado.statusLancamento = 'aprovado';
 	}
 	return resultado;
