@@ -1,10 +1,37 @@
 import React from 'react';
+import { useMutation } from '@apollo/client';
+import { GQL_CRIAR_LEAD } from '../../graphql/graphql';
 
 import './Contato.scss';
 import ContatoBack from '../../../assets/Videos/contato.webm';
-import { Facebook, Instagram, Twitter, WhatsApp } from '../../../assets/Imagens/SVG/SVG';
+import { Facebook, Instagram, Twitter, WhatsApp } from '../../../assets/Imagens/SVG';
 
 function Contato() {
+
+	const [createLead] = useMutation(GQL_CRIAR_LEAD)
+
+	function criarLead() {
+		const FTipo = document.querySelector("input[name='tipo']")
+		const FNome = document.querySelector("input[name='nome']")
+		const FEmail = document.querySelector("input[name='email']")
+		const FTel = document.querySelector("input[name='telefone']")
+		const FCom = document.querySelector("textarea[name='mensagem']")
+		const FPCont = document.querySelector("input[name='pcontato']")
+
+		console.log(FNome.value, FEmail.value, FTel.value, FCom.value  )
+
+		// {
+		// 	variables: dados {
+		// 		tipoLead: FTipo.value,
+		// 		nome:FNome.value,
+		// 		email:FEmail.value,
+		// 		telefone:FTel.value,,
+		// 		comentarios:FCom.value,
+		// 		preferenciaDeContato:FPCont.value
+		// 	}
+		// }
+
+	}
 	return (
 		<div className="contato">
 			<div className="containerContato">
@@ -73,12 +100,11 @@ function Contato() {
 							</div>
 						</div>
 						<form>
-							<input type="text" placeholder="Nome completo" />
-							<input type="text" placeholder="Telefone / Whatsapp" />
-							<input type="text" placeholder="E-mail" />
-							<input type="text" placeholder="Assunto" />
-							<textarea placeholder="Deixe sua mensagem"></textarea>
-							<button>Enviar</button>
+							<input name="nome" type="text" placeholder="Nome completo" />
+							<input name="telefone" type="text" placeholder="Telefone / Whatsapp" />
+							<input name="email" type="text" placeholder="E-mail" />
+							<textarea name="mensagem" placeholder="Deixe sua mensagem"></textarea>
+							<button type="button" onClick={criarLead} >Enviar</button>
 						</form>
 					</div>
 				</div>

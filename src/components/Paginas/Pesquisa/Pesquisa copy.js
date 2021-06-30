@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../Dados/DadosImoveis';
 import { Link } from 'react-router-dom';
-import { Quarto, Banheiro, Garagem } from '../../../assets/Imagens/SVG/SVG';
 import { QParamsPesquisa } from '../../Helpers/Functions';
 import ReactPaginate from 'react-paginate';
+import { Quarto, Banheiro, Garagem } from '../../../assets/Imagens/SVG';
 
 import BarraPesquisa from '../../Estruturas/BarraPesquisa/BarraPesquisa';
 import FGRBanner from '../../Estruturas/FGRBanner/FGRBanner';

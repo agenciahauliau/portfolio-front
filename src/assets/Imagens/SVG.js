@@ -82,15 +82,46 @@ export const Pesquisa = (
 		<path d="m409.6 204.81c0-112.92-91.878-204.8-204.8-204.8s-204.8 91.878-204.8 204.8 91.878 204.8 204.8 204.8 204.8-91.878 204.8-204.8zm-204.8 187.73c-103.52 0-187.73-84.215-187.73-187.73s84.215-187.73 187.73-187.73 187.73 84.215 187.73 187.73-84.215 187.73-187.73 187.73z" />
 	</svg>
 );
+
 export const Fechar = (
-	<svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	<svg fill="none" viewBox="0 0 24 24">
 		<path
 			d="m6.7583 17.243l5.2426-5.2426m5.2426-5.2426l-5.2426 5.2426m0 0l-5.2426-5.2426m5.2426 5.2426l5.2426 5.2426"
 			stroke="currentColor"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-			stroke-width="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth="1.5"
 		/>
+	</svg>
+);
+
+export const Mais = (
+	<svg fill="none" viewBox="0 0 24 24">
+		<path d="m6 12h6m6 0h-6m0 0v-6m0 6v6" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+	</svg>
+);
+
+export const Menos = (
+	<svg fill="none" viewBox="0 0 24 24">
+		<path d="M6 12H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+	</svg>
+);
+
+export const Esquerda = (
+	<svg viewBox="0 0 24 24" fill="none">
+		<path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+	</svg>
+);
+
+export const Direita = (
+	<svg viewBox="0 0 24 24" fill="none">
+		<path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+	</svg>
+);
+
+export const SetaDireita = (
+	<svg viewBox="0 0 24 24" fill="none">
+		<path d="M2 12H22M22 12L19 9M22 12L19 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 	</svg>
 );
 

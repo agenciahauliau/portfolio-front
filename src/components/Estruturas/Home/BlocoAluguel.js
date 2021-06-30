@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../Dados/DadosImoveis';
+import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import { Aluguel } from '../../../assets/Imagens/SVG/SVG';
+import { Aluguel } from '../../../assets/Imagens/SVG';
 
 function BlocoVenda() {
 	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
@@ -24,7 +24,7 @@ function BlocoVenda() {
 				<p>Conheças nossos imóveis para aluguar</p>
 			</div>
 			<div className="Cards">
-				{data.imoveis_condicional.map((imovel, i) => (
+				{data.imoveis.map((imovel, i) => (
 					<Link
 						to={
 							'/imoveis/imovel?titulo=' +

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Facebook, Twitter, WhatsApp } from '../../../assets/Imagens/SVG/SVG';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_POSTS_COM_FILTRO } from '../../Dados/DadosBlog';
-import ReactPaginate from 'react-paginate';
+import { GQL_BUSCAR_POSTS_COM_FILTRO } from '../../graphql/graphql';
+import { Facebook, Twitter, WhatsApp } from '../../../assets/Imagens/SVG';
 
 function BlogTopo() {
 	const { loading, data } = useQuery(GQL_BUSCAR_POSTS_COM_FILTRO, {
@@ -18,8 +17,8 @@ function BlogTopo() {
 	return (
 		<div className="topo">
 			{data.posts.map((post) => (
-				<Link to={'/artigos/post?titulo=' + post.titulo + '&id=' + post._id}>
-					<div className="artigo">
+				<div className="artigo">
+					<Link to={'/artigos/post?titulo=' + post.titulo + '&id=' + post._id}>
 						<div className="imagemTitulo">
 							<div className="imagem">
 								<img src={post.imagemPrincipal} alt={post.titulo} />
@@ -67,8 +66,8 @@ function BlogTopo() {
 								</div>
 							</div>
 						</div>
-					</div>
-				</Link>
+					</Link>
+				</div>
 			))}
 		</div>
 	);

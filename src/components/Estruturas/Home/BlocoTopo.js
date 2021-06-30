@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../Dados/DadosImoveis';
+import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 
 import FGR from '../../../assets/Imagens/820_FAS-V1_12-Foto_red24.02.jpg';
 

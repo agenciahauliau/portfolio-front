@@ -61,8 +61,8 @@ export const GQL_LISTAR_IMOVEIS = gql`
 `;
 
 export const GQL_BUSCAR_IMOVEIS_COM_FILTRO = gql`
-	query imoveis_condicional($input: SearchImovelCondInput, $quantidade: Float) {
-		imoveis_condicional(filtros: $input, quantidade: $quantidade) {
+	query imoveis ($input: SearchImovelInput, $quantidade: Float) {
+		imoveis (filtros: $input, quantidade: $quantidade) {
 			_id
 			nomeImovel
 			imagemPrincipal
@@ -178,4 +178,64 @@ export const GQL_BUSCAR_IMOVEL = gql`
 			imovelId
 		}
 	}
+`;
+
+export const GQL_LISTAR_POSTS = gql`
+	query todosPosts {
+		posts {
+			_id
+			postId
+			status
+			titulo
+			descricao
+			conteudo
+			imagemPrincipal
+			categoria
+			tags
+			createdAt
+			updatedAt
+		}
+	}
+`;
+
+export const GQL_BUSCAR_POSTS_COM_FILTRO = gql`
+	query filtrarPosts($filtros: SearchPostCondInput, $quantidade: Float) {
+		posts(filtros: $filtros, quantidade: $quantidade) {
+			_id
+			postId
+			status
+			titulo
+			descricao
+			conteudo
+			imagemPrincipal
+			categoria
+			tags
+			createdAt
+			updatedAt
+		}
+	}
+`;
+
+export const GQL_BUSCAR_POST = gql`
+	query post($id: String!) {
+		post (id: $id) {
+			_id
+			postId
+			status
+			titulo
+			descricao
+			conteudo
+			imagemPrincipal
+			categoria
+			tags
+			createdAt
+			updatedAt
+		}
+	}
+`;
+
+export const GQL_CRIAR_LEAD = gql`
+  mutation createLead($input: CreateLeadInput!) {
+    createLead(dados: $input)
+  }
 `;

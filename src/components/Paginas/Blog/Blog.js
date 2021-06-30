@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BlogTopo from '../../Estruturas/Blog/BlogTopo';
+import ReactPaginate from 'react-paginate';
 
 import './Blog.scss';
 

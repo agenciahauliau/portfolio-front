@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { LogoPortfolio } from "../../../assets/Imagens/Imagens";
 //import SCSS
 import "./Topo.scss";
-//import Imagens
-import logo from "../../../assets/Imagens/logo.webp";
+
 
 class Topo extends React.Component {
   constructor(props) {
@@ -28,9 +28,11 @@ class Topo extends React.Component {
             <div className="logo-menu" onClick={this.remove.bind(this)}>
               <Link to="/">
                 <img
-                  src={logo}
-                  alt="Portfolio Imóveis"
-                  title="Portfolio Imóveis"
+                  src={LogoPortfolio.imagem.default}
+                  alt={LogoPortfolio.alt}
+                  title={LogoPortfolio.title}
+                  width={LogoPortfolio.width}
+                  height={LogoPortfolio.height}
                 />
               </Link>
             </div>

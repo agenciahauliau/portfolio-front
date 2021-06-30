@@ -1,48 +1,43 @@
 .AjudaImovel {
   background-color: #272727;
-
-  .container {
-    flex-direction: column;
-  }
+  padding: 24px;
 
   * {
     color: #fff;
   }
 
-  .container {
-    .textoAjudaImovel {
+  .textoAjudaImovel {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+
+    > * {
+      margin: 8px 0;
+    }
+  }
+  .formAjudaImovel {
+    form {
       display: flex;
       flex-direction: column;
-      margin-bottom: 24px;
+      justify-content: center;
+      align-items: flex-end;
 
       > * {
         margin: 8px 0;
+        padding: 10px 15px;
       }
-    }
-    .formAjudaImovel {
-      form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-end;
 
-        > * {
-          margin: 8px 0;
-          padding: 10px 15px;
-        }
+      input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #fff;
+        background-color: #fff1;
+      }
 
-        input {
-          width: 100%;
-          padding: 10px 15px;
-          border: 1px solid #fff;
-          background-color: #fff1;
-        }
-
-        button {
-          background: #db0423;
-          width: 100px;
-          font-weight: 700;
-        }
+      button {
+        background: #db0423;
+        width: 100px;
+        font-weight: 700;
       }
     }
   }
@@ -50,31 +45,18 @@
 
 @media screen and (min-width: 820px) {
   .AjudaImovel {
-    background-color: #272727;
-
-    * {
-      color: #fff;
-    }
-
+    padding: 48px 24px;
     .container {
-      padding: 72px 0;
+      display: flex;
+      align-items: center;
       margin: auto;
-      flex-direction: row;
-
-      .textoAjudaImovel {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-right: 96px;
-
-        > * {
-          margin: 8px 0;
-        }
-      }
-      .formAjudaImovel {
-        width: 50%;
-      }
+    }
+    .textoAjudaImovel {
+      width: 45%;
+      padding: 12px;
+    }
+    .formAjudaImovel {
+      width: 55%;
     }
   }
 }

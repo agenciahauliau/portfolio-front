@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_IMOVEL } from '../../../../Dados/DadosImoveis';
+import { GQL_BUSCAR_IMOVEL } from '../../../../graphql/graphql';
 import { useLocation } from 'react-router-dom';
 
 import './ImoveisJardins.scss';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_IMOVEL } from '../../../../Dados/DadosImoveis';
-import { QParamsImovel } from '../../../../Helpers/Functions';
+import { GQL_BUSCAR_IMOVEL } from '../../../../graphql/graphql';
+import { QParamsImovel } from '../../../../Helpers/Helpers';
 
 import './ImoveisVenda.scss';
 

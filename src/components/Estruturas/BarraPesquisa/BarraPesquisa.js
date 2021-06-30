@@ -1,15 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Component, useContext, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { GQL_LISTAR_IMOVEIS } from '../../Dados/DadosImoveis';
-import { toggleClass, capitalize } from '../../Helpers/Functions';
+import { GQL_LISTAR_IMOVEIS } from '../../graphql/graphql';
+import { toggleClass, capitalize } from '../../Helpers/Helpers';
 import Select from 'react-select';
 import Slider, { SliderTooltip } from 'rc-slider';
+import { Fechar, Pesquisa, Mais, Menos } from '../../../assets/Imagens/SVG';
 
-import { Fechar, Pesquisa } from '../../../assets/Imagens/SVG/SVG';
 import './BarraPesquisa.scss';
 
 const { Range } = Slider;
 
+function log(value) {
+
+	// const RangeSlides = document.querySelectorAll('.rc-slider')
+	// for(let RangeSlide of RangeSlides){
+	// 	RangeSlide.nextElementSibling.childNodes[0].textContent = value[0]
+	// 	RangeSlide.nextElementSibling.childNodes[1].textContent = value[1]
+	// }
+
+}
 
 function FormURL() { }
 
@@ -21,12 +30,12 @@ function Selectvalues() {
 		bairroFiltros.push(selectBairro.value);
 	}
 
-	let novoImput = document.createElement('input');
-	novoImput.setAttribute('value', bairroFiltros);
-	novoImput.setAttribute('type', 'hidden');
-	novoImput.setAttribute('name', 'bairro');
+	let novoInput = document.createElement('input');
+	novoInput.setAttribute('value', bairroFiltros);
+	novoInput.setAttribute('type', 'hidden');
+	novoInput.setAttribute('name', 'bairro');
 
-	formFiltro.appendChild(novoImput);
+	formFiltro.appendChild(novoInput);
 
 	const elements = document.querySelectorAll('form input');
 	for (let input of elements) {
@@ -36,16 +45,21 @@ function Selectvalues() {
 	}
 }
 
-var valorInput = 0;
-function buttonClickM() {
-	valorInput++;
-	document.getElementById('inc').value = valorInput;
-	console.log("mais")
+
+/// valor Input 
+function buttonClickM(el) {
+	let valor = +el.target.closest(".valorInput").children[1].value;
+	valor++;
+	el.target.closest(".valorInput").children[1].value = valor;
 }
-function buttonClickL() {
-	valorInput--;
-	document.getElementById('inc').value = valorInput;
-	console.log("menos")
+function buttonClickL(el) {
+	let valor = +el.target.closest(".valorInput").children[1].value;
+	if (valor > 0) valor--;
+	el.target.closest(".valorInput").children[1].value = valor;
+}
+
+function fecharFiltro() {
+	document.getElementById("filtro").checked = false;
 }
 
 export default function BarraPesquisa() {
@@ -60,7 +74,7 @@ export default function BarraPesquisa() {
 			console.log(multiSelect);
 		});
 	}
-
+	
 	if (loading) return <p>Loading Masterpieces...</p>;
 
 	let nomes = [];
@@ -120,112 +134,179 @@ export default function BarraPesquisa() {
 				<div className="form">
 					<div className="topoMFiltros">
 						<p>Filtros</p>
-						<div className="secharFiltros">{Fechar}</div>
+						<div onClick={fecharFiltro} className="secharFiltros">{Fechar}</div>
 					</div>
 					<div className="filtros">
-						<div className="areaInput">
-							<Select
-								isMulti
-								name="categoriaImovel"
-								options={categorias.map((x) => MakeOption(x))}
-								className="primeiroSelect"
-								classNamePrefix="select"
-								closeMenuOnSelect={false}
-								placeholder="Imóvel"
-							/>
-						</div>
-						<div className="areaInput">
-							<Select
-								isMulti
-								name="bairro"
-								options={bairros.map((x) => MakeOption(x))}
-								className="primeiroSelect"
-								classNamePrefix="select"
-								closeMenuOnSelect={false}
-								placeholder={'Bairro'}
-							/>
-						</div>
-						<div className="areaInput">
-							<Select
-								isMulti
-								name="cidade"
-								options={cidades.map((x) => MakeOption(x))}
-								className="primeiroSelect"
-								classNamePrefix="select"
-								closeMenuOnSelect={false}
-								placeholder={'Cidade'}
-							/>
-						</div>
-					</div>
-					<div className="segundoFiltro">
-						<div className="areaInput">
-							<Select
-								isMulti
-								name="colors"
-								options={nomes.map((x) => MakeOption(x))}
-								className="segundoSelect"
-								classNamePrefix="select"
-								closeMenuOnSelect={false}
-							/>
-						</div>
-						<div className="areaInput">
-							<Select
-								isMulti
-								name="colors"
-								options={status.map((x) => MakeOption(x))}
-								className="segundoSelect"
-								classNamePrefix="select"
-								closeMenuOnSelect={false}
-							/>
-						</div>
-						<div className="areaInput">
-							<Range 
-							min={0}
-							max={30}
-							allowCross={false} 
-							defaultValue={[0, 20]} />
-						</div>
-						<div className="areaInput">
-							<Range 
-							min={0}
-							max={30}
-							allowCross={false} 
-							defaultValue={[0, 20]} />
-						</div>
-						<div className="areaInput">
-						<button onClick={buttonClickL}>Click Me</button>
-							<input type="number" id="inc" value="0"/>
-							<button onClick={buttonClickM}>Click Me</button>
-						</div>
-						<div className="areaInput">
-						<button onClick={buttonClickL}>Click Me</button>
-							<input type="number" id="inc" value="0"/>
-							<button onClick={buttonClickM}>Click Me</button>
-						</div>
-						<div className="areaInput">
-						<button onClick={buttonClickL}>Click Me</button>
-							<input type="number" id="inc" value="0"/>
-							<button onClick={buttonClickM}>Click Me</button>
-						</div>
-						<div className="areaInput">
-						<button onClick={buttonClickL}>Click Me</button>
-							<input type="number" id="inc" value="0"/>
-							<button onClick={buttonClickM}>Click Me</button>
-						</div>
-						<div className="areaInput">
-						<button onClick={buttonClickL}>Click Me</button>
-							<input type="number" id="inc" value="0"/>
-							<button onClick={buttonClickM}>Click Me</button>
-						</div>
-						<div className="areaInput">
-							<Select
-								isMulti
-								name="colors"
-								options={construtoras.map((x) => MakeOption(x))}
-								className="segundoSelect"
-								classNamePrefix="select"
-								closeMenuOnSelect={false}
-							/>
+						<div className="inputFiltros">
+							<div className="primeirosFiltros">
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Escolha agora qual tipo de imóvel que você quer morar
+									</p>
+									<Select
+										isMulti
+										name="categoriaImovel"
+										options={categorias.map((x) => MakeOption(x))}
+										className="primeiroSelect"
+										classNamePrefix="select"
+										closeMenuOnSelect={false}
+										placeholder="Imóvel"
+									/>
+								</div>
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Qual bairro de preferência?
+									</p>
+									<Select
+										isMulti
+										name="bairro"
+										options={bairros.map((x) => MakeOption(x))}
+										className="primeiroSelect"
+										classNamePrefix="select"
+										closeMenuOnSelect={false}
+										placeholder={'Bairro'}
+									/>
+								</div>
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Qual cidade de preferência?
+									</p>
+									<Select
+										isMulti
+										name="cidade"
+										options={cidades.map((x) => MakeOption(x))}
+										className="primeiroSelect"
+										classNamePrefix="select"
+										closeMenuOnSelect={false}
+										placeholder={'Cidade'}
+									/>
+								</div>
+							</div>
+
+							<input type="checkbox" className="chaveMFiltro" id="mFiltro" />
+							<div className="divChaveMFiltro">
+								<label className="chaveMFiltro" htmlFor="mFiltro">
+									<p>Mais Filtros</p>
+								</label>
+							</div>
+							<div className="segundoFiltro">
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Qual o nome do condomínio que está procurando?
+									</p>
+									<Select
+										isMulti
+										name="nomeImovel"
+										options={nomes.map((x) => MakeOption(x))}
+										className="segundoSelect"
+										classNamePrefix="select"
+										closeMenuOnSelect={false}
+									/>
+								</div>
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Você está procurando um imóvel em qual etapa?
+									</p>
+									<Select
+										isMulti
+										name="statusImovel"
+										options={status.map((x) => MakeOption(x))}
+										className="segundoSelect"
+										classNamePrefix="select"
+										closeMenuOnSelect={false}
+									/>
+								</div>
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Qual o valor do imóvel que está procurando?
+									</p>
+									<Range
+										min={0}
+										max={30}
+										allowCross={false}
+										defaultValue={[0, 20]}
+										pushable={true}
+
+										onChange={log}
+									/>
+									<div className="valoresSlide">
+										<p className="pValor"></p>
+										<p className="sValor"></p>
+									</div>
+								</div>
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Qual o tamanho do imóvel que está procurando?
+									</p>
+									<Range
+										min={0}
+										max={30}
+										allowCross={false}
+										defaultValue={[0, 20]}
+										pushable={true}
+
+										onChange={log}
+									/>
+
+									<div className="valoresSlide">
+										<p className="pValor"></p>
+										<p className="sValor"></p>
+									</div>
+								</div>
+
+								{/* valor Input  */}
+
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Quantos quartos você quer?
+									</p>
+									<div className="valorInput">
+										<button onClick={buttonClickL}>{Menos}</button>
+										<input type="number" id="inc" placeholder="0" min="0" />
+										<button onClick={buttonClickM}>{Mais}</button>
+									</div>
+								</div>
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Quantos banheiros você quer?
+									</p>
+									<div className="valorInput">
+										<button onClick={buttonClickL}>{Menos}</button>
+										<input type="number" id="inc" placeholder="0" min="0" />
+										<button onClick={buttonClickM}>{Mais}</button>
+									</div>
+								</div>
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Quantas suítes você quer?
+									</p>
+									<div className="valorInput">
+										<button onClick={buttonClickL}>{Menos}</button>
+										<input type="number" id="inc" placeholder="0" min="0" />
+										<button onClick={buttonClickM}>{Mais}</button>
+									</div>
+								</div>
+								<div className="areaInput">
+									<p className="textoMenuMobile">
+										Quantas vagas na garagem você quer?
+									</p>
+									<div className="valorInput">
+										<button onClick={buttonClickL}>{Menos}</button>
+										<input type="number" id="inc" placeholder="0" min="0" />
+										<button onClick={buttonClickM}>{Mais}</button>
+									</div>
+								</div>
+								<div className="areaInput">
+									<Select
+										isMulti
+										name="colors"
+										options={construtoras.map((x) => MakeOption(x))}
+										className="segundoSelect"
+										classNamePrefix="select"
+										closeMenuOnSelect={false}
+									/>
+								</div>
+							</div>
 						</div>
 					</div>
 					<form className="formFiltro">
@@ -241,6 +322,12 @@ export default function BarraPesquisa() {
 							<button onClick={Selectvalues}>{Pesquisa}</button>
 						</div>
 					</form>
+				</div>
+				<div className="OQFiltros">
+					<div className="quantidadeImoveis">
+
+					</div>
+					<div className="ordemImoveis"></div>
 				</div>
 			</div>
 		</section>

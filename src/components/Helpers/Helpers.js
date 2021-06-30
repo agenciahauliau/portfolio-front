@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QIPesquisa } from '../Dados/DadosImoveis';
+import { QIPesquisa } from '../graphql/graphql';
 
 export function QParamsImovel() {
 	return new URLSearchParams(useLocation().search).get('id');

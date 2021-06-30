@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../Dados/DadosImoveis';
+import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
 
-export const BlocoJardins = (BJardins) => {
+export const BlocoJardins = () => {
 	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
 		variables: {
 			input: {
@@ -21,7 +21,7 @@ export const BlocoJardins = (BJardins) => {
 	return (
 		<div className="blocoJardins">
 			<div className="container">
-				{data.imoveis_condicional.map((imovel) => (
+				{data.imoveis.map((imovel) => (
 					<div className="jardins">
 						<Link
 							to={
