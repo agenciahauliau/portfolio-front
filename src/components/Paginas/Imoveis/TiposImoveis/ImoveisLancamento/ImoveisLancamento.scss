@@ -56,6 +56,22 @@
       margin-bottom: 68px;
     }
 
+    .galeriaImovel {
+      .blocoGaleriaImovel {
+        h2 {
+        }
+        .iamgensGaleria {
+          display: flex;
+          flex-wrap: wrap;
+          .imagens{
+            width: 150px;
+            height: 125px;
+            margin:6px;
+          }
+        }
+      }
+    }
+
     .detalhesImoveis {
       .itens {
         display: flex;
@@ -108,7 +124,7 @@
       "info form";
 
     .topoLancamentos {
-      margin-top: -368px;
+      margin-top: -275px;
 
       div {
         left: 0;
@@ -123,7 +139,7 @@
 
     .boxImagemImovel {
       min-height: 528px;
-      margin-bottom: 68px;
+      margin-bottom: 48px;
 
       .imagemImovel {
         width: 100vw;

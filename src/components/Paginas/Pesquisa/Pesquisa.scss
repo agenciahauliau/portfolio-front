@@ -1,9 +1,5 @@
 .ConteudoPesquisa {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 0;
+  
 
   .DestaquesPesquisa,
   .ImoveisPesquisa,
@@ -18,18 +14,33 @@
     .paginacao {
       width: 100%;
       .paginationBttns {
-        width: 50%;
+        width: fit-content;
         margin: auto;
         display: flex;
         justify-content: space-between;
         li {
           padding: 5px;
+          a{
+            padding: 6px;
+            cursor: pointer;
+          }
+          svg {
+            width: 24px;
+            height: 24px;
+            path {
+              stroke: #db0423;
+            }
+          }
+          &:hover{
+            a{
+              color: #db0423;
+            }
+          }
         }
         .paginationActive {
-          background: #db0423;
           font-weight: 800;
           a {
-            color: #fff;
+            color: #db0423;
           }
         }
       }
@@ -167,4 +178,60 @@ input:checked ~ .checkmark:after {
 .alert {
   color: red;
   font-weight: 200;
+}
+
+@media screen and (min-width:820px) {
+  .ConteudoPesquisa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+  
+    .DestaquesPesquisa,
+    .ImoveisPesquisa,
+    .NumeroPagina {
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .paginacao {
+        width: 100%;
+        .paginationBttns {
+          width: fit-content;
+          margin: auto;
+          display: flex;
+          justify-content: space-between;
+          li {
+            padding: 5px;
+            a{
+              padding: 12px;
+              cursor: pointer;
+            }
+            svg {
+              width: 24px;
+              height: 24px;
+              path {
+                stroke: #db0423;
+              }
+            }
+            &:hover{
+              a{
+                color: #db0423;
+              }
+            }
+          }
+          .paginationActive {
+            font-weight: 800;
+            a {
+              color: #db0423;
+            }
+          }
+        }
+      }
+    }
+  }
 }

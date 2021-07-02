@@ -1,21 +1,9 @@
 import { useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QIPesquisa } from '../graphql/graphql';
+import { useQuery, useMutation } from '@apollo/client';
+import { GQL_CRIAR_LEAD  } from '../graphql/graphql';
 
 export function QParamsImovel() {
 	return new URLSearchParams(useLocation().search).get('id');
-}
-
-function BSF(dado) {
-	if (dado === 'true') {
-		return true;
-	} else if (dado === 'false') {
-		return false;
-	} else if (isNaN(dado)) {
-		return dado;
-	} else {
-		return +dado;
-	}
 }
 
 export function QParamsPesquisa() {
@@ -41,6 +29,18 @@ export function QParamsPesquisa() {
 	return resultado;
 }
 
+function BSF(dado) {
+	if (dado === 'true') {
+		return true;
+	} else if (dado === 'false') {
+		return false;
+	} else if (isNaN(dado)) {
+		return dado;
+	} else {
+		return +dado;
+	}
+}
+
 export const toggleClass = (el) => {
 	if (!el.target['clicado'] || el.target['clicado'] === false) {
 		el.target['clicado'] = true;
@@ -62,3 +62,6 @@ export function capitalize(str) {
 	}
 	return arrWords.join(' ').trim();
 }
+
+export const MobileDesktop = /Android (\d+.*)|iPhone OS|iPhoneOS (\d+(?:\_+\d+)+)/.test(navigator.appVersion);
+

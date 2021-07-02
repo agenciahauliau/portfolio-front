@@ -1,8 +1,8 @@
 import React from 'react';
 import SlideFGRBanner from './SlideFGRBanner';
 import { SlidesFGRBanner } from './SlidesFGRBanner';
-import { CasasFGRlogo, CondominiosFGRlogo, FGRlogo } from '../../../assets/Imagens/Imagens'
-import { SetaDireita } from '../../../assets/Imagens/SVG';
+import { CasasFGRlogo, CondominiosFGRlogo, FGRlogo } from '../../../assets/Imagens'
+import { SetaDireita } from '../../../assets/SVG';
 
 import './FGRBanner.scss';
 

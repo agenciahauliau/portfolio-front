@@ -22,7 +22,7 @@ function Imoveis() {
       <div className="container">
         {Negocio() === "Venda" ? (
           <ImoveisVenda />
-        ) : Negocio() === "Lancamento" ? (
+        ) : Negocio() === "Lançamento" ? (
           <ImoveisLancamento />
         ) : (
           <ImoveisAluguel />

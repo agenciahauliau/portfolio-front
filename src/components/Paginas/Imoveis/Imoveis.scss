@@ -98,6 +98,22 @@
         margin-bottom: 68px;
       }
 
+      .galeriaImovel {
+        .blocoGaleriaImovel {
+          h2 {
+          }
+          .imagensGaleria {
+            display: flex;
+            flex-wrap: wrap;
+            .imagens{
+              width: 150px;
+              height: 125px;
+              margin:6px;
+            }
+          }
+        }
+      }
+
       .detalhesImoveis {
         .itens {
           display: flex;

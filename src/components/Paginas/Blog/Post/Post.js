@@ -4,20 +4,18 @@ import { GQL_BUSCAR_POST } from '../../../graphql/graphql';
 import { useLocation } from 'react-router-dom';
 
 import './Post.scss';
-import { Facebook, Twitter, WhatsApp } from '../../../../assets/Imagens/SVG';
+import { Facebook, Twitter, WhatsApp } from '../../../../assets/SVG';
 
 
 function IdBlog() {
 	return new URLSearchParams(useLocation().search).get('id');
 }
 
-
-
 function Post() {
+	
 	const { loading, data } = useQuery(GQL_BUSCAR_POST, {
 		variables: { id: IdBlog() },
 	});
-
 
 	if (loading) return <p>Loading Masterpieces...</p>;
 

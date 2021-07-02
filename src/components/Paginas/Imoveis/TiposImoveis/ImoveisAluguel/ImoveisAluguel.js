@@ -1,7 +1,8 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_IMOVEL } from '../../../../graphql/graphql';
+import { useQuery, useMutation } from '@apollo/client';
+import { GQL_BUSCAR_IMOVEL, GQL_CRIAR_LEAD } from '../../../../graphql/graphql';
 import { useLocation } from 'react-router-dom';
+import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
 
 import './ImoveisAluguel.scss';
 
@@ -10,6 +11,9 @@ function IdImovel() {
 }
 
 function ImoveisAluguel() {
+
+	const [createLead] = useMutation(GQL_CRIAR_LEAD)
+
 	const { loading, error, data } = useQuery(GQL_BUSCAR_IMOVEL, {
 		variables: { _id: IdImovel() },
 	});
@@ -17,28 +21,76 @@ function ImoveisAluguel() {
 	if (loading) return <p>Loading Masterpieces...</p>;
 	if (error) return <p>Mas Bah</p>;
 
+	const options = {
+		buttons: {
+			showAutoplayButton: false,
+			showCloseButton: true,
+			showDownloadButton: false,
+			showFullscreenButton: false,
+			showNextButton: true,
+			showPrevButton: true,
+			showThumbnailsButton: false,
+		}
+	};
+
 	const tituloImovel =
 		data.imovel.categoriaImovel +
 		(data.imovel.qtdeQuarto === 0
 			? ''
 			: data.imovel.qtdeQuarto === 1
-			? ', com ' + data.imovel.qtdeQuarto + ' quarto'
-			: ', com ' + data.imovel.qtdeQuarto + ' quartos') +
+				? ', com ' + data.imovel.qtdeQuarto + ' quarto'
+				: ', com ' + data.imovel.qtdeQuarto + ' quartos') +
 		(data.imovel.qtdeSuites === 0
 			? ''
 			: data.imovel.qtdeSuites === 1
-			? ', sendo ' + data.imovel.qtdeSuites + ' suíte'
-			: ', sendo ' + data.imovel.qtdeSuites + ' suítes') +
+				? ', sendo ' + data.imovel.qtdeSuites + ' suíte'
+				: ', sendo ' + data.imovel.qtdeSuites + ' suítes') +
 		(data.imovel.qtdeBanheiro === 0
 			? ''
 			: data.imovel.qtdeBanheiro === 1
-			? ', com ' + data.imovel.qtdeBanheiro + ' banheiro'
-			: ', com ' + data.imovel.qtdeBanheiro + ' banheiros') +
+				? ', com ' + data.imovel.qtdeBanheiro + ' banheiro'
+				: ', com ' + data.imovel.qtdeBanheiro + ' banheiros') +
 		(data.imovel.qtdeVagas === 0
 			? ''
 			: data.imovel.qtdeVagas === 1
-			? ' e ' + data.imovel.qtdeVagas + ' vaga na garagem'
-			: ' e ' + data.imovel.qtdeVagas + ' vagas na garagem');
+				? ' e ' + data.imovel.qtdeVagas + ' vaga na garagem'
+				: ' e ' + data.imovel.qtdeVagas + ' vagas na garagem');
+
+
+
+	function criarLead() {
+		let FNome = document.querySelector("input[name='nome']")?.value
+		let FEmail = document.querySelector("input[name='email']")?.value
+		let FTel = document.querySelector("input[name='telefone']")?.value
+		let FComen = document.querySelector("textarea[name='mensagem']")?.value
+		let FPCons = document.querySelectorAll("input[name='pcontato']")
+
+		function RadioFPCons() {
+			for (let FPCon of FPCons) {
+				if (FPCon.checked === true) {
+					return FPCon.value
+				}
+			}
+		}
+
+		createLead({
+			variables: {
+				input: {
+					tipoLead: "Interesse em Imóvel",
+					nome: (FNome ? FNome : ""),
+					email: (FEmail ? FEmail : ""),
+					telefone: (+FTel ? +FTel : 0),
+					comentarios: (FComen ? FComen : ""),
+					preferenciaDeContato: RadioFPCons(),
+					imoveis: [data.imovel._id]
+				}
+			}
+		}).then((res) => {
+			if (res.data) window.alert("Deu bom meu chapa!")
+		}).catch((err) => {
+			console.log(err);
+		})
+	}
 
 	return (
 		<div className="conteudoImovel ImovelAluguel">
@@ -101,21 +153,22 @@ function ImoveisAluguel() {
 					</div>
 					<div>
 						<form>
-							<input type="text" placeholder="Nome completo" />
-							<input type="email" placeholder="E-mail" />
-							<input type="tel" placeholder="Telefone / Whatsapp" />
+							<input name="tipo" type="hidden" value="Imóvel" />
+							<input name="nome" type="text" placeholder="Nome completo" />
+							<input name="telefone" type="tel" placeholder="Telefone / Whatsapp" />
+							<input name="email" type="email" placeholder="E-mail" />
 							<div className="checkFormImovel">
 								<label>
-									<input type="checkbox" /> Telefone
+									<input name="pcontato" type="radio" value="Telefone" checked /> Telefone
 								</label>
 								<label>
-									<input type="checkbox" /> Email
+									<input name="pcontato" type="radio" value="Email" /> Email
 								</label>
 								<label>
-									<input type="checkbox" /> Whatsapp
+									<input name="pcontato" type="radio" value="Whatsapp" /> Whatsapp
 								</label>
 							</div>
-							<button>Entrar em contato</button>
+							<button type="button" onClick={criarLead}>Entrar em contato</button>
 						</form>
 					</div>
 					<div className="informacoesCadastro">
@@ -132,10 +185,25 @@ function ImoveisAluguel() {
 			</div>
 			<div className="outrosInformacoesImovel">
 				<div className="galeriaImovel">
-					<div className="blocoGaleriaImovel">
-						<h2 className="tituloGaleria">Título Galeria</h2>
-						<img />
-					</div>
+				{data.imovel.galerias.map((galeria) => (
+						<div className="blocoGaleriaImovel">
+							<h2 className="tituloGaleria">{galeria.tipoGaleria}</h2>
+							<SimpleReactLightbox>
+								<SRLWrapper options={options}>
+									<div className="imagensGaleria">
+										{galeria.arquivos.map((arquivo, index) => (
+											<div key={index} className="imagens">
+												<a href={arquivo}>
+													<img src={arquivo} alt={data.imovel.nomeImovel} />
+												</a>
+											</div>
+										))}
+
+									</div>
+								</SRLWrapper>
+							</SimpleReactLightbox>
+						</div>
+					))}
 				</div>
 				<div className="detalhesImoveis">
 					<h2 className="titulocaractsImoveis">Detalhes do Imóvel</h2>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import { Bairro } from '../../../assets/Imagens/SVG';
+import { MobileDesktop } from '../../Helpers/Helpers'
+import { Bairro } from '../../../assets/SVG';
 
 function BlocoBairros() {
 	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
@@ -18,9 +19,7 @@ function BlocoBairros() {
 			const result = tempVar.reduce((json, val) => ({ ...json, [val]: (json[val] | 0) + 1 }), {});
 			const result2 = Object.entries(result).sort((a, b) => b[1] - a[1]);
 
-			/Android (\d+.*)|iPhone OS|iPhoneOS (\d+(?:\_+\d+)+)/.test(navigator.appVersion)
-				? setBairros(result2.slice(0, 6))
-				: setBairros(result2.slice(0, 12));
+			MobileDesktop ? setBairros(result2.slice(0, 6)) : setBairros(result2.slice(0, 12));
 		}
 	}, [data]);
 

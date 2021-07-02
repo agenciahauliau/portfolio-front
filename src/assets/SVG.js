@@ -121,7 +121,7 @@ export const Direita = (
 
 export const SetaDireita = (
 	<svg viewBox="0 0 24 24" fill="none">
-		<path d="M2 12H22M22 12L19 9M22 12L19 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+		<path d="M2 12H22M22 12L19 9M22 12L19 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 	</svg>
 );
 

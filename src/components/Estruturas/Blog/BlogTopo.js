@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_POSTS_COM_FILTRO } from '../../graphql/graphql';
-import { Facebook, Twitter, WhatsApp } from '../../../assets/Imagens/SVG';
+import { Facebook, Twitter, WhatsApp } from '../../../assets/SVG';
 
 function BlogTopo() {
 	const { loading, data } = useQuery(GQL_BUSCAR_POSTS_COM_FILTRO, {

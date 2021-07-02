@@ -4,9 +4,10 @@ import Video from "./Casas_Jardins.webm";
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from "../../graphql/graphql"
 import { useLocation } from 'react-router-dom';
+import { MobileDesktop } from "../../Helpers/Helpers";
 
 import "./Jardins.scss";
-import { CasasFGRlogo, CondominiosFGRlogo, FGRlogo } from "../../../assets/Imagens/Imagens";
+import { CasasFGRlogo, CondominiosFGRlogo, FGRlogo } from "../../../assets/Imagens";
 
 function JardinsBlocos() {
   const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
@@ -15,7 +16,7 @@ function JardinsBlocos() {
         jardins: true,
         nomeConstrutora: { in: 'FGR Construtora' },
       },
-      quantidade: /Android (\d+.*)|iPhone OS|iPhoneOS (\d+(?:\_+\d+)+)/.test(navigator.appVersion) ? 3 : 6,
+      quantidade: MobileDesktop ? 3 : 6,
     },
     returnPartialData: true,
   });
@@ -69,9 +70,7 @@ function JardinsCondominios() {
       const result = tempVar.reduce((json, val) => ({ ...json, [val]: (json[val] | 0) + 1 }), {});
       const result2 = Object.entries(result).sort((a, b) => b[1] - a[1]);
 
-      /Android (\d+.*)|iPhone OS|iPhoneOS (\d+(?:\_+\d+)+)/.test(navigator.appVersion)
-        ? setJCondominios(result2.slice(0, 6))
-        : setJCondominios(result2.slice(0, 12));
+      MobileDesktop ? setJCondominios(result2.slice(0, 6)) : setJCondominios(result2.slice(0, 12));
     }
   }, [data]);
 
@@ -202,7 +201,7 @@ function Jardins() {
                 Clique no qual você mais gostou e veja se sua casa dos sonhos
                 está nele
               </h2>
-              <JardinsCondominios />s
+              <JardinsCondominios />
             </div>
           </div>
         </div>

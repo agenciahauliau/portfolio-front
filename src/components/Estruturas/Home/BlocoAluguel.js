@@ -2,7 +2,8 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import { Aluguel } from '../../../assets/Imagens/SVG';
+import {MobileDesktop} from '../../Helpers/Helpers'
+import { Aluguel } from '../../../assets/SVG';
 
 function BlocoVenda() {
 	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
@@ -10,7 +11,7 @@ function BlocoVenda() {
 			input: {
 				tipoNegociacao: { in: 'Aluguel' },
 			},
-			quantidade: /Android (\d+.*)|iPhone OS|iPhoneOS (\d+(?:\_+\d+)+)/.test(navigator.appVersion) ? 3 : 6,
+			quantidade: MobileDesktop  ? 3 : 6,
 		},
 		returnPartialData: true,
 	});

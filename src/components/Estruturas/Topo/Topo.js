@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { LogoPortfolio } from "../../../assets/Imagens/Imagens";
+import { LogoPortfolio } from "../../../assets/Imagens";
 //import SCSS
 import "./Topo.scss";
 

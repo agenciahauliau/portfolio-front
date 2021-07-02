@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
+import {MobileDesktop} from '../../Helpers/Helpers'
 
 export const BlocoJardins = () => {
 	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
@@ -11,7 +12,7 @@ export const BlocoJardins = () => {
 				categoriaImovel: { in: 'Lote em Condomínio' },
 				nomeConstrutora: { in: 'FGR Construtora' },
 			},
-			quantidade: /Android (\d+.*)|iPhone OS|iPhoneOS (\d+(?:\_+\d+)+)/.test(navigator.appVersion) ? 4 : 8,
+			quantidade: MobileDesktop ? 3 : 4,
 		},
 		returnPartialData: true,
 	});

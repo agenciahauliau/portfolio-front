@@ -1,26 +1,64 @@
 import React, { Component, useContext, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_LISTAR_IMOVEIS } from '../../graphql/graphql';
-import { toggleClass, capitalize } from '../../Helpers/Helpers';
+import { capitalize } from '../../Helpers/Helpers';
 import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 import Slider, { SliderTooltip } from 'rc-slider';
-import { Fechar, Pesquisa, Mais, Menos } from '../../../assets/Imagens/SVG';
+import { Fechar, Pesquisa, Mais, Menos } from '../../../assets/SVG';
 
 import './BarraPesquisa.scss';
 
-const { Range } = Slider;
+const { Range, Handle } = Slider;
+const intlNumber = Intl.NumberFormat("pt-br", { notation: "compact" });
 
-function log(value) {
+const handleP = (props) => {
+	const { value, dragging, index, ...restProps } = props;
+	return (
+		<SliderTooltip
+			prefixCls="rc-slider-tooltip"
+			overlayInnerStyle={{
+				backgroundColor: "transparent",
+				boxShadow: "none",
+				color: "#fff"
+			}}
+			overlay={`R$ ${intlNumber.format(value)}`}
+			visible
+			placement="top"
+			key={index}
+		>
+			<Handle value={value} {...restProps} />
+		</SliderTooltip>
+	);
+};
 
-	// const RangeSlides = document.querySelectorAll('.rc-slider')
-	// for(let RangeSlide of RangeSlides){
-	// 	RangeSlide.nextElementSibling.childNodes[0].textContent = value[0]
-	// 	RangeSlide.nextElementSibling.childNodes[1].textContent = value[1]
-	// }
+const handleChange = (value) => {
+	console.log(value);
+};
 
-}
+const marks = {
+	0: "R$ 0",
+	10000000: "R$ 10M"
+};
+
+const RangeValor = () => (
+	<div>
+		<Range
+			min={0}
+			max={10000000}
+			defaultValue={[0, 10000000]}
+			handle={handleP}
+			marks={marks}
+			allowCross={false}
+			onChange={handleChange}
+		/>
+	</div>
+);
+
 
 function FormURL() { }
+
+const animatedComponents = makeAnimated();
 
 function Selectvalues() {
 	const selectBairros = document.querySelectorAll('input[name="bairro"]');
@@ -74,7 +112,7 @@ export default function BarraPesquisa() {
 			console.log(multiSelect);
 		});
 	}
-	
+
 	if (loading) return <p>Loading Masterpieces...</p>;
 
 	let nomes = [];
@@ -131,6 +169,7 @@ export default function BarraPesquisa() {
 						<p>Procurar por:</p>
 					</label>
 				</div>
+				<RangeValor />
 				<div className="form">
 					<div className="topoMFiltros">
 						<p>Filtros</p>
@@ -144,12 +183,14 @@ export default function BarraPesquisa() {
 										Escolha agora qual tipo de imóvel que você quer morar
 									</p>
 									<Select
+
 										isMulti
 										name="categoriaImovel"
 										options={categorias.map((x) => MakeOption(x))}
 										className="primeiroSelect"
 										classNamePrefix="select"
 										closeMenuOnSelect={false}
+										components={animatedComponents}
 										placeholder="Imóvel"
 									/>
 								</div>
@@ -164,6 +205,7 @@ export default function BarraPesquisa() {
 										className="primeiroSelect"
 										classNamePrefix="select"
 										closeMenuOnSelect={false}
+										components={animatedComponents}
 										placeholder={'Bairro'}
 									/>
 								</div>
@@ -181,6 +223,19 @@ export default function BarraPesquisa() {
 										placeholder={'Cidade'}
 									/>
 								</div>
+								<form className="formFiltro">
+									<Select
+										name="tipoNegociacao"
+										defaultValue={tiposNeg[0]}
+										options={tiposNeg.map((x) => MakeOption(x))}
+										className="tipoSelect"
+										classNamePrefix="select"
+										closeMenuOnSelect={false}
+									/>
+									<div className="buttonFiltro">
+										<button onClick={Selectvalues}>{Pesquisa}</button>
+									</div>
+								</form>
 							</div>
 
 							<input type="checkbox" className="chaveMFiltro" id="mFiltro" />
@@ -220,15 +275,7 @@ export default function BarraPesquisa() {
 									<p className="textoMenuMobile">
 										Qual o valor do imóvel que está procurando?
 									</p>
-									<Range
-										min={0}
-										max={30}
-										allowCross={false}
-										defaultValue={[0, 20]}
-										pushable={true}
 
-										onChange={log}
-									/>
 									<div className="valoresSlide">
 										<p className="pValor"></p>
 										<p className="sValor"></p>
@@ -238,15 +285,7 @@ export default function BarraPesquisa() {
 									<p className="textoMenuMobile">
 										Qual o tamanho do imóvel que está procurando?
 									</p>
-									<Range
-										min={0}
-										max={30}
-										allowCross={false}
-										defaultValue={[0, 20]}
-										pushable={true}
-
-										onChange={log}
-									/>
+									<RangeValor />
 
 									<div className="valoresSlide">
 										<p className="pValor"></p>
@@ -309,19 +348,6 @@ export default function BarraPesquisa() {
 							</div>
 						</div>
 					</div>
-					<form className="formFiltro">
-						<Select
-							name="tipoNegociacao"
-							defaultValue={tiposNeg[0]}
-							options={tiposNeg.map((x) => MakeOption(x))}
-							className="tipoSelect"
-							classNamePrefix="select"
-							closeMenuOnSelect={false}
-						/>
-						<div className="buttonFiltro">
-							<button onClick={Selectvalues}>{Pesquisa}</button>
-						</div>
-					</form>
 				</div>
 				<div className="OQFiltros">
 					<div className="quantidadeImoveis">

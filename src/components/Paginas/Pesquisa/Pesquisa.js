@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import { QParamsPesquisa } from '../../Helpers/Helpers';
+import { MobileDesktop, QParamsPesquisa } from '../../Helpers/Helpers';
 import ReactPaginate from 'react-paginate';
-import { Quarto, Banheiro, Garagem } from '../../../assets/Imagens/SVG';
+import { Quarto, Banheiro, Garagem, Esquerda, Direita } from '../../../assets/SVG';
 
 import BarraPesquisa from '../../Estruturas/BarraPesquisa/BarraPesquisa';
 import FGRBanner from '../../Estruturas/FGRBanner/FGRBanner';
@@ -28,12 +28,12 @@ function Pesquisa() {
 	if (loading) return <p>Loading Masterpieces...</p>;
 	if (error) return <p>Mas Bah</p>;
 
-	const usersPerPage = 10;
+	const usersPerPage = 12;
 	const pagesVisited = pageNumber * usersPerPage;
 
-	const imoveisPP = data.imoveis.slice(pagesVisited, pagesVisited + usersPerPage).map((imovel) => {
+	const imoveisPP = data.imoveis.slice(pagesVisited, pagesVisited + usersPerPage).map((imovel, index) => {
 		return (
-			<div className="CardImoveis">
+			<div key={index} className="CardImoveis">
 				<div className="TopoCardImoveis">
 					<img
 						src={imovel.imagemPrincipal}
@@ -135,6 +135,8 @@ function Pesquisa() {
 		setPageNumber(selected);
 	};
 
+	 const QuantMD = MobileDesktop ? 1 : 3
+
 	return (
 		<>
 			<BarraPesquisa />
@@ -144,10 +146,12 @@ function Pesquisa() {
 						{imoveisPP}
 						<div className="paginacao">
 							<ReactPaginate
-								previousLabel={'<'}
-								nextLabel={'>'}
+								previousLabel={Esquerda}
+								nextLabel={Direita}
 								pageCount={pageCount}
 								onPageChange={changePage}
+								pageRangeDisplayed={2}
+								marginPagesDisplayed={QuantMD}
 								containerClassName={'paginationBttns'}
 								previousLinkClassName={'previousBttn'}
 								nextLinkClassName={'nextBttn'}

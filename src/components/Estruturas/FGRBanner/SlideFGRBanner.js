@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { SlidesFGRBanner } from "./SlidesFGRBanner";
 import "./FGRBanner.scss";
+import { Direita, Esquerda } from "../../../assets/SVG";
 
 const SlideFGRBanner = (props) => {
   const { slides } = props;
@@ -42,24 +43,10 @@ const SlideFGRBanner = (props) => {
     <>
       <div className="boxBotoes">
         <div className="prev botao" onClick={prevSlide}>
-          <svg
-            enable-background="new 0 0 240.823 240.823"
-            version="1.1"
-            viewBox="0 0 240.823 240.823"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="m57.633 129.01l108.3 108.26c4.752 4.74 12.451 4.74 17.215 0 4.752-4.74 4.752-12.439 0-17.179l-99.707-99.671 99.695-99.671c4.752-4.74 4.752-12.439 0-17.191-4.752-4.74-12.463-4.74-17.215 0l-108.3 108.26c-4.679 4.691-4.679 12.511 0.012 17.191z" />
-          </svg>
+          {Esquerda}
         </div>
         <div className="next botao" onClick={nextSlide}>
-          <svg
-            enable-background="new 0 0 240.823 240.823"
-            version="1.1"
-            viewBox="0 0 240.823 240.823"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="m183.19 111.82l-108.3-108.26c-4.752-4.74-12.451-4.74-17.215 0-4.752 4.74-4.752 12.439 0 17.179l99.707 99.671-99.695 99.671c-4.752 4.74-4.752 12.439 0 17.191 4.752 4.74 12.463 4.74 17.215 0l108.3-108.26c4.68-4.691 4.68-12.511-0.012-17.19z" />
-          </svg>
+          {Direita}
         </div>
       </div>
       <div className="boxSlide">
@@ -67,7 +54,7 @@ const SlideFGRBanner = (props) => {
           return (
             <div
               className={index === current ? "slide active" : "slide"}
-              key={index}
+              key={`imagens${index}`}
             >
               {index === current && <img src={slide.image} alt="Jardins FGR" />}
             </div>
@@ -79,7 +66,7 @@ const SlideFGRBanner = (props) => {
           return (
             <div
               className={index === current ? "pontos active" : "pontos"}
-              onClick={() => onClickHandler(index)}
+              onClick={() => onClickHandler(index) }
             >
               <div className="dentro"></div>
             </div>

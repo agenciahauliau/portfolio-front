@@ -1,36 +1,38 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { GQL_CRIAR_LEAD } from '../../graphql/graphql';
+import { Facebook, Instagram, Twitter, WhatsApp } from '../../../assets/SVG';
 
 import './Contato.scss';
 import ContatoBack from '../../../assets/Videos/contato.webm';
-import { Facebook, Instagram, Twitter, WhatsApp } from '../../../assets/Imagens/SVG';
 
 function Contato() {
 
-	const [createLead] = useMutation(GQL_CRIAR_LEAD)
+	const [createLeadCont] = useMutation(GQL_CRIAR_LEAD)
 
-	function criarLead() {
-		const FTipo = document.querySelector("input[name='tipo']")
-		const FNome = document.querySelector("input[name='nome']")
-		const FEmail = document.querySelector("input[name='email']")
-		const FTel = document.querySelector("input[name='telefone']")
-		const FCom = document.querySelector("textarea[name='mensagem']")
-		const FPCont = document.querySelector("input[name='pcontato']")
+	function criarLeadCont() {
+		let FTipo = document.querySelector("input[name='tipo']")?.value
+		let FNome = document.querySelector("input[name='nome']")?.value
+		let FEmail = document.querySelector("input[name='email']")?.value
+		let FTel = document.querySelector("input[name='telefone']")?.value
+		let FComen = document.querySelector("textarea[name='mensagem']")?.value
 
-		console.log(FNome.value, FEmail.value, FTel.value, FCom.value  )
+		console.log(FTipo, FNome, FEmail, FTel, FComen)
+		
 
-		// {
-		// 	variables: dados {
-		// 		tipoLead: FTipo.value,
-		// 		nome:FNome.value,
-		// 		email:FEmail.value,
-		// 		telefone:FTel.value,,
-		// 		comentarios:FCom.value,
-		// 		preferenciaDeContato:FPCont.value
-		// 	}
-		// }
-
+		createLeadCont({variables: {
+			input:  {
+				tipoLead: (FTipo ? FTipo : ""),
+				nome: (FNome ? FNome : ""),
+				email: (FEmail ? FEmail : ""),
+				telefone: (+FTel ? +FTel : 0),
+				comentarios: (FComen ? FComen : ""),
+			}			
+		}}).then((res) => {
+			if (res.data) window.alert("Deu bom meu chapa!")
+		}).catch((err) => {
+			console.log(err);
+		})
 	}
 	return (
 		<div className="contato">
@@ -100,11 +102,12 @@ function Contato() {
 							</div>
 						</div>
 						<form>
+							<input name="tipo" type="hidden" value="Página de Contato"/>
 							<input name="nome" type="text" placeholder="Nome completo" />
-							<input name="telefone" type="text" placeholder="Telefone / Whatsapp" />
+							<input name="telefone" type="tel" placeholder="Telefone / WhatsApp" />
 							<input name="email" type="text" placeholder="E-mail" />
 							<textarea name="mensagem" placeholder="Deixe sua mensagem"></textarea>
-							<button type="button" onClick={criarLead} >Enviar</button>
+							<button type="button" onClick={criarLeadCont} >Enviar</button>
 						</form>
 					</div>
 				</div>
