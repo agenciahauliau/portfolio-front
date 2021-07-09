@@ -8,6 +8,15 @@ import { MobileDesktop } from "../../Helpers/Helpers";
 
 import "./Jardins.scss";
 import { CasasFGRlogo, CondominiosFGRlogo, FGRlogo } from "../../../assets/Imagens";
+import { Direita, Esquerda } from "../../../assets/SVG";
+
+export function esquerdaScroll() {
+ 
+}
+
+export function direitaScroll() {
+  
+}
 
 function JardinsBlocos() {
   const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
@@ -29,7 +38,7 @@ function JardinsBlocos() {
       {data.imoveis.map((imovel) => (
         <div className="imoveisPJ">
           <div className="dataLancImovel">
-            <h4>{imovel.previsaoLancamento}</h4>
+            <h4>{imovel.previsaoLancamento !== 0 && imovel.previsaoLancamento}</h4>
             <p>data provável de lançamento</p>
           </div>
           <div className="imgPJ">
@@ -44,7 +53,7 @@ function JardinsBlocos() {
               :
               <img src={CondominiosFGRlogo.imagem.default} alt={CondominiosFGRlogo.alt} title={CondominiosFGRlogo.title} width={CondominiosFGRlogo.width} height={CondominiosFGRlogo.height} />
             }
-            <div>
+            <div className="textoLanc">
               <h3>{imovel.nomeImovel}</h3>
               <h4>{imovel.cidade}</h4>
             </div>
@@ -52,6 +61,37 @@ function JardinsBlocos() {
         </div>
       ))}
     </div>
+
+  )
+}
+
+function JardinsCasas() {
+  const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
+    variables: {
+      input: {
+        jardins: true,
+        categoriaImovel: { in: 'Casa em Condomínio' },
+        nomeConstrutora: { in: 'FGR Construtora' },
+      },
+      quantidade: MobileDesktop ? 3 : 6,
+    },
+    returnPartialData: true,
+  });
+
+  if (loading) return "...."
+
+  return (
+
+    data.imoveis.map((imovel) => (
+      <div className="casa">
+        <img
+          src={imovel.imagemPrincipal}
+          alt={imovel.nomeImovel}
+          title={imovel.nomeImovel}
+        />
+        <h4>{imovel.nomeImovel}</h4>
+      </div>
+    ))
 
   )
 }
@@ -96,7 +136,7 @@ function JardinsCondominios() {
               501 lotes a partir de 300m². Acesso pela GO-403 e futura
               nova BR-153.
             </p>
-            <img src="" />
+            <img src={FGRlogo.imagem.default} alt={FGRlogo.alt} title={FGRlogo.title} width={FGRlogo.width} height={FGRlogo.height} />
           </div>
         </div>
       </div>
@@ -159,30 +199,16 @@ function Jardins() {
                 </p>
               </div>
               <div className="casas">
+                <div className="esquerdaScroll">
+                  {Esquerda}
+                </div>
                 <div className="listaCasas">
                   <div className="scroll">
-                    <div className="casa">
-                      <img
-                        src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                        alt="iamgem"
-                      />
-                      <h4>Casas Jardins França e Itália</h4>
-                    </div>
-                    <div className="casa">
-                      <img
-                        src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                        alt="iamgem"
-                      />
-                      <h4>Casas Jardins França e Itália</h4>
-                    </div>
-                    <div className="casa">
-                      <img
-                        src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                        alt="iamgem"
-                      />
-                      <h4>Casas Jardins França e Itália</h4>
-                    </div>
+                    <JardinsCasas />
                   </div>
+                </div>
+                <div className="direitaScroll">
+                  {Direita}
                 </div>
               </div>
             </div>

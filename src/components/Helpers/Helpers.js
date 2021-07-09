@@ -1,6 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
-import { GQL_CRIAR_LEAD  } from '../graphql/graphql';
 
 export function QParamsImovel() {
 	return new URLSearchParams(useLocation().search).get('id');
@@ -8,7 +6,6 @@ export function QParamsImovel() {
 
 export function QParamsPesquisa() {
 	const chaves = new URLSearchParams(useLocation().search);
-
 	let resultado = {};
 
 	for (let key of chaves.keys()) {
@@ -19,17 +16,84 @@ export function QParamsPesquisa() {
 		for (let VChave of VChaves) {
 			IN.push(BSF(VChave));
 		}
-		console.log(IN);
 
 		resultado[key] = {};
 		resultado[key].in = IN;
 
 		resultado.statusLancamento = 'aprovado';
 	}
-	return resultado;
+
+	const { quant, pagina, ...rest } = resultado
+
+	return rest;
 }
 
-function BSF(dado) {
+export const  QuantImoveis = () => {
+	const quantImovel = localStorage.getItem("quantImoveis")
+	const url = new URL(window.location)
+	const quantImovelURL = url.searchParams.get("quant")
+
+	if (quantImovelURL && +quantImovelURL >= 12) {
+
+		localStorage.setItem("quantImoveis", quantImovelURL)
+		return +quantImovelURL
+
+	} else if (quantImovel) {
+
+		url.searchParams.set('quant', quantImovel);
+		window.history.pushState({}, '', url)
+		return +quantImovel
+
+	} else {
+
+		url.searchParams.set('quant', 12);
+		window.history.pushState({}, '', url)
+		return 12
+
+	}
+
+	
+}
+
+export function LinkQuantImoveis() {
+	const url = new URL(window.location)
+	url.searchParams.delete('quant')
+	return url.searchParams.toString()
+}
+
+export const  PagImovel = () => {
+	const paginaImovel = sessionStorage.getItem("paginaImovel")
+	const url = new URL(window.location)
+	const paginaImovelURL = url.searchParams.get("pagina")
+
+	if (paginaImovelURL && +paginaImovelURL >= 1) {
+
+		sessionStorage.setItem("paginaImovel", paginaImovelURL)
+		return +paginaImovelURL -1
+
+	} else if (paginaImovel) {
+
+		url.searchParams.set('pagina', paginaImovel);
+		window.history.pushState({}, '', url)
+		return +paginaImovel -1
+
+	} else {
+
+		url.searchParams.set('pagina', 1);
+		window.history.pushState({}, '', url)
+		return 0
+
+	}
+}
+
+export const  Linkdfsdaf = () => {
+	const url = new URL(window.location)
+	url.searchParams.delete('pagina')
+	return url.searchParams.toString()
+}
+
+
+export function BSF(dado) {
 	if (dado === 'true') {
 		return true;
 	} else if (dado === 'false') {

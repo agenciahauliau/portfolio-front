@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
-import { Link } from 'react-router-dom';
-import { MobileDesktop, QParamsPesquisa } from '../../Helpers/Helpers';
+import { Link, useHistory } from 'react-router-dom';
+import { PagImovel, Linkdfsdaf, QParamsPesquisa, QuantImoveis } from '../../Helpers/Helpers';
 import ReactPaginate from 'react-paginate';
 import { Quarto, Banheiro, Garagem, Esquerda, Direita } from '../../../assets/SVG';
 
@@ -25,11 +25,11 @@ function Pesquisa() {
 
 	const [pageNumber, setPageNumber] = useState(0);
 
+	const usersPerPage = QuantImoveis();
+	const pagesVisited = PagImovel() * usersPerPage;
+
 	if (loading) return <p>Loading Masterpieces...</p>;
 	if (error) return <p>Mas Bah</p>;
-
-	const usersPerPage = 12;
-	const pagesVisited = pageNumber * usersPerPage;
 
 	const imoveisPP = data.imoveis.slice(pagesVisited, pagesVisited + usersPerPage).map((imovel, index) => {
 		return (
@@ -42,23 +42,23 @@ function Pesquisa() {
 							(imovel.qtdeQuarto === 0
 								? ''
 								: imovel.qtdeQuarto === 1
-								? ', com ' + imovel.qtdeQuarto + ' quarto'
-								: ', com ' + imovel.qtdeQuarto + ' quartos') +
+									? ', com ' + imovel.qtdeQuarto + ' quarto'
+									: ', com ' + imovel.qtdeQuarto + ' quartos') +
 							(imovel.qtdeSuites === 0
 								? ''
 								: imovel.qtdeSuites === 1
-								? ', sendo ' + imovel.qtdeSuites + ' suíte'
-								: ', sendo ' + imovel.qtdeSuites + ' suítes') +
+									? ', sendo ' + imovel.qtdeSuites + ' suíte'
+									: ', sendo ' + imovel.qtdeSuites + ' suítes') +
 							(imovel.qtdeBanheiro === 0
 								? ''
 								: imovel.qtdeBanheiro === 1
-								? ', com ' + imovel.qtdeBanheiro + ' banheiro'
-								: ', com ' + imovel.qtdeBanheiro + ' banheiros') +
+									? ', com ' + imovel.qtdeBanheiro + ' banheiro'
+									: ', com ' + imovel.qtdeBanheiro + ' banheiros') +
 							(imovel.qtdeVagas === 0
 								? ''
 								: imovel.qtdeVagas === 1
-								? ' e ' + imovel.qtdeVagas + ' vaga na garagem'
-								: ' e ' + imovel.qtdeVagas + ' vagas na garagem')
+									? ' e ' + imovel.qtdeVagas + ' vaga na garagem'
+									: ' e ' + imovel.qtdeVagas + ' vagas na garagem')
 						}
 					/>
 					<div className="TipoImovel">
@@ -72,23 +72,23 @@ function Pesquisa() {
 						(imovel.qtdeQuarto === 0
 							? ''
 							: imovel.qtdeQuarto === 1
-							? '+com+' + imovel.qtdeQuarto + '+quarto'
-							: '+com+' + imovel.qtdeQuarto + '+quartos') +
+								? '+com+' + imovel.qtdeQuarto + '+quarto'
+								: '+com+' + imovel.qtdeQuarto + '+quartos') +
 						(imovel.qtdeSuites === 0
 							? ''
 							: imovel.qtdeSuites === 1
-							? '+com+' + imovel.qtdeSuites + '+suite'
-							: '+com+' + imovel.qtdeSuites + '+suites') +
+								? '+com+' + imovel.qtdeSuites + '+suite'
+								: '+com+' + imovel.qtdeSuites + '+suites') +
 						(imovel.qtdeBanheiro === 0
 							? ''
 							: imovel.qtdeBanheiro === 1
-							? '+com+' + imovel.qtdeBanheiro + '+banheiro'
-							: '+com+' + imovel.qtdeBanheiro + '+banheiros') +
+								? '+com+' + imovel.qtdeBanheiro + '+banheiro'
+								: '+com+' + imovel.qtdeBanheiro + '+banheiros') +
 						(imovel.qtdeVagas === 0
 							? ''
 							: imovel.qtdeVagas === 1
-							? '+com+' + imovel.qtdeVagas + '+vaga+na+garagem'
-							: '+com+' + imovel.qtdeVagas + '+vagas+na+garagem') +
+								? '+com+' + imovel.qtdeVagas + '+vaga+na+garagem'
+								: '+com+' + imovel.qtdeVagas + '+vagas+na+garagem') +
 						'&tipoNegociacao=' +
 						imovel.tipoNegociacao +
 						'&id=' +
@@ -133,9 +133,11 @@ function Pesquisa() {
 
 	const changePage = ({ selected }) => {
 		setPageNumber(selected);
-	};
 
-	 const QuantMD = MobileDesktop ? 1 : 3
+		const url = new URL(window.location)
+		url.searchParams.set('pagina', selected+1);
+		window.history.pushState({}, '', url)
+	};
 
 	return (
 		<>
@@ -150,8 +152,9 @@ function Pesquisa() {
 								nextLabel={Direita}
 								pageCount={pageCount}
 								onPageChange={changePage}
+								initialPage={PagImovel()}
 								pageRangeDisplayed={2}
-								marginPagesDisplayed={QuantMD}
+								marginPagesDisplayed={1}
 								containerClassName={'paginationBttns'}
 								previousLinkClassName={'previousBttn'}
 								nextLinkClassName={'nextBttn'}

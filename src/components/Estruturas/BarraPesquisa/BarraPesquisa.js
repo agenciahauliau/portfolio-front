@@ -1,88 +1,29 @@
-import React, { Component, useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_LISTAR_IMOVEIS } from '../../graphql/graphql';
-import { capitalize } from '../../Helpers/Helpers';
+import { capitalize, LinkQuantImoveis } from '../../Helpers/Helpers';
 import Select from 'react-select';
+import { Link } from 'react-router-dom';
 import makeAnimated from 'react-select/animated';
 import Slider, { SliderTooltip } from 'rc-slider';
-import { Fechar, Pesquisa, Mais, Menos } from '../../../assets/SVG';
+import { Fechar, Pesquisa, Mais, Menos, Venda } from '../../../assets/SVG';
 
 import './BarraPesquisa.scss';
 
-const { Range, Handle } = Slider;
-const intlNumber = Intl.NumberFormat("pt-br", { notation: "compact" });
-
-const handleP = (props) => {
-	const { value, dragging, index, ...restProps } = props;
-	return (
-		<SliderTooltip
-			prefixCls="rc-slider-tooltip"
-			overlayInnerStyle={{
-				backgroundColor: "transparent",
-				boxShadow: "none",
-				color: "#fff"
-			}}
-			overlay={`R$ ${intlNumber.format(value)}`}
-			visible
-			placement="top"
-			key={index}
-		>
-			<Handle value={value} {...restProps} />
-		</SliderTooltip>
-	);
-};
-
-const handleChange = (value) => {
-	console.log(value);
-};
-
-const marks = {
-	0: "R$ 0",
-	10000000: "R$ 10M"
-};
-
-const RangeValor = () => (
-	<div>
-		<Range
-			min={0}
-			max={10000000}
-			defaultValue={[0, 10000000]}
-			handle={handleP}
-			marks={marks}
-			allowCross={false}
-			onChange={handleChange}
-		/>
-	</div>
-);
-
-
-function FormURL() { }
-
-const animatedComponents = makeAnimated();
-
-function Selectvalues() {
-	const selectBairros = document.querySelectorAll('input[name="bairro"]');
-	const formFiltro = document.querySelector('.formFiltro');
-	let bairroFiltros = [];
-	for (let selectBairro of selectBairros) {
-		bairroFiltros.push(selectBairro.value);
-	}
-
-	let novoInput = document.createElement('input');
-	novoInput.setAttribute('value', bairroFiltros);
-	novoInput.setAttribute('type', 'hidden');
-	novoInput.setAttribute('name', 'bairro');
-
-	formFiltro.appendChild(novoInput);
-
-	const elements = document.querySelectorAll('form input');
-	for (let input of elements) {
-		if (!input.value) {
-			input.setAttribute('name', '');
+function queryURL() {
+	let url = new URL(window.location);
+	const resultadoUrl = []
+	for (let keys of url.searchParams.entries()) {
+		let valoresURL = []
+		for(let key of  keys[1].split(',')){
+			valoresURL.push({value: key, label: key})
 		}
+		resultadoUrl[keys[0]] = valoresURL
 	}
+	return resultadoUrl
 }
 
+const animatedComponents = makeAnimated();
 
 /// valor Input 
 function buttonClickM(el) {
@@ -100,6 +41,10 @@ function fecharFiltro() {
 	document.getElementById("filtro").checked = false;
 }
 
+function fecharSFiltro() {
+	document.getElementById("mFiltro").checked = false;
+}
+
 export default function BarraPesquisa() {
 	const { loading, data } = useQuery(GQL_LISTAR_IMOVEIS, {
 		returnPartialData: true,
@@ -109,7 +54,6 @@ export default function BarraPesquisa() {
 
 	for (let multiSelect of multiSelects) {
 		multiSelect.addEventListener('click', function () {
-			console.log(multiSelect);
 		});
 	}
 
@@ -137,27 +81,76 @@ export default function BarraPesquisa() {
 	bairros = [...new Set(bairros.concat(data.imoveis.map((x) => capitalize(x.bairro))).sort())].filter((x) => x);
 	cidades = [...new Set(cidades.concat(data.imoveis.map((x) => capitalize(x.cidade))).sort())].filter((x) => x);
 
-	// nomeImovel - segundo - select - add
-	// categoriaImovel - primeiro - select - add
-	// tipoNegociacao - primeiro - select - add
-	// statusImovel - segundo - select - add
-	// aceitaPermuta - segundo - check
-	// mobiliado - segundo - check
-	// valorImovel - segundo - slider - add
-	// areaTotal - segundo - slider - add
-	// andarImovel - segundo - text
-	// qtdeQuarto - segundo - text
-	// qtdeBanheiro - segundo - text
-	// qtdeSuites - segundo - text
-	// qtdeVagas - segundo - text
-	// nomeConstrutora - segundo - select - add
-	// cidade - primeiro - select - add
-	// bairro - primeiro - select - add
-	// comodidadesImovel - segundo - select
-	// comodidadesCondominio - segundo - select
-
 	function MakeOption(x) {
 		return { value: x, label: x };
+	}
+
+	const VImovel = [...new Set(data.imoveis.map((imovel) => imovel.valorImovel).sort(function (a, b) { return a - b }))]
+	const VImovelMin = VImovel.shift()
+	const VImovelMax = VImovel.pop()
+
+	const { Range, Handle } = Slider;
+	const intlNumber = Intl.NumberFormat("pt-br", { notation: "compact" });
+
+	const handleP = (props) => {
+		const { value, dragging, index, ...restProps } = props;
+		return (
+			<SliderTooltip
+				prefixCls="rc-slider-tooltip"
+				overlayInnerStyle={{
+					backgroundColor: "transparent",
+					boxShadow: "none",
+					color: "#fff"
+				}}
+				overlay={`R$ ${intlNumber.format(value)}`}
+				visible
+				placement="top"
+				key={index}
+			>
+				<Handle value={value} {...restProps} />
+			</SliderTooltip>
+		);
+	};
+
+	const handleChange = (value) => {
+		console.log(value);
+	};
+
+	const marks = {
+		0: VImovelMin,
+		10000000: VImovelMax
+	};
+
+	const RangeValor = () => (
+		<div>
+			<Range
+				min={VImovelMin}
+				max={VImovelMax}
+				defaultValue={[VImovelMin, VImovelMax]}
+				handle={handleP}
+				marks={marks}
+				step={100}
+				allowCross={false}
+				onChange={handleChange}
+			/>
+		</div>
+	);
+
+	function FormURL() {
+		const FormsInputs = document.querySelectorAll('.form input');
+	
+		let resultadoObjeto = {}
+		for (let input of FormsInputs) {
+			if (input.name != "" && input.value != "") {
+				resultadoObjeto[input.name] += `${input.value},`
+			}
+		}
+		let queryURL = []
+		for (var [key, value] of Object.entries(resultadoObjeto)) {
+			queryURL.push(key + '=' + value.replaceAll('undefined', '').replace(/,\s*$/, ""))
+		}
+
+		console.log(queryURL.join('&'))
 	}
 
 	return (
@@ -169,7 +162,6 @@ export default function BarraPesquisa() {
 						<p>Procurar por:</p>
 					</label>
 				</div>
-				<RangeValor />
 				<div className="form">
 					<div className="topoMFiltros">
 						<p>Filtros</p>
@@ -178,13 +170,15 @@ export default function BarraPesquisa() {
 					<div className="filtros">
 						<div className="inputFiltros">
 							<div className="primeirosFiltros">
+							<div onClick={FormURL}>adfasdf</div>
+			<p>{console.log(FormURL())}</p>
 								<div className="areaInput">
+									
 									<p className="textoMenuMobile">
 										Escolha agora qual tipo de imóvel que você quer morar
 									</p>
 									<Select
-
-										isMulti
+										isMulti										
 										name="categoriaImovel"
 										options={categorias.map((x) => MakeOption(x))}
 										className="primeiroSelect"
@@ -192,6 +186,8 @@ export default function BarraPesquisa() {
 										closeMenuOnSelect={false}
 										components={animatedComponents}
 										placeholder="Imóvel"
+										defaultValue={queryURL().categoriaImovel}
+										onBlur={FormURL}
 									/>
 								</div>
 								<div className="areaInput">
@@ -199,14 +195,15 @@ export default function BarraPesquisa() {
 										Qual bairro de preferência?
 									</p>
 									<Select
-										isMulti
+										isMulti										
 										name="bairro"
 										options={bairros.map((x) => MakeOption(x))}
 										className="primeiroSelect"
 										classNamePrefix="select"
 										closeMenuOnSelect={false}
 										components={animatedComponents}
-										placeholder={'Bairro'}
+										defaultValue={queryURL().bairro}
+										onBlur={FormURL}
 									/>
 								</div>
 								<div className="areaInput">
@@ -221,6 +218,8 @@ export default function BarraPesquisa() {
 										classNamePrefix="select"
 										closeMenuOnSelect={false}
 										placeholder={'Cidade'}
+										defaultValue={queryURL().cidade}
+										onBlur={FormURL}
 									/>
 								</div>
 								<form className="formFiltro">
@@ -231,9 +230,11 @@ export default function BarraPesquisa() {
 										className="tipoSelect"
 										classNamePrefix="select"
 										closeMenuOnSelect={false}
+										defaultValue={queryURL().tipoNegociacao}
+										onBlur={FormURL}
 									/>
 									<div className="buttonFiltro">
-										<button onClick={Selectvalues}>{Pesquisa}</button>
+										<button type="button" >{Pesquisa}</button>
 									</div>
 								</form>
 							</div>
@@ -245,105 +246,106 @@ export default function BarraPesquisa() {
 								</label>
 							</div>
 							<div className="segundoFiltro">
-								<div className="areaInput">
-									<p className="textoMenuMobile">
-										Qual o nome do condomínio que está procurando?
-									</p>
-									<Select
-										isMulti
-										name="nomeImovel"
-										options={nomes.map((x) => MakeOption(x))}
-										className="segundoSelect"
-										classNamePrefix="select"
-										closeMenuOnSelect={false}
-									/>
-								</div>
-								<div className="areaInput">
-									<p className="textoMenuMobile">
-										Você está procurando um imóvel em qual etapa?
-									</p>
-									<Select
-										isMulti
-										name="statusImovel"
-										options={status.map((x) => MakeOption(x))}
-										className="segundoSelect"
-										classNamePrefix="select"
-										closeMenuOnSelect={false}
-									/>
-								</div>
-								<div className="areaInput">
-									<p className="textoMenuMobile">
-										Qual o valor do imóvel que está procurando?
-									</p>
-
-									<div className="valoresSlide">
-										<p className="pValor"></p>
-										<p className="sValor"></p>
+								<div className="overlay">
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Qual o nome do condomínio que está procurando?
+										</p>
+										<Select
+											isMulti
+											name="nomeImovel"
+											options={nomes.map((x) => MakeOption(x))}
+											className="segundoSelect"
+											classNamePrefix="select"
+											closeMenuOnSelect={false}
+											defaultValue={queryURL().nomeImovel}
+										/>
 									</div>
-								</div>
-								<div className="areaInput">
-									<p className="textoMenuMobile">
-										Qual o tamanho do imóvel que está procurando?
-									</p>
-									<RangeValor />
-
-									<div className="valoresSlide">
-										<p className="pValor"></p>
-										<p className="sValor"></p>
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Você está procurando um imóvel em qual etapa?
+										</p>
+										<Select
+											isMulti
+											name="statusImovel"
+											options={status.map((x) => MakeOption(x))}
+											className="segundoSelect"
+											classNamePrefix="select"
+											closeMenuOnSelect={false}
+											defaultValue={queryURL().statusImovel}
+										/>
 									</div>
-								</div>
-
-								{/* valor Input  */}
-
-								<div className="areaInput">
-									<p className="textoMenuMobile">
-										Quantos quartos você quer?
-									</p>
-									<div className="valorInput">
-										<button onClick={buttonClickL}>{Menos}</button>
-										<input type="number" id="inc" placeholder="0" min="0" />
-										<button onClick={buttonClickM}>{Mais}</button>
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Qual o valor do imóvel que está procurando?
+										</p>
+										<RangeValor />
 									</div>
-								</div>
-								<div className="areaInput">
-									<p className="textoMenuMobile">
-										Quantos banheiros você quer?
-									</p>
-									<div className="valorInput">
-										<button onClick={buttonClickL}>{Menos}</button>
-										<input type="number" id="inc" placeholder="0" min="0" />
-										<button onClick={buttonClickM}>{Mais}</button>
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Qual o tamanho do imóvel que está procurando?
+										</p>
+										<RangeValor />
 									</div>
-								</div>
-								<div className="areaInput">
-									<p className="textoMenuMobile">
-										Quantas suítes você quer?
-									</p>
-									<div className="valorInput">
-										<button onClick={buttonClickL}>{Menos}</button>
-										<input type="number" id="inc" placeholder="0" min="0" />
-										<button onClick={buttonClickM}>{Mais}</button>
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Quantos quartos você quer?
+										</p>
+										<div className="valorInput">
+											<button onClick={buttonClickL}>{Menos}</button>
+											<input name="qtdeQuarto" type="number" id="inc" placeholder="0" min="0" />
+											<button onClick={buttonClickM}>{Mais}</button>
+										</div>
 									</div>
-								</div>
-								<div className="areaInput">
-									<p className="textoMenuMobile">
-										Quantas vagas na garagem você quer?
-									</p>
-									<div className="valorInput">
-										<button onClick={buttonClickL}>{Menos}</button>
-										<input type="number" id="inc" placeholder="0" min="0" />
-										<button onClick={buttonClickM}>{Mais}</button>
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Quantos banheiros você quer?
+										</p>
+										<div className="valorInput">
+											<button onClick={buttonClickL}>{Menos}</button>
+											<input name="qtdeBanheiro" type="number" id="inc" placeholder="0" min="0" />
+											<button onClick={buttonClickM}>{Mais}</button>
+										</div>
 									</div>
-								</div>
-								<div className="areaInput">
-									<Select
-										isMulti
-										name="colors"
-										options={construtoras.map((x) => MakeOption(x))}
-										className="segundoSelect"
-										classNamePrefix="select"
-										closeMenuOnSelect={false}
-									/>
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Quantas suítes você quer?
+										</p>
+										<div className="valorInput">
+											<button onClick={buttonClickL}>{Menos}</button>
+											<input name="qtdeSuites" type="number" id="inc" placeholder="0" min="0" />
+											<button onClick={buttonClickM}>{Mais}</button>
+										</div>
+									</div>
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Quantas vagas na garagem você quer?
+										</p>
+										<div className="valorInput">
+											<button onClick={buttonClickL}>{Menos}</button>
+											<input name="qtdeVagas" type="number" id="inc" placeholder="0" min="0" />
+											<button onClick={buttonClickM}>{Mais}</button>
+										</div>
+									</div>
+									<div className="areaInput">
+										<p className="textoMenuMobile">
+											Escolha a Construtora que você mais confia
+										</p>
+										<Select
+											isMulti
+											name="nomeConstrutora"
+											options={construtoras.map((x) => MakeOption(x))}
+											className="segundoSelect"
+											classNamePrefix="select"
+											closeMenuOnSelect={false}
+											defaultValue={queryURL().nomeConstrutora}
+										/>
+									</div>
+									<div className="areaInput inputButton">
+										<div className="confirmarSF">
+											<button type="button" onClick={fecharSFiltro}><p>Confirmar</p></button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -351,7 +353,16 @@ export default function BarraPesquisa() {
 				</div>
 				<div className="OQFiltros">
 					<div className="quantidadeImoveis">
-
+						<p className="tituloQImo" onClick={FormURL}>Mostrar: </p>
+						<div className="QuantImo" ><Link to={{
+							search: `${LinkQuantImoveis()}&quant=12`
+						}} >12</Link></div>
+						<div className="QuantImo" ><Link to={{
+							search: `${LinkQuantImoveis()}&quant=24`
+						}} >24</Link></div>
+						<div className="QuantImo" ><Link to={{
+							search: `${LinkQuantImoveis()}&quant=36`
+						}} >36</Link></div>
 					</div>
 					<div className="ordemImoveis"></div>
 				</div>

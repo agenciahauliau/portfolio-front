@@ -98,11 +98,12 @@
         padding: 12px;
         position: absolute;
         bottom: 0;
-        z-index: 10;
         background: #db0423;
 
         svg {
-          fill: #fff;
+          path {
+            stroke: #fff;
+          }
         }
       }
 

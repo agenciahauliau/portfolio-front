@@ -136,7 +136,7 @@
             width: auto;
             height: 40px;
             margin-top: -80px;
-            position: relative;
+            position: absolute;
             z-index: 1;
           }
 
@@ -144,6 +144,16 @@
             height: 80px;
             padding-right: 38px;
             margin-top: -100px;
+          }
+
+          .textoLanc {
+            width: 100%;
+            padding: 0 24px;
+            h3 {
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+            }
           }
         }
       }
@@ -174,7 +184,7 @@
       color: #fff;
     }
 
-    .container{
+    .container {
       display: flex;
     }
 
@@ -362,15 +372,48 @@
 
       .casas {
         width: 50%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: auto;
 
+        .esquerdaScroll, .direitaScroll{
+          display: flex;
+          align-items: center;
+          width: 48px;
+          height: 50%;
+          position: absolute;
+          z-index: 5;
+          svg {
+            width: 48px;
+            height: 48px;
+            path{
+              stroke: #fff;
+            }
+          }
+        }
+        .esquerdaScroll{
+          left: 0;
+        }
+        .direitaScroll{
+          right: 0;
+        }
+
+        &::-webkit-scrollbar {
+          width: 0px;
+          height: 0px;
+        }
         .listaCasas {
           padding-left: 38px;
+          position: relative;
+          .scroll {
+            display: flex;
+            .casa {
+              width: 325px;
 
-          .casa {
-            width: 325px;
-
-            img {
-              height: 200px;
+              img {
+                height: 200px;
+              }
             }
           }
         }

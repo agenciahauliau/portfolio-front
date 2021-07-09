@@ -12,7 +12,6 @@ function IdBlog() {
 }
 
 function Post() {
-	
 	const { loading, data } = useQuery(GQL_BUSCAR_POST, {
 		variables: { id: IdBlog() },
 	});
