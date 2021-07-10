@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_POSTS_COM_FILTRO } from '../../graphql/graphql';
 import { Direita, Esquerda, Facebook, Twitter, WhatsApp } from '../../../assets/SVG'
-import { MobileDesktop } from '../../Helpers/Helpers';
+import { MobileDesktop } from '../../Helpers/HelpersFunction';
 import ReactPaginate from 'react-paginate';
 
 function BlocoQuery() {

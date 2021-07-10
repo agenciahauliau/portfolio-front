@@ -1,27 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_LISTAR_IMOVEIS } from '../../graphql/graphql';
-import { capitalize, LinkQuantImoveis } from '../../Helpers/Helpers';
+import { capitalize, queryURL } from '../../Helpers/HelpersFunction';
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import makeAnimated from 'react-select/animated';
 import Slider, { SliderTooltip } from 'rc-slider';
 import { Fechar, Pesquisa, Mais, Menos, Venda } from '../../../assets/SVG';
+import QuantidadeFiltro from './QuantidadeFiltro'
 
 import './BarraPesquisa.scss';
 
-function queryURL() {
-	let url = new URL(window.location);
-	const resultadoUrl = []
-	for (let keys of url.searchParams.entries()) {
-		let valoresURL = []
-		for(let key of  keys[1].split(',')){
-			valoresURL.push({value: key, label: key})
-		}
-		resultadoUrl[keys[0]] = valoresURL
-	}
-	return resultadoUrl
-}
+
 
 const animatedComponents = makeAnimated();
 
@@ -37,26 +27,32 @@ function buttonClickL(el) {
 	el.target.closest(".valorInput").children[1].value = valor;
 }
 
-function fecharFiltro() {
-	document.getElementById("filtro").checked = false;
-}
-
-function fecharSFiltro() {
-	document.getElementById("mFiltro").checked = false;
-}
-
 export default function BarraPesquisa() {
+
+	const [stateURL, setStateURL] = useState('')
+
+    function FormURL() {
+        //   this.setState({ search: event.target.value })
+        const FormsInputs = document.querySelectorAll('.form input');
+    
+        let resultadoObjeto = {}
+        for (let input of FormsInputs) {
+            if (input.name != "" && input.value != "") {
+                resultadoObjeto[input.name] += `${input.value},`
+            }
+        }
+        let queryURL = []
+        for (var [key, value] of Object.entries(resultadoObjeto)) {
+            queryURL.push(key + '=' + value.replaceAll('undefined', '').replace(/,\s*$/, ""))
+        }
+    
+        setStateURL(queryURL.join('&'))
+    }
+
 	const { loading, data } = useQuery(GQL_LISTAR_IMOVEIS, {
 		returnPartialData: true,
 	});
-
-	const multiSelects = document.querySelectorAll('.basic-multi-select');
-
-	for (let multiSelect of multiSelects) {
-		multiSelect.addEventListener('click', function () {
-		});
-	}
-
+	
 	if (loading) return <p>Loading Masterpieces...</p>;
 
 	let nomes = [];
@@ -86,8 +82,14 @@ export default function BarraPesquisa() {
 	}
 
 	const VImovel = [...new Set(data.imoveis.map((imovel) => imovel.valorImovel).sort(function (a, b) { return a - b }))]
+
+	const TImovel = [...new Set(data.imoveis.map((imovel) => imovel.areaTotal).sort(function (a, b) { return a - b }))]
+
 	const VImovelMin = VImovel.shift()
 	const VImovelMax = VImovel.pop()
+
+	const TImovelMin = TImovel.shift()
+	const TImovelMax = TImovel.pop()
 
 	const { Range, Handle } = Slider;
 	const intlNumber = Intl.NumberFormat("pt-br", { notation: "compact" });
@@ -116,41 +118,26 @@ export default function BarraPesquisa() {
 		console.log(value);
 	};
 
-	const marks = {
-		0: VImovelMin,
-		10000000: VImovelMax
-	};
+	function fecharFiltro() {
+		document.getElementById("filtro").checked = false;
 
-	const RangeValor = () => (
-		<div>
-			<Range
-				min={VImovelMin}
-				max={VImovelMax}
-				defaultValue={[VImovelMin, VImovelMax]}
-				handle={handleP}
-				marks={marks}
-				step={100}
-				allowCross={false}
-				onChange={handleChange}
-			/>
-		</div>
-	);
+	}
 
-	function FormURL() {
-		const FormsInputs = document.querySelectorAll('.form input');
-	
-		let resultadoObjeto = {}
-		for (let input of FormsInputs) {
-			if (input.name != "" && input.value != "") {
-				resultadoObjeto[input.name] += `${input.value},`
-			}
-		}
-		let queryURL = []
-		for (var [key, value] of Object.entries(resultadoObjeto)) {
-			queryURL.push(key + '=' + value.replaceAll('undefined', '').replace(/,\s*$/, ""))
-		}
+	const htmlClass = document.querySelector("html").classList
 
-		console.log(queryURL.join('&'))
+	const RCValores = document.querySelectorAll(".rc-slider-tooltip")
+
+
+	function HTMLOverflow() {
+		htmlClass.add("overflow")
+		RCValores.forEach(RCValor => {
+			console.log(RCValor)
+		});
+	}
+
+	function fecharSFiltro() {
+		document.getElementById("mFiltro").checked = false;
+		htmlClass.remove("overflow")
 	}
 
 	return (
@@ -170,15 +157,13 @@ export default function BarraPesquisa() {
 					<div className="filtros">
 						<div className="inputFiltros">
 							<div className="primeirosFiltros">
-							<div onClick={FormURL}>adfasdf</div>
-			<p>{console.log(FormURL())}</p>
 								<div className="areaInput">
-									
+
 									<p className="textoMenuMobile">
 										Escolha agora qual tipo de imóvel que você quer morar
 									</p>
 									<Select
-										isMulti										
+										isMulti
 										name="categoriaImovel"
 										options={categorias.map((x) => MakeOption(x))}
 										className="primeiroSelect"
@@ -195,13 +180,14 @@ export default function BarraPesquisa() {
 										Qual bairro de preferência?
 									</p>
 									<Select
-										isMulti										
+										isMulti
 										name="bairro"
 										options={bairros.map((x) => MakeOption(x))}
 										className="primeiroSelect"
 										classNamePrefix="select"
 										closeMenuOnSelect={false}
 										components={animatedComponents}
+										placeholder="Bairro"
 										defaultValue={queryURL().bairro}
 										onBlur={FormURL}
 									/>
@@ -234,14 +220,20 @@ export default function BarraPesquisa() {
 										onBlur={FormURL}
 									/>
 									<div className="buttonFiltro">
-										<button type="button" >{Pesquisa}</button>
+											<Link
+												to={{
+													search: `${stateURL}&pagina=1`
+												}}
+											>
+												{Pesquisa}
+											</Link>
 									</div>
 								</form>
 							</div>
 
 							<input type="checkbox" className="chaveMFiltro" id="mFiltro" />
-							<div className="divChaveMFiltro">
-								<label className="chaveMFiltro" htmlFor="mFiltro">
+							<div className="divChaveMFiltro" onClick={HTMLOverflow}>
+								<label className="chaveMFiltro" htmlFor="mFiltro" >
 									<p>Mais Filtros</p>
 								</label>
 							</div>
@@ -259,6 +251,7 @@ export default function BarraPesquisa() {
 											classNamePrefix="select"
 											closeMenuOnSelect={false}
 											defaultValue={queryURL().nomeImovel}
+											onBlur={FormURL}
 										/>
 									</div>
 									<div className="areaInput">
@@ -273,27 +266,44 @@ export default function BarraPesquisa() {
 											classNamePrefix="select"
 											closeMenuOnSelect={false}
 											defaultValue={queryURL().statusImovel}
+											onBlur={FormURL}
 										/>
 									</div>
-									<div className="areaInput">
+									{/* <div className="areaInput">
 										<p className="textoMenuMobile">
 											Qual o valor do imóvel que está procurando?
 										</p>
-										<RangeValor />
+										<Range
+											min={VImovelMin}
+											max={VImovelMax}
+											defaultValue={[VImovelMin, VImovelMax]}
+											handle={handleP}
+											step={100}
+											allowCross={false}
+											onChange={handleChange}
+										/>
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Qual o tamanho do imóvel que está procurando?
 										</p>
-										<RangeValor />
-									</div>
+										<Range
+											min={TImovelMin}
+											max={TImovelMax}
+											defaultValue={[TImovelMin, TImovelMax]}
+											handle={handleP}
+											step={100}
+											allowCross={false}
+											onChange={handleChange}
+										/>
+									</div> */}
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Quantos quartos você quer?
 										</p>
 										<div className="valorInput">
 											<button onClick={buttonClickL}>{Menos}</button>
-											<input name="qtdeQuarto" type="number" id="inc" placeholder="0" min="0" />
+											<input name="qtdeQuarto" type="number" id="inc" placeholder="0" min="0" value={queryURL().qtdeQuarto} />
 											<button onClick={buttonClickM}>{Mais}</button>
 										</div>
 									</div>
@@ -339,6 +349,7 @@ export default function BarraPesquisa() {
 											classNamePrefix="select"
 											closeMenuOnSelect={false}
 											defaultValue={queryURL().nomeConstrutora}
+											onBlur={FormURL}
 										/>
 									</div>
 									<div className="areaInput inputButton">
@@ -352,18 +363,7 @@ export default function BarraPesquisa() {
 					</div>
 				</div>
 				<div className="OQFiltros">
-					<div className="quantidadeImoveis">
-						<p className="tituloQImo" onClick={FormURL}>Mostrar: </p>
-						<div className="QuantImo" ><Link to={{
-							search: `${LinkQuantImoveis()}&quant=12`
-						}} >12</Link></div>
-						<div className="QuantImo" ><Link to={{
-							search: `${LinkQuantImoveis()}&quant=24`
-						}} >24</Link></div>
-						<div className="QuantImo" ><Link to={{
-							search: `${LinkQuantImoveis()}&quant=36`
-						}} >36</Link></div>
-					</div>
+					<QuantidadeFiltro />
 					<div className="ordemImoveis"></div>
 				</div>
 			</div>

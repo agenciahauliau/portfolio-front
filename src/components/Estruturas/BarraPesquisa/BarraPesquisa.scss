@@ -264,6 +264,9 @@
                       }
                     }
                   }
+                  .select__input{
+                    color: #fff;
+                  }
                 }
                 .select__indicators {
                   display: none;
@@ -450,8 +453,8 @@
       }
     }
   }
-  .OQFiltros{
-    .quantidadeImoveis{
+  .OQFiltros {
+    .quantidadeImoveis {
       display: none;
     }
   }
@@ -547,6 +550,7 @@
 
               .tipoSelect {
                 width: 55%;
+                height: 40px;
                 margin: 8px 0;
                 background: #db0423;
 
@@ -588,15 +592,13 @@
               }
               .buttonFiltro {
                 margin: 8px 24px;
-                button {
-                  width: 36px;
+                width: 36px;
                   height: 36px;
                   padding: 4px;
                   background: none;
                   svg {
                     fill: #fff;
                   }
-                }
               }
             }
           }
@@ -632,6 +634,9 @@
             .areaInput {
               width: 300px;
               padding: 12px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
               .textoMenuMobile {
                 height: 44px;
                 margin-bottom: 24px;
@@ -715,19 +720,23 @@
         }
       }
     }
-    .OQFiltros{
-      .quantidadeImoveis{
+    .OQFiltros {
+      .quantidadeImoveis {
         display: flex;
         align-content: center;
         padding: 12px 0;
         color: #fff;
-        .tituloQImo{
+        .tituloQImo {
           padding: 12px 0;
         }
-        .QuantImo{
+        .QuantImo {
+          a{
+            display: block;
+            color: #fff;
           padding: 12px;
           font-weight: 200;
         }
+      }
       }
     }
   }
@@ -753,4 +762,8 @@
       padding: 12px;
     }
   }
+}
+
+.overflow {
+  overflow: hidden !important;
 }

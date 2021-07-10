@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import {MobileDesktop} from '../../Helpers/Helpers'
+import {MobileDesktop} from '../../Helpers/HelpersFunction'
 
 export const BlocoJardins = () => {
 	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
@@ -17,7 +17,7 @@ export const BlocoJardins = () => {
 		returnPartialData: true,
 	});
 
-	if (loading) return 'loading';
+	if (loading) return '';
 
 	return (
 		<div className="blocoJardins">

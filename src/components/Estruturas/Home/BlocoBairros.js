@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import { MobileDesktop } from '../../Helpers/Helpers'
+import { MobileDesktop } from '../../Helpers/HelpersFunction'
 import { Bairro } from '../../../assets/SVG';
 
 function BlocoBairros() {
@@ -31,7 +31,7 @@ function BlocoBairros() {
 				<div className="listaBairros">
 					{stateBairros.map((el) => (
 						<div className="listaBairro">
-							<Link to={'/imoveis?bairro=' + el[0]}>
+							<Link to={'/imoveis?tipoNegociacao=Venda&bairro=' + el[0]}>
 								<div className="imagemBairro">{Bairro}</div>
 								<div className="textoBairros">
 									<p>{el[0]}</p>

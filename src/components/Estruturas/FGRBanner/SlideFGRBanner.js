@@ -56,7 +56,7 @@ const SlideFGRBanner = (props) => {
               className={index === current ? "slide active" : "slide"}
               key={`imagens${index}`}
             >
-              {index === current && <img src={slide.image} alt="Jardins FGR" />}
+              {index === current && <img key={index} src={slide.image} alt="Jardins FGR" />}
             </div>
           );
         })}

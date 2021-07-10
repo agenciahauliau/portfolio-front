@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
-import { Link, useHistory } from 'react-router-dom';
-import { PagImovel, Linkdfsdaf, QParamsPesquisa, QuantImoveis } from '../../Helpers/Helpers';
+import { Link } from 'react-router-dom';
+import { PagImovel, QParamsPesquisa, QuantImoveis, Redirect } from '../../Helpers/HelpersFunction';
 import ReactPaginate from 'react-paginate';
 import { Quarto, Banheiro, Garagem, Esquerda, Direita } from '../../../assets/SVG';
 
@@ -28,8 +28,8 @@ function Pesquisa() {
 	const usersPerPage = QuantImoveis();
 	const pagesVisited = PagImovel() * usersPerPage;
 
-	if (loading) return <p>Loading Masterpieces...</p>;
-	if (error) return <p>Mas Bah</p>;
+	if (loading) return <p></p>;
+	if (error) return <p></p>;
 
 	const imoveisPP = data.imoveis.slice(pagesVisited, pagesVisited + usersPerPage).map((imovel, index) => {
 		return (

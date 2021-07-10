@@ -28,6 +28,35 @@ export function QParamsPesquisa() {
 	return rest;
 }
 
+export function queryURL() {
+	let url = new URL(window.location);
+	const resultadoUrl = []
+	for (let keys of url.searchParams.entries()) {
+		let valoresURL = []
+		for (let key of keys[1].split(',')) {
+			valoresURL.push({ value: key, label: key })
+		}
+		resultadoUrl[keys[0]] = valoresURL
+	}
+	return resultadoUrl
+}
+
+export function MakeOption(x) {
+	return { value: x, label: x };
+}
+
+export function buttonClickM(el) {
+	let valor = +el.target.closest(".valorInput").children[1].value;
+	valor++;
+	el.target.closest(".valorInput").children[1].value = valor;
+}
+
+export function buttonClickL(el) {
+	let valor = +el.target.closest(".valorInput").children[1].value;
+	if (valor > 0) valor--;
+	el.target.closest(".valorInput").children[1].value = valor;
+}
+
 export const  QuantImoveis = () => {
 	const quantImovel = localStorage.getItem("quantImoveis")
 	const url = new URL(window.location)
@@ -53,12 +82,6 @@ export const  QuantImoveis = () => {
 	}
 
 	
-}
-
-export function LinkQuantImoveis() {
-	const url = new URL(window.location)
-	url.searchParams.delete('quant')
-	return url.searchParams.toString()
 }
 
 export const  PagImovel = () => {

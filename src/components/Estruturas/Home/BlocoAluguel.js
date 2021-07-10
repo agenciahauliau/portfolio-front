@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import {MobileDesktop} from '../../Helpers/Helpers'
+import {MobileDesktop} from '../../Helpers/HelpersFunction'
 import { Aluguel } from '../../../assets/SVG';
 
 function BlocoVenda() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEL, GQL_CRIAR_LEAD } from '../../../../graphql/graphql';
-import { QParamsImovel } from '../../../../Helpers/Helpers';
+import { QParamsImovel } from '../../../../Helpers/HelpersFunction';
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
 
 import './ImoveisVenda.scss';
