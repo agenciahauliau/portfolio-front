@@ -6,12 +6,10 @@ import Select from 'react-select';
 import { Link } from 'react-router-dom';
 import makeAnimated from 'react-select/animated';
 import Slider, { SliderTooltip } from 'rc-slider';
-import { Fechar, Pesquisa, Mais, Menos, Venda } from '../../../assets/SVG';
+import { Fechar, Pesquisa, Mais, Menos } from '../../../assets/SVG';
 import QuantidadeFiltro from './QuantidadeFiltro'
 
 import './BarraPesquisa.scss';
-
-
 
 const animatedComponents = makeAnimated();
 
@@ -29,30 +27,54 @@ function buttonClickL(el) {
 
 export default function BarraPesquisa() {
 
+	const { Range } = Slider;
+
 	const [stateURL, setStateURL] = useState('')
 
-    function FormURL() {
-        //   this.setState({ search: event.target.value })
-        const FormsInputs = document.querySelectorAll('.form input');
-    
-        let resultadoObjeto = {}
-        for (let input of FormsInputs) {
-            if (input.name != "" && input.value != "") {
-                resultadoObjeto[input.name] += `${input.value},`
-            }
-        }
-        let queryURL = []
-        for (var [key, value] of Object.entries(resultadoObjeto)) {
-            queryURL.push(key + '=' + value.replaceAll('undefined', '').replace(/,\s*$/, ""))
-        }
-    
-        setStateURL(queryURL.join('&'))
-    }
+	function FormURL() {
+		const FormsInputs = document.querySelectorAll('.form input');
+
+		let resultadoObjeto = {}
+		for (let input of FormsInputs) {
+			if (input.name != "" && input.value != "") {
+				resultadoObjeto[input.name] += `${input.value},`
+			}
+		}
+		let queryURL = []
+		for (var [key, value] of Object.entries(resultadoObjeto)) {
+			queryURL.push(key + '=' + value.replaceAll('undefined', '').replace(/,\s*$/, ""))
+		}
+
+		setStateURL(queryURL.join('&'))
+	}
+
+	const [stateRange, setStateRange] = useState({
+		valorImovel: ["", ""],
+		areaTotal: ["", ""],
+		qtdeBanheiro: ["", ""],
+		qtdeQuarto: ["", ""],
+		qtdeSuites: ["", ""],
+		qtdeVagas: ["", ""]
+	})
+
+
+	const handleChange = () => {
+
+		const rcSliders = document.querySelectorAll(".rc-slider")
+
+		let targetSlider = []
+		for (let rcSlider of rcSliders) {
+			targetSlider[rcSlider.classList[1]] = [rcSlider.childNodes[3].getAttribute("aria-valuenow"), rcSlider.childNodes[4].getAttribute("aria-valuenow")]
+		}
+		setStateRange(targetSlider)
+	};
+
+	console.log(stateRange)
 
 	const { loading, data } = useQuery(GQL_LISTAR_IMOVEIS, {
 		returnPartialData: true,
 	});
-	
+
 	if (loading) return <p>Loading Masterpieces...</p>;
 
 	let nomes = [];
@@ -82,59 +104,26 @@ export default function BarraPesquisa() {
 	}
 
 	const VImovel = [...new Set(data.imoveis.map((imovel) => imovel.valorImovel).sort(function (a, b) { return a - b }))]
-
 	const TImovel = [...new Set(data.imoveis.map((imovel) => imovel.areaTotal).sort(function (a, b) { return a - b }))]
+	const Quartos = [...new Set(data.imoveis.map((imovel) => imovel.qtdeQuarto).sort(function (a, b) { return a - b }))]
+	const Suites = [...new Set(data.imoveis.map((imovel) => imovel.qtdeSuite).sort(function (a, b) { return a - b }))]
+	const Banheiros = [...new Set(data.imoveis.map((imovel) => imovel.qtdeBanheiro).sort(function (a, b) { return a - b }))]
+	const Garagem = [...new Set(data.imoveis.map((imovel) => imovel.qtdeVagas).sort(function (a, b) { return a - b }))]
 
-	const VImovelMin = VImovel.shift()
-	const VImovelMax = VImovel.pop()
-
-	const TImovelMin = TImovel.shift()
-	const TImovelMax = TImovel.pop()
-
-	const { Range, Handle } = Slider;
 	const intlNumber = Intl.NumberFormat("pt-br", { notation: "compact" });
-
-	const handleP = (props) => {
-		const { value, dragging, index, ...restProps } = props;
-		return (
-			<SliderTooltip
-				prefixCls="rc-slider-tooltip"
-				overlayInnerStyle={{
-					backgroundColor: "transparent",
-					boxShadow: "none",
-					color: "#fff"
-				}}
-				overlay={`R$ ${intlNumber.format(value)}`}
-				visible
-				placement="top"
-				key={index}
-			>
-				<Handle value={value} {...restProps} />
-			</SliderTooltip>
-		);
-	};
-
-	const handleChange = (value) => {
-		console.log(value);
-	};
 
 	function fecharFiltro() {
 		document.getElementById("filtro").checked = false;
-
 	}
 
 	const htmlClass = document.querySelector("html").classList
-
 	const RCValores = document.querySelectorAll(".rc-slider-tooltip")
-
-
 	function HTMLOverflow() {
 		htmlClass.add("overflow")
 		RCValores.forEach(RCValor => {
 			console.log(RCValor)
 		});
 	}
-
 	function fecharSFiltro() {
 		document.getElementById("mFiltro").checked = false;
 		htmlClass.remove("overflow")
@@ -220,13 +209,13 @@ export default function BarraPesquisa() {
 										onBlur={FormURL}
 									/>
 									<div className="buttonFiltro">
-											<Link
-												to={{
-													search: `${stateURL}&pagina=1`
-												}}
-											>
-												{Pesquisa}
-											</Link>
+										<Link
+											to={{
+												search: `${stateURL}&pagina=1`
+											}}
+										>
+											{Pesquisa}
+										</Link>
 									</div>
 								</form>
 							</div>
@@ -269,73 +258,100 @@ export default function BarraPesquisa() {
 											onBlur={FormURL}
 										/>
 									</div>
-									{/* <div className="areaInput">
+									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Qual o valor do imóvel que está procurando?
 										</p>
 										<Range
-											min={VImovelMin}
-											max={VImovelMax}
-											defaultValue={[VImovelMin, VImovelMax]}
-											handle={handleP}
+											className='valorImovel'
+											min={VImovel.shift()}
+											max={VImovel.pop()}
+											defaultValue={[VImovel.shift(), VImovel.pop()]}
 											step={100}
 											allowCross={false}
 											onChange={handleChange}
 										/>
+										<p>{intlNumber.format(stateRange.valorImovel[0])}</p>
+										<p>{intlNumber.format(stateRange.valorImovel[1])}</p>
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Qual o tamanho do imóvel que está procurando?
 										</p>
 										<Range
-											min={TImovelMin}
-											max={TImovelMax}
-											defaultValue={[TImovelMin, TImovelMax]}
-											handle={handleP}
+											className="areaTotal"
+											min={TImovel.shift()}
+											max={TImovel.pop()}
+											defaultValue={[TImovel.shift(), TImovel.pop()]}
 											step={100}
+											allowCross={false}
+											allowCross={false}
+											allowCross={false}
 											allowCross={false}
 											onChange={handleChange}
 										/>
-									</div> */}
+										<p>{intlNumber.format(stateRange.areaTotal[0])}</p>
+										<p>{intlNumber.format(stateRange.areaTotal[1])}</p>
+									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Quantos quartos você quer?
 										</p>
-										<div className="valorInput">
-											<button onClick={buttonClickL}>{Menos}</button>
-											<input name="qtdeQuarto" type="number" id="inc" placeholder="0" min="0" value={queryURL().qtdeQuarto} />
-											<button onClick={buttonClickM}>{Mais}</button>
-										</div>
+										<Range
+											className="qtdeQuarto"
+											min={Quartos.shift()}
+											max={Quartos.pop()}
+											defaultValue={[Quartos.shift(), Quartos.pop()]}
+											allowCross={false}
+											onChange={handleChange}
+										/>
+										<p>{intlNumber.format(stateRange.qtdeQuarto[0])}</p>
+										<p>{intlNumber.format(stateRange.qtdeQuarto[1])}</p>
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Quantos banheiros você quer?
 										</p>
-										<div className="valorInput">
-											<button onClick={buttonClickL}>{Menos}</button>
-											<input name="qtdeBanheiro" type="number" id="inc" placeholder="0" min="0" />
-											<button onClick={buttonClickM}>{Mais}</button>
-										</div>
+										<Range
+											className="qtdeBanheiro"
+											min={Banheiros.shift()}
+											max={Banheiros.pop()}
+											defaultValue={[Banheiros.shift(), Banheiros.pop()]}
+											allowCross={false}
+											onChange={handleChange}
+										/>
+										<p>{intlNumber.format(stateRange.qtdeBanheiro[0])}</p>
+										<p>{intlNumber.format(stateRange.qtdeBanheiro[1])}</p>
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Quantas suítes você quer?
 										</p>
-										<div className="valorInput">
-											<button onClick={buttonClickL}>{Menos}</button>
-											<input name="qtdeSuites" type="number" id="inc" placeholder="0" min="0" />
-											<button onClick={buttonClickM}>{Mais}</button>
-										</div>
+										<Range
+											className="qtdeSuites"
+											min={Suites.shift()}
+											max={Suites.pop()}
+											defaultValue={[Suites.shift(), Suites.pop()]}
+											allowCross={false}
+											onChange={handleChange}
+										/>
+										<p>{intlNumber.format(stateRange.qtdeSuites[0])}</p>
+										<p>{intlNumber.format(stateRange.qtdeSuites[1])}</p>
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Quantas vagas na garagem você quer?
 										</p>
-										<div className="valorInput">
-											<button onClick={buttonClickL}>{Menos}</button>
-											<input name="qtdeVagas" type="number" id="inc" placeholder="0" min="0" />
-											<button onClick={buttonClickM}>{Mais}</button>
-										</div>
+										<Range
+											className="qtdeVagas"
+											min={Garagem.shift()}
+											max={Garagem.pop()}
+											defaultValue={[Garagem.shift(), Garagem.pop()]}
+											allowCross={false}
+											onChange={handleChange}
+										/>
+										<p>{intlNumber.format(stateRange.qtdeVagas[0])}</p>
+										<p>{intlNumber.format(stateRange.qtdeVagas[1])}</p>
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
