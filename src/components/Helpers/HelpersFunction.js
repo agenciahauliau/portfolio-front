@@ -18,13 +18,19 @@ export function QParamsPesquisa() {
 		}
 
 		resultado[key] = {};
-		resultado[key].in = IN;
 
+		if(typeof(BSF(IN[0])) === 'number'){
+			resultado[key] = {gte:IN[0],lte:IN[1]}
+		} else if (typeof(BSF(IN[0])) === 'string'){
+			resultado[key].in = IN
+		} else {
+			resultado[key] = IN
+		}
+		
 		resultado.statusLancamento = 'aprovado';
 	}
 
 	const { quant, pagina, ...rest } = resultado
-
 	return rest;
 }
 
@@ -63,25 +69,17 @@ export const  QuantImoveis = () => {
 	const quantImovelURL = url.searchParams.get("quant")
 
 	if (quantImovelURL && +quantImovelURL >= 12) {
-
 		localStorage.setItem("quantImoveis", quantImovelURL)
 		return +quantImovelURL
-
 	} else if (quantImovel) {
-
 		url.searchParams.set('quant', quantImovel);
 		window.history.pushState({}, '', url)
 		return +quantImovel
-
 	} else {
-
 		url.searchParams.set('quant', 12);
 		window.history.pushState({}, '', url)
 		return 12
-
 	}
-
-	
 }
 
 export const  PagImovel = () => {

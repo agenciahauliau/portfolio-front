@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import { PagImovel, QParamsPesquisa, QuantImoveis, Redirect } from '../../Helpers/HelpersFunction';
+import { PagImovel, QParamsPesquisa, QuantImoveis, queryURL, Redirect } from '../../Helpers/HelpersFunction';
 import ReactPaginate from 'react-paginate';
 import { Quarto, Banheiro, Garagem, Esquerda, Direita } from '../../../assets/SVG';
 
