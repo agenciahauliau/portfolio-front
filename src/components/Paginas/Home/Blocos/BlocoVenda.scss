@@ -1,0 +1,105 @@
+.Home {
+  .BlocoVenda,
+  .BlocoAluguel {
+    padding: 48px 24px;
+    border-top: 1px solid #5555;
+    border-bottom: 1px solid #5555;
+    .textoBloco {
+      text-align: center;
+      color: #fff;
+      h2 {
+        padding: 8px;
+        position: relative;
+        &::after {
+          content: " ";
+          width: 50px;
+          height: 3px;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #db0423;
+        }
+      }
+      p {
+        padding: 8px;
+        font-weight: 200;
+      }
+    }
+    .Cards {
+      .CardImoveisHome {
+        margin: 24px auto;
+        color: #fff;
+        .TopoCardImoveis {
+          width: 100%;
+          height: 150px;
+          position: relative;
+          svg {
+            width: 24px;
+            margin: 12px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            fill: #fff;
+          }
+        }
+        .InfoCardImoveis {
+          padding: 12px 4px;
+          .PCImoveis {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 4px 0;
+            h3 {
+              font-size: 20px;
+            }
+            p {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+    .verMais {
+      display: block;
+      padding: 12px 24px;
+      margin: auto;
+      background: #db0423;
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 820px) {
+  .Home {
+    .BlocoVenda,
+    .BlocoAluguel {
+      .container {
+        margin: auto;
+      }
+      .Cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        .CardImoveisHome {
+          max-width: 320px;
+          margin: 46px 12px;
+          .TopoCardImoveis {
+            height: 175px;
+          }
+        }
+      }
+      .verMais {
+        display: block;
+        padding: 12px 24px;
+        margin: auto;
+        background: #db0423;
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

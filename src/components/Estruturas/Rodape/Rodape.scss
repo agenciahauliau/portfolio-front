@@ -1,0 +1,83 @@
+.Rodape {
+  background: #272727;
+  .container-rodape {
+    display: flex;
+    flex-wrap: wrap;
+    > div {
+      padding: 0 36px;
+      color: #fff;
+      font-weight: 200;
+    }
+    .empresaDireitos {
+      font-size: 14px;
+      > div {
+        margin: 24px 0;
+        ul {
+          li {
+            a {
+              color: #fff;
+            }
+          }
+        }
+      }
+      .logo {
+        img {
+          width: 100%;
+          max-width: 225px;
+          height: auto;
+        }
+      }
+      .redesSociais {
+        ul {
+          display: flex;
+          svg {
+            width: 38px;
+            padding: 6px;
+            margin: 0 12px;
+            fill: #fff;
+          }
+        }
+      }
+    }
+    .linkImoveis,
+    .LinkUteis {
+        width: 50%;
+      padding: 0 48px;
+      > div {
+        margin: 24px 0;
+        ul {
+          li {
+            a {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    .Contato {
+      > div {
+        margin: 24px 0;
+      }
+      .desenvolvido {
+        font-size: 12px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 820px) {
+  .Rodape {
+    .container-rodape {
+      max-width: 1280px;
+      margin: auto;
+      > div {
+        width: calc(100% / 4);
+        padding: 24px;
+      }
+      .linkImoveis,
+      .LinkUteis {
+        width: 25%;
+        padding: 24px 48px;
+      }
+    }
+  }
+}

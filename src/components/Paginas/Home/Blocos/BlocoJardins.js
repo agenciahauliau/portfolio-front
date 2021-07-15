@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
+import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import {MobileDesktop} from '../../Helpers/HelpersFunction'
+import {MobileDesktop} from './../../../Helpers/HelpersFunction'
 
 export const BlocoJardins = () => {
 	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {

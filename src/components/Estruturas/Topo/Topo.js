@@ -57,13 +57,13 @@ class Topo extends React.Component {
               <div className="menu-list-imoveis">
                 <ul>
                   <li onClick={this.remove.bind(this)}>
-                    <Link to="/condominio+jardins">Condomínio Jardins</Link>
+                    <Link to="/condominio+jardins">Horizontais</Link>
                   </li>
                   <li onClick={this.remove.bind(this)}>
-                    <Link to="/imoveis">Imóveis</Link>
+                    <Link to="/imoveis">Apartamentos</Link>
                   </li>
                   <li onClick={this.remove.bind(this)}>
-                    <Link to="/anuncie+seu+imovel">Anuncie</Link>
+                    <Link to="/anuncie+seu+imovel">Casas</Link>
                   </li>
                 </ul>
               </div>
@@ -77,6 +77,9 @@ class Topo extends React.Component {
                   </li>
                   <li onClick={this.remove.bind(this)}>
                     <Link to="/contato">Contato</Link>
+                  </li>
+                  <li onClick={this.remove.bind(this)}>
+                    <Link to="/contato">Anuncie</Link>
                   </li>
                 </ul>
               </div>

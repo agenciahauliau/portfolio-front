@@ -1,29 +1,34 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
+import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import {MobileDesktop} from '../../Helpers/HelpersFunction'
-import { Venda } from '../../../assets/SVG';
+import { MobileDesktop } from './../../../Helpers/HelpersFunction'
+import { Aluguel } from './../../../../assets/SVG';
 
-function BlocoVenda() {
-	const { loading, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
+import './BlocoAluguel.scss';
+
+function BlocoAluguel() {
+	const { loading, data, error } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
 		variables: {
 			input: {
-				tipoNegociacao: { in: 'Venda' },
+				tipoNegociacao: { in: 'Aluguel' },
 			},
-			quantidade: MobileDesktop  ? 3 : 6,
+			quantidade: 3
 		},
 		returnPartialData: true,
 	});
 
 	if (loading) return 'load';
 
-	return (
-		<div className="BlocoVenda">
-			<div className="container">
+	if (data.imoveis.length > 0) {
+
+		console.log(data.imoveis.length)
+
+		return (
+			<div className="BlocoAluguel">
 				<div className="textoBloco">
-					<h2>Imóveis a venda</h2>
-					<p>Conheças nossos imóveis a venda</p>
+					<h2>Imóveis para aluguar</h2>
+					<p>Nosso portfolio de aluguel</p>
 				</div>
 				<div className="Cards">
 					{data.imoveis.map((imovel, i) => (
@@ -34,23 +39,23 @@ function BlocoVenda() {
 								(imovel.qtdeQuarto === 0
 									? ''
 									: imovel.qtdeQuarto === 1
-									? '+com+' + imovel.qtdeQuarto + '+quarto'
-									: '+com+' + imovel.qtdeQuarto + '+quartos') +
+										? '+com+' + imovel.qtdeQuarto + '+quarto'
+										: '+com+' + imovel.qtdeQuarto + '+quartos') +
 								(imovel.qtdeSuites === 0
 									? ''
 									: imovel.qtdeSuites === 1
-									? '+com+' + imovel.qtdeSuites + '+suite'
-									: '+com+' + imovel.qtdeSuites + '+suites') +
+										? '+com+' + imovel.qtdeSuites + '+suite'
+										: '+com+' + imovel.qtdeSuites + '+suites') +
 								(imovel.qtdeBanheiro === 0
 									? ''
 									: imovel.qtdeBanheiro === 1
-									? '+com+' + imovel.qtdeBanheiro + '+banheiro'
-									: '+com+' + imovel.qtdeBanheiro + '+banheiros') +
+										? '+com+' + imovel.qtdeBanheiro + '+banheiro'
+										: '+com+' + imovel.qtdeBanheiro + '+banheiros') +
 								(imovel.qtdeVagas === 0
 									? ''
 									: imovel.qtdeVagas === 1
-									? '+com+' + imovel.qtdeVagas + '+vaga+na+garagem'
-									: '+com+' + imovel.qtdeVagas + '+vagas+na+garagem') +
+										? '+com+' + imovel.qtdeVagas + '+vaga+na+garagem'
+										: '+com+' + imovel.qtdeVagas + '+vagas+na+garagem') +
 								'&tipoNegociacao=' +
 								imovel.tipoNegociacao +
 								'&id=' +
@@ -66,26 +71,26 @@ function BlocoVenda() {
 											(imovel.qtdeQuarto === 0
 												? ''
 												: imovel.qtdeQuarto === 1
-												? ', com ' + imovel.qtdeQuarto + ' quarto'
-												: ', com ' + imovel.qtdeQuarto + ' quartos') +
+													? ', com ' + imovel.qtdeQuarto + ' quarto'
+													: ', com ' + imovel.qtdeQuarto + ' quartos') +
 											(imovel.qtdeSuites === 0
 												? ''
 												: imovel.qtdeSuites === 1
-												? ', sendo ' + imovel.qtdeSuites + ' suíte'
-												: ', sendo ' + imovel.qtdeSuites + ' suítes') +
+													? ', sendo ' + imovel.qtdeSuites + ' suíte'
+													: ', sendo ' + imovel.qtdeSuites + ' suítes') +
 											(imovel.qtdeBanheiro === 0
 												? ''
 												: imovel.qtdeBanheiro === 1
-												? ', com ' + imovel.qtdeBanheiro + ' banheiro'
-												: ', com ' + imovel.qtdeBanheiro + ' banheiros') +
+													? ', com ' + imovel.qtdeBanheiro + ' banheiro'
+													: ', com ' + imovel.qtdeBanheiro + ' banheiros') +
 											(imovel.qtdeVagas === 0
 												? ''
 												: imovel.qtdeVagas === 1
-												? ' e ' + imovel.qtdeVagas + ' vaga na garagem'
-												: ' e ' + imovel.qtdeVagas + ' vagas na garagem')
+													? ' e ' + imovel.qtdeVagas + ' vaga na garagem'
+													: ' e ' + imovel.qtdeVagas + ' vagas na garagem')
 										}
 									/>
-									{Venda}
+									{Aluguel}
 								</div>
 
 								<div className="InfoCardImoveis">
@@ -109,8 +114,10 @@ function BlocoVenda() {
 					</a>
 				</button>
 			</div>
-		</div>
-	);
+		)
+	} else {
+		return (<p></p>)
+	}
 }
 
-export default BlocoVenda;
+export default BlocoAluguel;

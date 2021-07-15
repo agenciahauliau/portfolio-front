@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_LISTAR_IMOVEIS } from '../../graphql/graphql';
+import { Link } from 'react-router-dom';
 import { capitalize, queryURL } from '../../Helpers/HelpersFunction';
 import { Fechar, Pesquisa } from '../../../assets/SVG';
 import QuantidadeFiltro from './QuantidadeFiltro'
@@ -8,8 +9,6 @@ import SelectFiltro from './Inputs/SelectFiltro';
 import RangeFiltro from './Inputs/RangeFiltro';
 
 import './BarraPesquisa.scss';
-import ButtonLink from './Inputs/ButtonLink';
-import { Link } from 'react-router-dom';
 
 export default function BarraPesquisa() {
 
@@ -32,9 +31,7 @@ export default function BarraPesquisa() {
 
 		setStateURL(queryURL.join('&'))
 	}
-
-	console.log(stateURL)
-
+	
 	const { loading, data } = useQuery(GQL_LISTAR_IMOVEIS, {
 		returnPartialData: true,
 	});
@@ -92,11 +89,7 @@ export default function BarraPesquisa() {
 								<form className="formFiltro">
 									<SelectFiltro nome={"tipoNegociacao"} placeholder={"Você quer"} className={"tipoSelect"} itens={data.imoveis.map((x) => capitalize(x.tipoNegociacao))} queryURL={queryURL().tipoNegociacao} FormURL={FormURL.bind()} />
 									<div className="buttonFiltro">
-										<Link
-											to={{
-												search: `${stateURL}&pagina=1`
-											}}
-										>
+										<Link to={{search: `${stateURL}&pagina=1`}}>
 											{Pesquisa}
 										</Link>
 									</div>
@@ -127,13 +120,13 @@ export default function BarraPesquisa() {
 										<p className="textoMenuMobile">
 											Qual o valor do imóvel que está procurando?
 										</p>
-										<RangeFiltro nome={"valorImovel"} valores={data.imoveis.map((x) => x.valorImovel)} distancia={1000} queryURL={queryURL().valorImovel} />
+										<RangeFiltro nome={"valorImovel"} valores={data.imoveis.map((x) => x.valorImovel)} distancia={1000} queryURL={queryURL().valorImovel} style={"currency"}/>
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Qual o tamanho do imóvel que está procurando?
 										</p>
-										<RangeFiltro nome={"areaTotal"} valores={data.imoveis.map((x) => x.areaTotal)} distancia={100} queryURL={queryURL().areaTotal} />
+										<RangeFiltro nome={"areaTotal"} valores={data.imoveis.map((x) => x.areaTotal)} distancia={100} queryURL={queryURL().areaTotal} style={"unit"} />
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">

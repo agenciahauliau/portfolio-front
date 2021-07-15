@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import BarraPesquisa from "../../Estruturas/BarraPesquisa/BarraPesquisa";
 import Video from "./Casas_Jardins.webm";
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from "../../graphql/graphql"
-import { useLocation } from 'react-router-dom';
 import { MobileDesktop } from "../../Helpers/HelpersFunction";
 
 import "./Jardins.scss";

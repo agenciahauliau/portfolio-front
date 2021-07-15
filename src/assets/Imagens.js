@@ -31,3 +31,11 @@ export const CondominiosFGRlogo = {
     "height": 175
 }
 
+export const Casal = {
+    "imagem" : require("./Imagens/Casal.jpg"),
+    "alt": "Casal tomando vinho em um restaurante no bairro em que vive",
+    "title": "Casal tomando vinho em um restaurante no bairro em que vive",
+    "width": 2000,
+    "height": 1333
+}
+

@@ -155,7 +155,19 @@
 
 .pesquisa {
   padding: 24px 12px;
-  background: #272727;
+  background: linear-gradient(
+      -35deg,
+      rgba(27, 27, 27, 0.6),
+      rgba(39, 39, 39, 0.7333333333333333)
+    ),
+    url(./../../../assets/Imagens/linhas.svg) no-repeat fixed top/100% auto,
+    linear-gradient(
+      -35deg,
+      rgba(39, 39, 39, 0.9882352941176471) 6%,
+      rgba(27, 27, 27, 0.9882352941176471) 37%,
+      rgba(27, 27, 27, 0.9882352941176471) 57%,
+      rgba(39, 39, 39, 0.9882352941176471)
+    );
   input.chaveFiltro {
     display: none;
 
@@ -440,14 +452,13 @@
 @media screen and (min-width: 820px) {
   .pesquisa {
     padding: 24px 12px;
-    background: #272727;
-
     .container {
       margin: auto;
     }
 
     input.chaveFiltro {
       & ~ .divChaveFiltro {
+        display: none;
         label.chaveFiltro {
           display: none;
         }
@@ -457,9 +468,11 @@
     .form {
       width: 100%;
       display: flex;
-      padding: 0;
+      padding: 12px;
       position: relative;
       z-index: 10;
+      background: #27272799;
+      box-shadow: 0 0px 8px -5px #ffffff10, 0 0 3px #ffffff09 inset;
       .topoMFiltros {
         display: none;
       }
@@ -467,7 +480,8 @@
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        margin-top: 24px;
+        padding: 6px;
+        margin-top: 0;
         .inputFiltros {
           width: 100%;
           height: auto;
@@ -596,7 +610,13 @@
           height: 100%;
           top: 0;
           left: 0;
-          background: #27272755;
+          background: linear-gradient(
+            -35deg,#27272799,#393939bb
+          ),
+          url(./../../../assets/Imagens/linhas.svg) no-repeat fixed top/100% auto,
+          linear-gradient(
+            -35deg,#39393999 6%, #272727dd 37%,#272727bb 57%,#39393999
+          );
           .overlay {
             display: flex;
             flex-wrap: wrap;
@@ -608,7 +628,8 @@
             left: 50%;
             z-index: 100;
             transform: translate(-50%, -50%);
-            background: #272727;
+            background: #272727dd;
+            box-shadow: 0 0px 20px -5px #ffffff10, 0 0 5px #ffffff09 inset;
             .areaInput {
               width: 300px;
               padding: 12px;

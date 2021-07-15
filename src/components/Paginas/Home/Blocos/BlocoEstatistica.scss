@@ -1,0 +1,62 @@
+.Home {
+  .BlocoEstatistica {
+    padding: 24px 36px;
+    color: #fff;
+    .conteudo {
+      .caract {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        
+        .item {
+          display: flex;
+          align-items: center;
+          margin: 8px 0;
+          .imagem {
+            svg {
+              width: 65px;
+              fill: #fff;
+            }
+          }
+          .texto {
+            padding: 24px;
+            p {
+              margin-top: 12px;
+              font-weight: 200;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 820px) {
+  .Home {
+    .BlocoEstatistica {
+      padding: 48px 24px;
+      .container {
+        display: flex;
+        margin: auto;
+      }
+      .conteudo {
+        .caract {
+          display: flex;
+          margin: 34px 0;
+          > div {
+            display: flex;
+            .item {
+              width: calc(100% / 3);
+              align-items: center;
+              padding: 12px;
+              .texto {
+                p {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+.Home {
+  .BlocoBairros {
+    padding: 48px 0;
+    .listaBairros {
+      .imagemBloco {
+        position: relative;
+        .imagem {
+          height: 225px;
+          padding: 24px;
+          margin-top: -96px;
+        }
+      }
+      .textoBloco {
+        padding: 0 24px;
+        .texto {
+          padding: 6px;
+          color: #fff;
+         p {
+              margin-top: 12px;
+              margin-bottom: 24px;
+          }
+          .listaBairro {
+            li {
+              margin: 6px 0;
+              vertical-align: middle;
+              font-weight: 200;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 820px) {
+  .Home {
+    .BlocoBairros {
+      padding: 96px 0;
+      .container {
+        margin: auto;
+      }
+      .listaBairros {
+        display: flex;
+        .imagemBloco {
+          width: 45%;
+          position: relative;
+          .imagem {
+            width: calc((100vw - (100% * 2)) / 2 + 100%);
+            height: 528px;
+            position: absolute;
+            margin-top: -144px;
+            right: 0;
+          }
+        }
+        .textoBloco {
+          width: 55%;
+          padding: 0 48px;
+          .texto {
+            padding: 24px;
+           p {
+                margin-bottom: 48px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

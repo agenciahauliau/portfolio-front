@@ -1,0 +1,67 @@
+.Home {
+  .infoImo {
+    padding: 48px 24px;
+    color: #fff;
+    .conteudo {
+      .caract {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        .item {
+          display: flex;
+          margin: 8px 0;
+          svg {
+            width: 65px;
+            fill: #fff;
+          }
+          p {
+            font-weight: 200;
+            padding: 24px 12px 10px;
+          }
+          &:nth-child(2n) {
+            flex-direction: row-reverse;
+            p {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 820px) {
+  .Home {
+    .infoImo {
+      .container {
+        display: flex;
+        margin: auto;
+      }
+      .conteudo {
+        .caract {
+          display: flex;
+          margin: 34px 0;
+          > div {
+            width: 50%;
+            display: flex;
+            .item {
+              width: 50%;
+              flex-direction: column;
+              align-items: center;
+              padding: 12px;
+              p {
+                  font-size: 16px;
+                text-align: center;
+              }
+              &:nth-child(2n) {
+                flex-direction: column;
+                p {
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
