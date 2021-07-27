@@ -10,12 +10,14 @@ export default function Rodape() {
         <div className="Rodape">
             <div className="container-rodape">
                 <div className="empresaDireitos">
-                    <div className="logo"><Link><img src={LogoPortfolio.imagem.default} alt={LogoPortfolio.alt} title={LogoPortfolio.title} /></Link></div>
+                    <div className="logo"><Link
+                        to="/"
+                    ><img src={LogoPortfolio.imagem.default} alt={LogoPortfolio.alt} title={LogoPortfolio.title} /></Link></div>
                     <div className="redesSociais">
                         <ul>
-                            <li><Link>{Facebook}</Link></li>
-                            <li><Link>{Instagram}</Link></li>
-                            <li><Link>{WhatsApp}</Link></li>
+                            <li><a href="https://www.facebook.com/portfolioimb" aria-label="Facebook Portfólio Imóveis" target="_blank" rel="nofollow, noopener, noreferrer">{Facebook}</a></li>
+                            <li><a href="https://www.instagram.com/portfolioimb" aria-label="Facebook Portfólio Imóveis" target="_blank" rel="nofollow, noopener, noreferrer">{Instagram}</a></li>
+                            <li><a href="https://api.whatsapp.com/send?phone=+556240035444" aria-label="WhatsApp Portfólio Imóveis" target="_blank" rel="nofollow, noopener, noreferrer">{WhatsApp}</a></li>
                         </ul>
                     </div>
                     <div className="direitos">Todos direitos e responsabilidade publicados no site, correspondem a Portfolio Imóveis</div>
@@ -23,27 +25,36 @@ export default function Rodape() {
                 <div className="linkImoveis">
                     <div className="categoria">
                         <ul>
-                            <li><Link>Aluguel</Link></li>
-                            <li><Link>Lançamento</Link></li>
-                            <li><Link>Venda</Link></li>
+                            <li><Link to="/imoveis?tipoNegociacao=Aluguel&pagina=1">Aluguel</Link></li>
+                            <li><Link to="/imoveis?tipoNegociacao=Lançamento&pagina=1">Lançamento</Link></li>
+                            <li><Link to="/imoveis?tipoNegociacao=Venda&pagina=1">Revenda</Link></li>
                         </ul>
                     </div>
                     <div className="tipo">
                         <ul>
-                            <li><Link>Horizontais</Link></li>
-                            <li><Link>Apartamento</Link></li>
-                            <li><Link>Casas</Link></li>
+                            <li><Link to="/imoveis?categoriaImovel=Casa em Condomínio,Lote+em Condomínio&tipoNegociacao=Venda&pagina=1">Condomínios Horizontais</Link></li>
+                            <li><Link to="/imoveis?categoriaImovel=Apartamento Padrão,Cobertura&tipoNegociacao=Venda&pagina=1">Apartamentos</Link></li>
+                            <li><Link to="/imoveis?categoriaImovel=Casa Residencial,Casa em Condomínio&tipoNegociacao=Venda&pagina=1">Casas</Link></li>
                         </ul>
                     </div>
                 </div>
                 <div className="LinkUteis">
                     <div className="links">
                         <ul>
-                            <li><Link>Sobre</Link></li>
-                            <li><Link>Anuncie</Link></li>
-                            <li><Link>Blog</Link></li>
-                            <li><Link>Parceiro</Link></li>
-                            <li><Link>Contato</Link></li>
+                            <li><Link to="/sobre+nos">Sobre</Link></li>
+                            <li><Link to="/anuncie+seu+imovel">Anuncie</Link></li>
+                            <li><Link to="/artigos">Blog</Link></li>
+                            <li><Link to="/contato">Contato</Link></li>
+                            <li><Link to="/condominio+jardins">Condomínio Jardins</Link></li>
+                        </ul>
+                    </div>
+                    <div className="parceiro">
+                        <ul>
+                            <li><Link to="/seja+um+parceiro">Parceiro</Link></li>
+                            <li><a href="http://crm.simbo.com.br/login/auth;jsessionid=EE27F505178143B330F71D48748E0AA7"
+                            aria-label="Área do corretor"
+                            rel="noopener noreferrer"
+                            target="_blank">Área do Corretor</a></li>
                         </ul>
                     </div>
                 </div>
@@ -52,7 +63,7 @@ export default function Rodape() {
                         <p>Av Dep. Jamel Cecílio, nº 2.690, Loja 21, Metropolitan Mall, Jardim Goiás, Goiânia - GO CEP 74.810-100</p>
                     </div>
                     <div className="telefone">
-                        <p>(62) 0000-0000</p>
+                        <p>(62) 3070-0306</p>
                     </div>
                     <div className="desenvolvido">Desenvolvido pela Agência Haul Iau</div>
                 </div>

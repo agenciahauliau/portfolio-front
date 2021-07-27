@@ -57,13 +57,13 @@ class Topo extends React.Component {
               <div className="menu-list-imoveis">
                 <ul>
                   <li onClick={this.remove.bind(this)}>
-                    <Link to="/condominio+jardins">Horizontais</Link>
+                    <Link to="/imoveis?categoriaImovel=Casa em Condomínio,Lote+em Condomínio&tipoNegociacao=Revenda&pagina=1">Condomínios Horizontais</Link>
                   </li>
                   <li onClick={this.remove.bind(this)}>
-                    <Link to="/imoveis">Apartamentos</Link>
+                  <Link to="/imoveis?categoriaImovel=Apartamento Padrão,Cobertura&tipoNegociacao=Revenda&pagina=1">Apartamentos</Link>
                   </li>
                   <li onClick={this.remove.bind(this)}>
-                    <Link to="/anuncie+seu+imovel">Casas</Link>
+                  <Link to="/imoveis?categoriaImovel=Casa Residencial,Casa em Condomínio&tipoNegociacao=Revenda&pagina=1">Casas</Link>
                   </li>
                 </ul>
               </div>
@@ -76,10 +76,10 @@ class Topo extends React.Component {
                     <Link to="/sobre+nos">Sobre</Link>
                   </li>
                   <li onClick={this.remove.bind(this)}>
-                    <Link to="/contato">Contato</Link>
+                    <Link to="/anuncie+seu+imovel">Anuncie</Link>
                   </li>
                   <li onClick={this.remove.bind(this)}>
-                    <Link to="/contato">Anuncie</Link>
+                    <Link to="/contato">Contato</Link>
                   </li>
                 </ul>
               </div>
@@ -119,7 +119,7 @@ class Topo extends React.Component {
               </div>
               <div className="menu-list-endereco">
                 <ul>
-                  <li>(62) 9999-9999</li>
+                  <li>(62) 3070-0306</li>
                   <li>
                     Av Dep. Jamel Cecílio, nº 2.690, Loja 21, Metropolitan Mall,
                     Jardim Goiás, Goiânia-GO CEP 74.810-100

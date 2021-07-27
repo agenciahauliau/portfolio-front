@@ -30,11 +30,11 @@ function BlocoVenda() {
 						<p>Conheça nossos portfolio de imóveis a venda</p>
 					</div>
 					<div className="Cards">
-						{data.imoveis.map((imovel, i) => (
+						{data.imoveis.map((imovel, index) => (
 							<Link
 								to={
 									'/imoveis/imovel?titulo=' +
-									imovel.categoriaImovel.replaceAll(' ', '+') +
+									imovel.categoriaImovel +
 									(imovel.qtdeQuarto === 0
 										? ''
 										: imovel.qtdeQuarto === 1
@@ -61,7 +61,7 @@ function BlocoVenda() {
 									imovel._id
 								}
 							>
-								<div key={i} className="CardImoveisHome">
+								<div key={index} className="CardImoveisHome">
 									<div className="TopoCardImoveis">
 										<img
 											src={imovel.imagemPrincipal}
@@ -108,9 +108,9 @@ function BlocoVenda() {
 						))}
 					</div>
 					<button className="verMais">
-						<a href="/imoveis?tipoNegociacao=Venda" title="Imóveis a venda">
+						<Link to="/imoveis?tipoNegociacao=Venda&pagina=1" >
 							Mais Imóveis
-						</a>
+						</Link>
 					</button>
 				</div>
 			</div>

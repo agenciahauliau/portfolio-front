@@ -42,8 +42,7 @@ function BlocoBairros() {
 							<p>Temos opções de moradia em todos os bairros de Goiânia, que tal dar uma olhada agora.</p>
 							<ul className="listaBairro">
 								{stateBairros.map((el) => (
-
-									<Link to={'/imoveis?tipoNegociacao=Venda&bairro=' + el[0]}>
+									<Link to={'/imoveis?tipoNegociacao=Venda&bairro=' + el[0] + '&pagina=1'} >
 										<li>{el[0]}</li>
 									</Link>
 								))}

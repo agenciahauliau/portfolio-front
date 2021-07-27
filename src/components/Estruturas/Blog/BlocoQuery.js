@@ -34,7 +34,7 @@ function BlocoQuery() {
                         <ul>
                             <li>
                                 <a
-                                    href="https://www.facebook.com/sharer/sharer.php?u="
+                                    href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}/post?id=${post._id}`}
                                     aria-label="Abrir Facebook Portfolio Imóveis"
                                     rel="noopener noreferrer nofollow"
                                     target="_blank"
@@ -44,9 +44,9 @@ function BlocoQuery() {
                             </li>
                             <li>
                                 <a
-                                    href="https://twitter.com/intent/tweet?url=+url+&text=+titulo"
+                                    href={`https://twitter.com/intent/tweet?url=${window.location.href}/post?id=${post._id}&text=${post.titulo}&hashtags=${post.categoria}`}
                                     aria-label="Abrir Twitter Portfolio Imóveis"
-                                    rel="noopener noreferrer nofollow"
+                                    rel="noopener noreferrer nofollow me"
                                     target="_blank"
                                 >
                                     {Twitter}
@@ -54,7 +54,7 @@ function BlocoQuery() {
                             </li>
                             <li>
                                 <a
-                                    href="whatsapp://send?text=https://dribbble.com/shots/14431436-Startup-Blog-Posts"
+                                    href={`whatsapp://send?text=${post.titulo}+-+${window.location.href}/post?id=${post._id}`}
                                     aria-label="Abrir Twitter Portfolio Imóveis"
                                     rel="noopener noreferrer nofollow"
                                     target="_blank"

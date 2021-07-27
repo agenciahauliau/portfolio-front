@@ -31,7 +31,7 @@ const Anuncie = (props) => {
                 </div>
                 <div>
                   <p>Tem alguma dúvida? Fale com a gente.</p>
-                  <p>(62) 0000-0000</p>
+                  <p>(62) 3070-0306</p>
                 </div>
               </div>
             </div>
@@ -40,9 +40,9 @@ const Anuncie = (props) => {
               <input type="text" placeholder="Telefone / Whatsapp" />
               <input type="text" placeholder="E-mail" />
 
-              <label htmlFor="tipoNegociacao">Venda ou aluguel?</label>
+              <label htmlFor="tipoNegociacao">Revenda ou aluguel?</label>
               <select name="tipoNegociacao" id="tipoNegociacao">
-                <option value="Venda">Venda</option>
+                <option value="Venda">Revenda</option>
                 <option value="Aluguel">Aluguel</option>
               </select>
 
@@ -59,7 +59,7 @@ const Anuncie = (props) => {
                 <option value="Lote urbano">Lote urbano</option>
                 <option value="Casa em Condomínio">Casa em Condomínio</option>
                 <option value="Lote em Condomínio">Lote em Condomínio</option>
-                <option value="Venda">Venda</option>
+                <option value="Venda">Revenda</option>
                 <option value="Aluguel">Aluguel</option>
               </select>
 

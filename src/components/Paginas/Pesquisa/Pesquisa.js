@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,7 @@ import BarraPesquisa from '../../Estruturas/BarraPesquisa/BarraPesquisa';
 import FGRBanner from '../../Estruturas/FGRBanner/FGRBanner';
 import BarraAjuda from '../../Estruturas/BarraAjuda/BarraAjuda';
 import Newsletter from '../../Estruturas/Newsletter/Newsletter';
+import { MarcaDaAgua, MarcaDaAguaPequena } from '../../../assets/Imagens';
 
 //import SCSS
 import './Pesquisa.scss';
@@ -31,64 +32,49 @@ function Pesquisa() {
 	if (loading) return <p></p>;
 	if (error) return <p></p>;
 
+
 	const imoveisPP = data.imoveis.slice(pagesVisited, pagesVisited + usersPerPage).map((imovel, index) => {
+
+		const tituloImovel = imovel.categoriaImovel +
+			(imovel.qtdeQuarto === 0
+				? ''
+				: imovel.qtdeQuarto === 1
+					? ', com ' + imovel.qtdeQuarto + ' quarto'
+					: ', com ' + imovel.qtdeQuarto + ' quartos') +
+			(imovel.qtdeSuites === 0
+				? ''
+				: imovel.qtdeSuites === 1
+					? ', sendo ' + imovel.qtdeSuites + ' suíte'
+					: ', sendo ' + imovel.qtdeSuites + ' suítes') +
+			(imovel.qtdeBanheiro === 0
+				? ''
+				: imovel.qtdeBanheiro === 1
+					? ', com ' + imovel.qtdeBanheiro + ' banheiro'
+					: ', com ' + imovel.qtdeBanheiro + ' banheiros') +
+			(imovel.qtdeVagas === 0
+				? ''
+				: imovel.qtdeVagas === 1
+					? ' e ' + imovel.qtdeVagas + ' vaga na garagem'
+					: ' e ' + imovel.qtdeVagas + ' vagas na garagem');
+
 		return (
 			<div key={index} className="CardImoveis">
 				<div className="TopoCardImoveis">
 					<img
-						src={imovel.imagemPrincipal}
-						alt={
-							imovel.categoriaImovel +
-							(imovel.qtdeQuarto === 0
-								? ''
-								: imovel.qtdeQuarto === 1
-									? ', com ' + imovel.qtdeQuarto + ' quarto'
-									: ', com ' + imovel.qtdeQuarto + ' quartos') +
-							(imovel.qtdeSuites === 0
-								? ''
-								: imovel.qtdeSuites === 1
-									? ', sendo ' + imovel.qtdeSuites + ' suíte'
-									: ', sendo ' + imovel.qtdeSuites + ' suítes') +
-							(imovel.qtdeBanheiro === 0
-								? ''
-								: imovel.qtdeBanheiro === 1
-									? ', com ' + imovel.qtdeBanheiro + ' banheiro'
-									: ', com ' + imovel.qtdeBanheiro + ' banheiros') +
-							(imovel.qtdeVagas === 0
-								? ''
-								: imovel.qtdeVagas === 1
-									? ' e ' + imovel.qtdeVagas + ' vaga na garagem'
-									: ' e ' + imovel.qtdeVagas + ' vagas na garagem')
-						}
+						onContextMenu={(e) => { e.preventDefault() }}
+						src={MarcaDaAguaPequena.imagem.default}
+						style={{ backgroundImage: `url("${imovel.imagemPrincipal}")`, backgroundSize: 'cover' }}
+						alt={tituloImovel}
 					/>
 					<div className="TipoImovel">
-						<p>{imovel.categoriaImovel}</p>
+						
 					</div>
 				</div>
 				<Link
 					to={
 						'/imoveis/imovel?titulo=' +
-						imovel.categoriaImovel.replaceAll(' ', '+') +
-						(imovel.qtdeQuarto === 0
-							? ''
-							: imovel.qtdeQuarto === 1
-								? '+com+' + imovel.qtdeQuarto + '+quarto'
-								: '+com+' + imovel.qtdeQuarto + '+quartos') +
-						(imovel.qtdeSuites === 0
-							? ''
-							: imovel.qtdeSuites === 1
-								? '+com+' + imovel.qtdeSuites + '+suite'
-								: '+com+' + imovel.qtdeSuites + '+suites') +
-						(imovel.qtdeBanheiro === 0
-							? ''
-							: imovel.qtdeBanheiro === 1
-								? '+com+' + imovel.qtdeBanheiro + '+banheiro'
-								: '+com+' + imovel.qtdeBanheiro + '+banheiros') +
-						(imovel.qtdeVagas === 0
-							? ''
-							: imovel.qtdeVagas === 1
-								? '+com+' + imovel.qtdeVagas + '+vaga+na+garagem'
-								: '+com+' + imovel.qtdeVagas + '+vagas+na+garagem') +
+						imovel.categoriaImovel +
+						tituloImovel +
 						'&tipoNegociacao=' +
 						imovel.tipoNegociacao +
 						'&id=' +
@@ -110,13 +96,18 @@ function Pesquisa() {
 								{Garagem}
 							</div>
 						</div>
-						<div className="PrecoImoveis">
-							<h3>
-								{imovel.valorImovel.toLocaleString('pt-br', {
-									style: 'currency',
-									currency: 'BRL',
-								})}
-							</h3>
+						<div className="PrecoCat">
+							<div className="PrecoImoveis">
+								<h4>
+									{imovel.valorImovel.toLocaleString('pt-br', {
+										style: 'currency',
+										currency: 'BRL',
+									})}
+								</h4>
+							</div>
+							<div className="CategoriaImoveis">
+								<p>{imovel.categoriaImovel}</p>
+							</div>
 						</div>
 						<div className="EnderecoImoveis">
 							<p>
@@ -135,7 +126,7 @@ function Pesquisa() {
 		setPageNumber(selected);
 
 		const url = new URL(window.location)
-		url.searchParams.set('pagina', selected+1);
+		url.searchParams.set('pagina', selected + 1);
 		window.history.pushState({}, '', url)
 	};
 

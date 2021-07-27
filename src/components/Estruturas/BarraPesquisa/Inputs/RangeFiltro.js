@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Range } from 'rc-slider';
 
+import './RangeFiltro.scss';
 export default class RangeFiltro extends Component {
   constructor(props) {
     super(props);
@@ -35,22 +36,33 @@ export default class RangeFiltro extends Component {
       valores: value,
       valoresInput: value
     });
+
+    const formFiltro = document.querySelector('.LinkFiltro')
+    let rangeFiltro = document.querySelector(`.LinkFiltro input[name="${this.props.nome}"]`)
+
+    if (rangeFiltro) {
+      rangeFiltro.value = value
+    } else {
+      let inputCriado = document.createElement('input')
+      inputCriado.setAttribute('type', 'hidden')
+      inputCriado.setAttribute('name', this.props.nome)
+      inputCriado.setAttribute('value', value)
+      formFiltro.appendChild(inputCriado)
+    }
   };
 
   unidade = () => {
-    if(this.props.style === "currency"){
-      return {style: "currency", currency: "BRL", notation: "compact", maximumSignificantDigits: 3}
-    }else if(this.props.style === "unit"){
-      return {style: "unit", unit: "meter", notation: "compact", maximumSignificantDigits: 3}
-    }else{
-      return {notation: "compact", maximumSignificantDigits: 3}
+    if (this.props.style === "currency") {
+      return { style: "currency", currency: "BRL", notation: "compact", maximumSignificantDigits: 3 }
+    } else if (this.props.style === "unit") {
+      return { style: "unit", unit: "meter", notation: "compact", maximumSignificantDigits: 3 }
+    } else {
+      return { notation: "compact", maximumSignificantDigits: 3 }
     }
   }
 
   render() {
-
     const Compact = new Intl.NumberFormat("pt-br", this.unidade());
-
     return (
       <div className="Range">
         <div className="valoresRange">
@@ -66,8 +78,6 @@ export default class RangeFiltro extends Component {
           allowCross={false}
           onChange={this.handleChange}
         />
-        <input type="hidden" name={this.state.nome} value={this.state.valoresInput[0]} />
-        <input type="hidden" name={this.state.nome} value={this.state.valoresInput[1]} />
       </div>
     )
   }

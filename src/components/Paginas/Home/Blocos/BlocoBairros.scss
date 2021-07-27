@@ -15,15 +15,16 @@
         .texto {
           padding: 6px;
           color: #fff;
-         p {
-              margin-top: 12px;
-              margin-bottom: 24px;
+          p {
+            font-weight: 200;
+            margin-top: 12px;
+            margin-bottom: 24px;
           }
           .listaBairro {
             li {
               margin: 6px 0;
               vertical-align: middle;
-              font-weight: 200;
+
               display: -webkit-box;
               -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
@@ -39,7 +40,7 @@
 @media screen and (min-width: 820px) {
   .Home {
     .BlocoBairros {
-      padding: 96px 0;
+      padding: 72px 0;
       .container {
         margin: auto;
       }
@@ -59,10 +60,11 @@
         .textoBloco {
           width: 55%;
           padding: 0 48px;
+          margin: -24px;
           .texto {
             padding: 24px;
-           p {
-                margin-bottom: 48px;
+            p {
+              margin-bottom: 48px;
             }
           }
         }

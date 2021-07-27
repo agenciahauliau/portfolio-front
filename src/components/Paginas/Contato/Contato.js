@@ -98,7 +98,7 @@ function Contato() {
 								<p>
 									Av Dep. Jamel Cecílio, nº 2.690, Loja 21, Metropolitan Mall, Jardim Goiás, Goiânia - GO CEP 74.810-100
 								</p>
-								<p>(62) 0000-0000</p>
+								<p>(62) 3070-0306</p>
 							</div>
 						</div>
 						<form>

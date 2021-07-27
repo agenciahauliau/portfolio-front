@@ -7,6 +7,7 @@ import BlocoAluguel from './Blocos/BlocoAluguel'
 import BlocoBairros from './Blocos/BlocoBairros'
 import BlocoLancamento from './Blocos/BlocoLancamento'
 import BlocoEstatistica from './Blocos/BlocoEstatistica';
+import BlocoCovid from './Blocos/BlocoCovid';
 
 import './Home.scss';
 
@@ -20,6 +21,7 @@ export default function Home() {
 			<BlocoVenda />
 			<BlocoEstatistica />
 			<BlocoAluguel />
+			<BlocoCovid />
 			<div className="linhasVerticais">
 				<div className="linhas">
 					<div className="linha"></div>

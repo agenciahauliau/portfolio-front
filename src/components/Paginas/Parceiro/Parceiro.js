@@ -15,7 +15,7 @@ const Parceiro = () => {
         <div className="formularioCorretor">
           <form>
             <div className="texto">
-              <h1>Seja exclusivo junto com a Portfolio</h1>
+              <h1>Seja um profissional exclusivo Portfolio</h1>
               <p>
                 Quer ser mais um especialista do mercado imobiliário? Mande seus
                 dados agora. Estamos em busca de novos parceiros e
@@ -28,7 +28,7 @@ const Parceiro = () => {
               </p>
               <div>
                 <p>Tem alguma dúvida? Fale com a gente.</p>
-                <p>(62) 0000-0000</p>
+                <p>(62) 3070-0306</p>
               </div>
             </div>
             <input type="text" placeholder="Nome completo" />

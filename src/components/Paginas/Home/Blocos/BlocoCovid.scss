@@ -1,0 +1,49 @@
+.Home {
+  .BlocoCovid {
+    padding: 48px 24px;
+    color: #fff;
+    .conteudo {
+      .titulo {
+        margin-bottom: 24px;
+      }
+      .informacoes {
+        font-weight: 200;
+        > * {
+          margin: 10px 0;
+        }
+        ul {
+          li {
+            margin: 12px 0;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 820px) {
+  .Home {
+    .BlocoCovid {
+      .container {
+        margin: auto;
+      }
+      .conteudo {
+        align-items: center;
+        .informacoes {
+          font-size: 14px;
+          > * {
+            margin: 10px 0;
+          }
+          ul {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 24px;
+            li {
+              width: calc(100% / 3);
+              margin: 5px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

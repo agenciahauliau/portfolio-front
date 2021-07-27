@@ -58,15 +58,13 @@
 
     .galeriaImovel {
       .blocoGaleriaImovel {
-        h2 {
-        }
-        .iamgensGaleria {
+        .imagensGaleria {
           display: flex;
           flex-wrap: wrap;
-          .imagens{
+          .imagens {
             width: 150px;
             height: 125px;
-            margin:6px;
+            margin: 6px;
           }
         }
       }
@@ -86,6 +84,24 @@
         .subitens.endereco {
           width: 100%;
           margin-top: 28px;
+        }
+      }
+    }
+
+    .tipologiaImovel {
+      .tipologias {
+        .tipologia {
+          margin: 36px 0;
+          > div {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+          }
+          .tipologiaParcela {
+            h4 {
+              font-weight: 200;
+            }
+          }
         }
       }
     }

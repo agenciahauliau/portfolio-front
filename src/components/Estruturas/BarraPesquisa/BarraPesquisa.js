@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_LISTAR_IMOVEIS } from '../../graphql/graphql';
-import { Link } from 'react-router-dom';
-import { capitalize, queryURL } from '../../Helpers/HelpersFunction';
+import { capitalize, CriaInputURL, queryURL } from '../../Helpers/HelpersFunction';
 import { Fechar, Pesquisa } from '../../../assets/SVG';
 import QuantidadeFiltro from './QuantidadeFiltro'
 import SelectFiltro from './Inputs/SelectFiltro';
@@ -12,51 +11,45 @@ import './BarraPesquisa.scss';
 
 export default function BarraPesquisa() {
 
-
-	const [stateURL, setStateURL] = useState('')
-
-	function FormURL() {
-		const FormsInputs = document.querySelectorAll('.form input');
-
-		let resultadoObjeto = {}
-		for (let input of FormsInputs) {
-			if (input.name != "" && input.value != "") {
-				resultadoObjeto[input.name] += `${input.value},`
-			}
-		}
-		let queryURL = []
-		for (var [key, value] of Object.entries(resultadoObjeto)) {
-			queryURL.push(key + '=' + value.replaceAll('undefined', '').replace(/,\s*$/, ""))
-		}
-
-		setStateURL(queryURL.join('&'))
-	}
-	
 	const { loading, data } = useQuery(GQL_LISTAR_IMOVEIS, {
 		returnPartialData: true,
 	});
 
 	if (loading) return <p>Loading Masterpieces...</p>;
 
-	function fecharFiltro() {
-		document.getElementById("filtro").checked = false;
+	function HTMLOverflow() {
+		document.querySelector('html').classList.add('overflow')
+		document.querySelector('header').style.zIndex = 0
 	}
 
-	const htmlClass = document.querySelector("html").classList
-	function HTMLOverflow() {
-		htmlClass.add("overflow")
+	function fecharFiltro() {
+		document.getElementById('filtro').checked = false;
+		document.querySelector('html').classList.remove('overflow')
+		document.querySelector('header').style.zIndex = 100
 	}
+
 	function fecharSFiltro() {
-		document.getElementById("mFiltro").checked = false;
-		htmlClass.remove("overflow")
+		document.getElementById('mFiltro').checked = false;
+		document.querySelector('html').classList.remove('overflow')
+		document.querySelector('header').style.zIndex = 100
 	}
+
+	function submitForm() {
+		const elements = document.querySelectorAll('.LinkFiltro input');
+		for (let input of elements) {
+			if (!input.value) {
+				input.setAttribute('name', '');
+			}
+		}
+	}
+
 
 	return (
 		<section className="pesquisa">
 			<div className="container">
 				<input type="checkbox" className="chaveFiltro" id="filtro" />
 				<div className="divChaveFiltro">
-					<label className="chaveFiltro" htmlFor="filtro">
+					<label onClick={HTMLOverflow} className="chaveFiltro" htmlFor="filtro">
 						<p>Procurar por:</p>
 					</label>
 				</div>
@@ -69,33 +62,31 @@ export default function BarraPesquisa() {
 						<div className="inputFiltros">
 							<div className="primeirosFiltros">
 								<div className="areaInput">
+									<SelectFiltro mode={"single"} nome={"tipoNegociacao"} placeholder={"Você quer"} className={"PSelect"} itens={data.imoveis.map((x) => capitalize(x.tipoNegociacao))} queryURL={queryURL().tipoNegociacao} />
+								</div>
+								<div className="areaInput">
 									<p className="textoMenuMobile">
 										Escolha agora qual tipo de imóvel que você quer morar
 									</p>
-									<SelectFiltro isMulti={"isMulti"} nome={"categoriaImovel"} placeholder={"Tipo de Imóvel"} className={"primeiroSelect"} itens={data.imoveis.map((x) => capitalize(x.categoriaImovel))} queryURL={queryURL().categoriaImovel} FormURL={FormURL.bind()} />
+									<SelectFiltro mode={"tags"} nome={"categoriaImovel"} placeholder={"Tipo de Imóvel"} className={"PSelect"} itens={data.imoveis.map((x) => capitalize(x.categoriaImovel))} queryURL={queryURL().categoriaImovel} />
 								</div>
 								<div className="areaInput">
 									<p className="textoMenuMobile">
 										Qual cidade de preferência?
 									</p>
-									<SelectFiltro isMulti={"isMulti"} nome={"cidade"} placeholder={"Cidade"} className={"primeiroSelect"} itens={data.imoveis.map((x) => capitalize(x.cidade))} queryURL={queryURL().cidade} FormURL={FormURL.bind()} />
+									<SelectFiltro mode={"tags"} nome={"cidade"} placeholder={"Cidade"} className={"PSelect"} itens={data.imoveis.map((x) => capitalize(x.cidade))} queryURL={queryURL().cidade} />
 								</div>
 								<div className="areaInput">
 									<p className="textoMenuMobile">
 										Qual bairro de preferência?
 									</p>
-									<SelectFiltro isMulti={"isMulti"} nome={"bairro"} placeholder={"Bairro"} className={"primeiroSelect"} itens={data.imoveis.map((x) => capitalize(x.bairro))} queryURL={queryURL().bairro} FormURL={FormURL.bind()} />
+									<SelectFiltro mode={"tags"} nome={"bairro"} placeholder={"Bairro"} className={"PSelect"} itens={data.imoveis.map((x) => capitalize(x.bairro))} queryURL={queryURL().bairro} />
 								</div>
-								<form className="formFiltro">
-									<SelectFiltro nome={"tipoNegociacao"} placeholder={"Você quer"} className={"tipoSelect"} itens={data.imoveis.map((x) => capitalize(x.tipoNegociacao))} queryURL={queryURL().tipoNegociacao} FormURL={FormURL.bind()} />
-									<div className="buttonFiltro">
-										<Link to={{search: `${stateURL}&pagina=1`}}>
-											{Pesquisa}
-										</Link>
-									</div>
-								</form>
 							</div>
-
+							<div className="OQFiltros">
+								<QuantidadeFiltro />
+								<div className="ordemImoveis"></div>
+							</div>
 							<input type="checkbox" className="chaveMFiltro" id="mFiltro" />
 							<div className="divChaveMFiltro" onClick={HTMLOverflow}>
 								<label className="chaveMFiltro" htmlFor="mFiltro" >
@@ -104,23 +95,28 @@ export default function BarraPesquisa() {
 							</div>
 							<div className="segundoFiltro">
 								<div className="overlay">
+									<div className="inputButton">
+										<div className="confirmarSF">
+											<button type="button" onClick={fecharSFiltro}>{Fechar}</button>
+										</div>
+									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Qual o nome do condomínio que está procurando?
 										</p>
-										<SelectFiltro isMulti={"isMulti"} nome={"nomeImovel"} placeholder={"Condomínio"} className={"segundoSelect"} itens={data.imoveis.map((x) => capitalize(x.nomeImovel))} queryURL={queryURL().nomeImovel} FormURL={FormURL.bind()} />
+										<SelectFiltro mode={"tags"} nome={"nomeImovel"} placeholder={"Condomínio"} className={"SSelect"} itens={data.imoveis.map((x) => capitalize(x.nomeImovel))} queryURL={queryURL().nomeImovel} />
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Você está procurando um imóvel em qual etapa?
 										</p>
-										<SelectFiltro isMulti={"isMulti"} nome={"statusImovel"} placeholder={"Status"} className={"segundoSelect"} itens={data.imoveis.map((x) => capitalize(x.statusImovel))} queryURL={queryURL().statusImovel} FormURL={FormURL.bind()} />
+										<SelectFiltro mode={"tags"} nome={"statusImovel"} placeholder={"Status"} className={"SSelect"} itens={data.imoveis.map((x) => capitalize(x.statusImovel))} queryURL={queryURL().statusImovel} />
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
 											Qual o valor do imóvel que está procurando?
 										</p>
-										<RangeFiltro nome={"valorImovel"} valores={data.imoveis.map((x) => x.valorImovel)} distancia={1000} queryURL={queryURL().valorImovel} style={"currency"}/>
+										<RangeFiltro nome={"valorImovel"} valores={data.imoveis.map((x) => x.valorImovel)} distancia={1000} queryURL={queryURL().valorImovel} style={"currency"} />
 									</div>
 									<div className="areaInput">
 										<p className="textoMenuMobile">
@@ -156,21 +152,18 @@ export default function BarraPesquisa() {
 										<p className="textoMenuMobile">
 											Escolha a Construtora que você mais confia
 										</p>
-										<SelectFiltro isMulti={"isMulti"} nome={"nomeConstrutora"} placeholder={"Construtora"} className={"segundoSelect"} itens={data.imoveis.map((x) => capitalize(x.nomeConstrutora))} queryURL={queryURL().nomeConstrutora} FormURL={FormURL.bind()} />
-									</div>
-									<div className="areaInput inputButton">
-										<div className="confirmarSF">
-											<button type="button" onClick={fecharSFiltro}><p>Confirmar</p></button>
-										</div>
+										<SelectFiltro mode={"tags"} nome={"nomeConstrutora"} placeholder={"Construtora"} className={"SSelect"} itens={data.imoveis.map((x) => capitalize(x.nomeConstrutora))} queryURL={queryURL().nomeConstrutora} />
 									</div>
 								</div>
 							</div>
+							<form className="LinkFiltro" onSubmit={submitForm}>
+								<button className="buttonFiltro">
+									{Pesquisa}
+								</button>
+								{CriaInputURL().map((input) => (<input type="hidden" name={input.name} value={input.value} />))}
+							</form>
 						</div>
 					</div>
-				</div>
-				<div className="OQFiltros">
-					<QuantidadeFiltro />
-					<div className="ordemImoveis"></div>
 				</div>
 			</div>
 		</section>

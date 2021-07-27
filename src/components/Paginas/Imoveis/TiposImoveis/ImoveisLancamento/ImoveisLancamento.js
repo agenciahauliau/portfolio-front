@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEL, GQL_CRIAR_LEAD } from '../../../../graphql/graphql';
 import { useLocation } from 'react-router-dom';
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
+import { MarcaDaAgua, MarcaDaAguaPequena } from '../../../../../assets/Imagens';
 
 import './ImoveisLancamento.scss';
 
@@ -22,7 +23,6 @@ const options = {
 	}
 };
 
-
 function ImoveisLancamento() {
 
 	const [createLead] = useMutation(GQL_CRIAR_LEAD)
@@ -33,6 +33,29 @@ function ImoveisLancamento() {
 
 	if (loading) return <p>Loading Masterpieces...</p>;
 	if (error) return <p>Mas Bah</p>;
+
+	const tituloImovel =
+		data.imovel.categoriaImovel +
+		(data.imovel.qtdeQuarto === 0
+			? ''
+			: data.imovel.qtdeQuarto === 1
+				? ', com ' + data.imovel.qtdeQuarto + ' quarto'
+				: ', com ' + data.imovel.qtdeQuarto + ' quartos') +
+		(data.imovel.qtdeSuites === 0
+			? ''
+			: data.imovel.qtdeSuites === 1
+				? ', sendo ' + data.imovel.qtdeSuites + ' suíte'
+				: ', sendo ' + data.imovel.qtdeSuites + ' suítes') +
+		(data.imovel.qtdeBanheiro === 0
+			? ''
+			: data.imovel.qtdeBanheiro === 1
+				? ', com ' + data.imovel.qtdeBanheiro + ' banheiro'
+				: ', com ' + data.imovel.qtdeBanheiro + ' banheiros') +
+		(data.imovel.qtdeVagas === 0
+			? ''
+			: data.imovel.qtdeVagas === 1
+				? ' e ' + data.imovel.qtdeVagas + ' vaga na garagem'
+				: ' e ' + data.imovel.qtdeVagas + ' vagas na garagem');
 
 	function criarLead() {
 		let FNome = document.querySelector("input[name='nome']")?.value
@@ -68,11 +91,21 @@ function ImoveisLancamento() {
 		})
 	}
 
+	function Descricao() {
+		return {
+			__html: data.imovel.descricaoImovel
+		}
+	}
+
 	return (
 		<div className="conteudoImovel ImovelLancamento">
 			<div className="boxImagemImovel">
 				<div className="imagemImovel">
-					<img src={data.imovel.imagemPrincipal} />
+					<img
+						onContextMenu={(e) => { e.preventDefault() }}
+						src={MarcaDaAgua.imagem.default}
+						style={{ backgroundImage: `url("${data.imovel.imagemPrincipal}")`, backgroundSize: 'cover' }}
+						alt={tituloImovel} title={tituloImovel} />
 				</div>
 			</div>
 			<div className="topoLancamentos">
@@ -87,7 +120,7 @@ function ImoveisLancamento() {
 			</div>
 			<div className="descricaoImovel">
 				<h2 className="titulodescricaoImovel">Descrição</h2>
-				<div className="textoDescricaoImovel">{data.imovel.descricaoImovel}</div>
+				<div className="textoDescricaoImovel" dangerouslySetInnerHTML={Descricao()}></div>
 			</div>
 			<div className="informacoesLancamentoImovel">
 				<div className="galeriaImovel">
@@ -100,7 +133,11 @@ function ImoveisLancamento() {
 										{galeria.arquivos.map((arquivo, index) => (
 											<div key={index} className="imagens">
 												<a href={arquivo}>
-													<img src={arquivo} alt={data.imovel.nomeImovel} />
+													<img
+														onContextMenu={(e) => { e.preventDefault() }}
+														src={MarcaDaAguaPequena.imagem.default}
+														style={{ backgroundImage: `url("${arquivo}")`, backgroundSize: 'cover' }}
+														alt={data.imovel.nomeImovel} />
 												</a>
 											</div>
 										))}
@@ -112,7 +149,7 @@ function ImoveisLancamento() {
 					))}
 				</div>
 				<div className="detalhesImoveis">
-					<h2 className="titulocaractsImoveis">Detalhes do Imóvel</h2>
+					<h2 className="titulocaractsImoveis">Detalhes</h2>
 					<div className="itens">
 						{data.imovel.statusImovel && (
 							<p>
@@ -148,28 +185,10 @@ function ImoveisLancamento() {
 								})}
 							</p>
 						)}
-						{data.imovel.valorEntrada !== 0 && (
-							<p>
-								<b>Entrada:</b>
-								{data.imovel.valorEntrada.toLocaleString('pt-br', {
-									style: 'currency',
-									currency: 'BRL',
-								})}
-							</p>
-						)}
 						{data.imovel.valorParcela !== 0 && (
 							<p>
 								<b>Parcela:</b>
 								{data.imovel.valorParcela.toLocaleString('pt-br', {
-									style: 'currency',
-									currency: 'BRL',
-								})}
-							</p>
-						)}
-						{data.imovel.valorIPTU !== 0 && (
-							<p>
-								<b>IPTU:</b>
-								{data.imovel.valorIPTU.toLocaleString('pt-br', {
 									style: 'currency',
 									currency: 'BRL',
 								})}
@@ -196,31 +215,6 @@ function ImoveisLancamento() {
 								{data.imovel.areaConstruida.toLocaleString('pt-br')}
 							</p>
 						)}
-						{data.imovel.andarImovel !== 0 && (
-							<p>
-								<b>Andar:</b> {data.imovel.andarImovel}
-							</p>
-						)}
-						{data.imovel.qtdeQuarto !== 0 && (
-							<p>
-								<b>Quartos:</b> {data.imovel.qtdeQuarto}
-							</p>
-						)}
-						{data.imovel.qtdeBanheiro !== 0 && (
-							<p>
-								<b>Banheiros:</b> {data.imovel.qtdeBanheiro}
-							</p>
-						)}
-						{data.imovel.qtdeSuites !== 0 && (
-							<p>
-								<b>Suítes:</b> {data.imovel.qtdeSuites}
-							</p>
-						)}
-						{data.imovel.qtdeVagas !== 0 && (
-							<p>
-								<b>Vagas na Garagem:</b> {data.imovel.qtdeVagas}
-							</p>
-						)}
 						{data.imovel.nomeImovel && (
 							<p>
 								<b>Nome imóvel / condomínio:</b> {data.nomeImovel}
@@ -240,6 +234,26 @@ function ImoveisLancamento() {
 						</div>
 					</div>
 				</div>
+				<div className="tipologiaImovel">
+					<h2 className="tituloTipologiaImovel">Tipologias</h2>
+					<div className="tipologias">
+						{data.imovel.tipologias.map((tipologia) => (
+							<div className='tipologia'>
+								<div className="tituloTipologia">
+									<h3>{tipologia.suites === tipologia.quartos ? `${tipologia.suites} suítes` : `${tipologia.quartos} quartos${tipologia.suites !== 0 ? `, sendo ${tipologia.suites} suítes` : ''}`} - {new Intl.NumberFormat("pt-br", { style: "unit", unit: "meter" }).format(tipologia.tamanho).replace("m", "m²")} </h3>
+								</div>
+								<div className='tipologiaEntrada'>
+									<h4>A partir de</h4>
+									<h4>{new Intl.NumberFormat("pt-br", { style: "currency", currency: "BRL" }).format(tipologia.valorEntrada)}</h4>
+								</div>
+								<div className='tipologiaParcela'>
+									<h4>A partir de</h4>
+									<h4>{new Intl.NumberFormat("pt-br", { style: "currency", currency: "BRL" }).format(tipologia.valorParcela)}</h4>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
 			</div>
 			<div className="formImovel">
 				<div className="dentroFormImovel">
@@ -252,7 +266,7 @@ function ImoveisLancamento() {
 							<input name="email" type="email" placeholder="E-mail" />
 							<input name="telefone" type="tel" placeholder="Telefone / Whatsapp" />
 							<div className="checkFormImovel">
-							<label>
+								<label>
 									<input name="pcontato" type="radio" value="Telefone" checked /> Telefone
 								</label>
 								<label>

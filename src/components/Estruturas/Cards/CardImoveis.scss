@@ -1,82 +1,92 @@
 .CardImoveis {
-	width: 100%;
-	max-width: 300px;
-	margin: 18px;
-	display: flex;
-	flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  margin: 18px;
+  display: flex;
+  flex-direction: column;
 
-	.TopoCardImoveis {
-		width: 100%;
-		height: 175px;
-		position: relative;
+  .TopoCardImoveis {
+    width: 100%;
+    height: 150px;
+    position: relative;
 
-		> img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+    }
 
-		.TipoImovel {
-			width: 100%;
-			display: flex;
-			justify-content: space-between;
-			padding: 10px 10px 40px;
-			position: absolute;
-			top: 0;
-			background: linear-gradient(0deg, #0000, #000a);
+    .TipoImovel {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 10px 40px;
+      position: absolute;
+      top: 0;
+      background: linear-gradient(0deg, #0000, #000a);
 
-			p {
-				color: #fff;
-				font-size: 10px;
-				font-weight: 400;
-			}
-		}
-	}
+      p {
+        color: #fff;
+        font-size: 10px;
+        font-weight: 400;
+      }
+    }
+  }
 
-	.InfoCardImoveis {
-		.CaractImovel {
-			width: 100%;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin: 12px 0;
-			div {
-				width: 89%;
-				display: flex;
-				justify-content: center;
-				margin: 4px auto;
-				p {
-					font-weight: 800;
-				}
-				svg {
-					height: 28px;
-					margin-left: 8px;
-					fill: #979797;
-				}
-			}
-		}
+  .InfoCardImoveis {
+    .CaractImovel {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 12px 0;
+      div {
+        width: auto;
+        display: flex;
+        justify-content: center;
+        margin: 4px;
+        p {
+          font-weight: 800;
+        }
+        svg {
+          height: 22px;
+          margin-left: 8px;
+          fill: #979797;
+        }
+      }
+    }
 
-		.EnderecoImoveis {
-			min-height: 28px;
-			margin: 12px 0;
-			font-size: 12px;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			display: -webkit-box;
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
-		}
-	}
+    .PrecoCat {
+      display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+      .CategoriaImoveis {
+        font-size: 12px;
+      }
+    }
+
+    .EnderecoImoveis {
+      min-height: 28px;
+      margin: 12px 0;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
 }
 
 .smallCards {
-	font-size: 0.7em;
+  font-size: 0.7em;
 
-	.CardImoveis {
-		max-width: 200px;
+  .CardImoveis {
+    max-width: 200px;
 
-		.TopoCardImoveis {
-			height: 125px;
-		}
-	}
+    .TopoCardImoveis {
+      height: 125px;
+    }
+  }
 }

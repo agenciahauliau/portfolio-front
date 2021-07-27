@@ -22,7 +22,7 @@ export default function BlocoCaptacao() {
 						<div className="segunda">
 							<div className="item">
 								{Chaves}								
-								<p> Consultoria imobiliária durante o processo de venda e aluguel. </p>
+								<p> Consultoria imobiliária durante o processo de revenda e aluguel. </p>
 							</div>
 							<div className="item">
 								{Ponto}								

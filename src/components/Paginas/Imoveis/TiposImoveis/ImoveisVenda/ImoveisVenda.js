@@ -5,6 +5,7 @@ import { QParamsImovel } from '../../../../Helpers/HelpersFunction';
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
 
 import './ImoveisVenda.scss';
+import { MarcaDaAgua } from '../../../../../assets/Imagens';
 
 function ImoveisVenda() {
 
@@ -122,7 +123,11 @@ function ImoveisVenda() {
 			</div>
 			<div className="boxImagemImovel">
 				<div className="imagemImovel">
-					<img src={data.imovel.imagemPrincipal} alt={tituloImovel} alt={tituloImovel} />
+					<img 
+					onContextMenu={(e) =>  {e.preventDefault()}}
+					src={MarcaDaAgua.imagem.default}
+					style={{backgroundImage: `url("${data.imovel.imagemPrincipal}")`, backgroundSize: 'cover'}}
+					alt={tituloImovel} title={tituloImovel} />
 				</div>
 			</div>
 			<div className="descricaoImovel">
@@ -190,7 +195,11 @@ function ImoveisVenda() {
 										{galeria.arquivos.map((arquivo, index) => (
 											<div key={index} className="imagens">
 												<a href={arquivo}>
-													<img src={arquivo} alt={data.imovel.nomeImovel} />
+													<img 
+													onContextMenu={(e) =>  {e.preventDefault()}}
+													src={MarcaDaAgua.imagem.default}
+													style={{backgroundImage: `url("${arquivo}")`, backgroundSize: 'cover'}}
+													alt={data.imovel.nomeImovel} />
 												</a>
 											</div>
 										))}

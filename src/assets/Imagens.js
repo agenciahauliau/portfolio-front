@@ -31,6 +31,22 @@ export const CondominiosFGRlogo = {
     "height": 175
 }
 
+export const MarcaDaAgua = {
+    "imagem" : require("./Imagens/marcaAgua.png"),
+    "alt": "Marca d'água",
+    "title": "Marca d'água",
+    "width": 2000,
+    "height": 2000
+}
+
+export const MarcaDaAguaPequena = {
+    "imagem" : require("./Imagens/marcaAguaPequena.png"),
+    "alt": "Marca d'água",
+    "title": "Marca d'água",
+    "width": 500,
+    "height": 500
+}
+
 export const Casal = {
     "imagem" : require("./Imagens/Casal.jpg"),
     "alt": "Casal tomando vinho em um restaurante no bairro em que vive",

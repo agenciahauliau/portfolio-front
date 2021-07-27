@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, BrowserRouter  } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_POSTS_COM_FILTRO } from '../../graphql/graphql';
 import { Facebook, Twitter, WhatsApp } from '../../../assets/SVG';
 
 function BlogTopo() {
+
+	const location = useLocation();
+	console.log(<BrowserRouter/>);
+
 	const { loading, data } = useQuery(GQL_BUSCAR_POSTS_COM_FILTRO, {
 		variables: {
 			quantidade: 3,
@@ -14,11 +18,12 @@ function BlogTopo() {
 
 	if (loading) return <p>...</p>;
 
+		
+
 	return (
 		<div className="topo">
 			{data.posts.map((post) => (
 				<div className="artigo">
-
 					<div className="imagemTitulo">
 						<div className="imagem">
 							<img src={post.imagemPrincipal} alt={post.titulo} />
@@ -35,7 +40,7 @@ function BlogTopo() {
 									<ul>
 										<li>
 											<a
-												href="https://www.facebook.com/sharer/sharer.php?u="
+												href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}/post?id=${post._id}`}
 												aria-label="Abrir Facebook Portfolio Imóveis"
 												rel="noopener noreferrer nofollow"
 												target="_blank"
@@ -45,9 +50,9 @@ function BlogTopo() {
 										</li>
 										<li>
 											<a
-												href="https://twitter.com/intent/tweet?url=+url+&text=+titulo"
+												href={`https://twitter.com/intent/tweet?url=${window.location.href}/post?id=${post._id}&text=${post.titulo}&hashtags=${post.categoria}`}
 												aria-label="Abrir Twitter Portfolio Imóveis"
-												rel="noopener noreferrer nofollow"
+												rel="noopener noreferrer nofollow me"
 												target="_blank"
 											>
 												{Twitter}
@@ -55,7 +60,7 @@ function BlogTopo() {
 										</li>
 										<li>
 											<a
-												href="whatsapp://send?text=https://dribbble.com/shots/14431436-Startup-Blog-Posts"
+												href={`whatsapp://send?text=${post.titulo}+-+${window.location.href}/post?id=${post._id}`}
 												aria-label="Abrir Twitter Portfolio Imóveis"
 												rel="noopener noreferrer nofollow"
 												target="_blank"

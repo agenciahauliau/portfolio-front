@@ -86,9 +86,7 @@ function Post() {
 
 					<div className="conteudo">
 						<div className="conteudoArtigo">
-							<div className="texto" dangerouslySetInnerHTML={Conteudo()}> 
-
-							</div>
+							<div className="texto" dangerouslySetInnerHTML={Conteudo()}></div>
 						</div>
 					</div>
 				</div>

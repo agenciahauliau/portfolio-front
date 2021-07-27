@@ -21,9 +21,9 @@ export default function BlocoTopo() {
 							</p>
 						</div>
 						<div className="botaoTipo">
-							<div className="botaoTipoImovel"><Link to={"/imoveis?tipoNegociacao=Aluguel&pagina=1"}>Aluguel</Link></div>
 							<div className="botaoTipoImovel"><Link to={"/imoveis?tipoNegociacao=Lançamento&pagina=1"}>Lançamento</Link></div>
-							<div className="botaoTipoImovel"><Link to={"/imoveis?tipoNegociacao=Venda&pagina=1"}>Venda</Link></div>
+							<div className="botaoTipoImovel"><Link to={"/imoveis?tipoNegociacao=Aluguel&pagina=1"}>Aluguel</Link></div>
+							<div className="botaoTipoImovel"><Link to={"/imoveis?tipoNegociacao=Venda&pagina=1"}>Revenda</Link></div>
 						</div>
 					</div>
 					<div className="imagemTopoHome">

@@ -35,7 +35,7 @@ function BlocoAluguel() {
 						<Link
 							to={
 								'/imoveis/imovel?titulo=' +
-								imovel.categoriaImovel.replaceAll(' ', '+') +
+								imovel.categoriaImovel +
 								(imovel.qtdeQuarto === 0
 									? ''
 									: imovel.qtdeQuarto === 1
@@ -109,7 +109,7 @@ function BlocoAluguel() {
 					))}
 				</div>
 				<button className="verMais">
-					<a href="/imoveis?tipoNegociacao=Venda" title="Imóveis a venda">
+					<a href="/imoveis?tipoNegociacao=Aluguel&pagina=1" title="Imóveis a venda">
 						Mais Imóveis
 					</a>
 				</button>

@@ -38,13 +38,20 @@ export function queryURL() {
 	let url = new URL(window.location);
 	const resultadoUrl = []
 	for (let keys of url.searchParams.entries()) {
-		let valoresURL = []
-		for (let key of keys[1].split(',')) {
-			valoresURL.push({ value: key, label: key })
-		}
-		resultadoUrl[keys[0]] = valoresURL
+		resultadoUrl[keys[0]] = keys[1].split(',')
 	}
 	return resultadoUrl
+}
+
+export function CriaInputURL() {
+	let url = new URL(window.location);
+	const inputURL = []
+	for (let keys of url.searchParams.entries()) {
+		if (keys[0] !== 'quant' && keys[0] !== 'pagina') {
+			inputURL.push( {name:keys[0] ,value: keys[1] })
+		}
+	}
+	return inputURL
 }
 
 export function MakeOption(x) {
@@ -106,13 +113,6 @@ export const  PagImovel = () => {
 
 	}
 }
-
-export const  Linkdfsdaf = () => {
-	const url = new URL(window.location)
-	url.searchParams.delete('pagina')
-	return url.searchParams.toString()
-}
-
 
 export function BSF(dado) {
 	if (dado === 'true') {
