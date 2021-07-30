@@ -206,6 +206,50 @@ export const PortfolioImoveis = (
 	</svg>
 );
 
+export const LoadingButton = (
+	<svg viewBox="0 0 100 50">
+		<rect x="20" y="25">
+			<animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20;25;25" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+			<animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+		</rect>
+		<rect x="45" y="0">
+			<animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20;25;25" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+			<animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="17.5;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+		</rect>
+		<rect x="70" y="0">
+			<animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20;25;25" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+			<animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="17.5;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+		</rect>
+	</svg>
+);
+
+export const EnviadoButton = (
+	<svg viewBox="0 0 225 225" >
+		<g transform="matrix(1,0,0,1,-178.667,-170.667)">
+			<g class="check" transform="matrix(1,0,0,1,176,113)">
+				<path d="M65,166L101,202L165,138"></path>
+			</g>
+		</g>
+	</svg>
+);
+
+export const ErroButton = (
+	<svg viewBox="0 0 100 50">
+		<rect x="20" y="25">
+			<animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20;25;25" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+			<animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.2s"></animate>
+		</rect>
+		<rect x="45" y="0">
+			<animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20;25;25" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+			<animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="17.5;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.1s"></animate>
+		</rect>
+		<rect x="70" y="0">
+			<animate attributeName="y" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="20;25;25" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+			<animate attributeName="height" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.5;1" values="17.5;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1"></animate>
+		</rect>
+	</svg>
+);
+
 export const Facebook = (
 	<svg viewBox="0 0 24 24">
 		<path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"></path>

@@ -1,8 +1,56 @@
 import React from "react";
+import { useMutation } from '@apollo/client';
+import { GQL_CRIAR_LEAD } from '../../graphql/graphql';
+import { LoadingButton } from "../../../assets/SVG";
 
 import "./Parceiro.scss";
 
 const Parceiro = () => {
+  const [createLeadCont] = useMutation(GQL_CRIAR_LEAD)
+
+  function criarLeadCont() {
+    let FTipo = document.querySelector("input[name='tipo']")?.value
+    let FNome = document.querySelector("input[name='nome']")?.value
+    let FEmail = document.querySelector("input[name='email']")?.value
+    let FTel = document.querySelector("input[name='telefone']")?.value
+
+    let buttonEnviar = document.querySelector('button')
+
+    buttonEnviar.classList.remove('enviar')
+    buttonEnviar.classList.add('enviando')
+    buttonEnviar.disabled = true
+
+    createLeadCont({
+      variables: {
+        input: {
+          tipoLead: (FTipo ? FTipo : ""),
+          nome: (FNome ? FNome : ""),
+          email: (FEmail ? FEmail : ""),
+          telefone: (+FTel ? +FTel : 0),
+        }
+      }
+    }).then((res) => {
+      if (res.data) {
+        buttonEnviar.classList.remove('enviando')
+        buttonEnviar.classList.add('enviado')
+        setTimeout(() => {
+          buttonEnviar.classList.remove('enviado')
+          buttonEnviar.classList.add('enviar')
+          buttonEnviar.disabled = false
+        }, 5000);
+      }
+    }).catch((err) => {
+      console.log(err)
+      buttonEnviar.classList.remove('enviando')
+      buttonEnviar.classList.add('erro')
+      setTimeout(() => {
+        buttonEnviar.classList.remove('erro')
+        buttonEnviar.classList.add('enviar')
+        buttonEnviar.disabled = false
+      }, 5000);
+      window.alert("Ocorreu algum erro, ligue para nós, ou mande mensagem no Whatsapp")
+    })
+  }
   return (
     <div className="parceiro">
       <div className="containerParceiro">
@@ -31,10 +79,16 @@ const Parceiro = () => {
                 <p>(62) 3070-0306</p>
               </div>
             </div>
-            <input type="text" placeholder="Nome completo" />
-            <input type="text" placeholder="Telefone / Whatsapp" />
-            <input type="text" placeholder="E-mail" />
-            <button>Enviar</button>
+            <input name="tipo" type="hidden" value="Parceiro" />
+            <input type="text" name="nome" placeholder="Nome completo" />
+            <input type="text" name="telefone" placeholder="Telefone / Whatsapp" />
+            <input type="text" name="email" placeholder="E-mail" />
+            <button type="button" className="enviar" onClick={criarLeadCont} >
+              <p className="enviar">Enviar</p>
+              <p className="enviando">{LoadingButton}</p>
+              <p className="enviado">Enviado</p>
+              <p className="erro">Erro</p>
+            </button>
           </form>
         </div>
       </div>

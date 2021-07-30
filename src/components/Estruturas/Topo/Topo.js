@@ -9,21 +9,48 @@ import "./Topo.scss";
 class Topo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { addClass: false };
+    this.state = { 
+      addClass: false,
+      header: "" 
+    };
   }
+
   toggle() {
     this.setState({ addClass: !this.state.addClass });
   }
+
   remove() {
     this.setState({ addClass: false });
   }
+
+  componentDidMount() {
+    if (typeof window !== "undefined") {
+      window.onscroll = () => {
+        let currentScrollPos = window.pageYOffset;
+        let maxScroll = document.body.scrollHeight - window.innerHeight;
+        // console.log(maxScroll)
+        if (currentScrollPos > 80) {
+          this.setState({ header: "diminuir"  })
+          // console.log(currentScrollPos)
+        } else {
+          this.setState({ header: "" })
+        }
+      }
+    }
+  }
+
   render() {
+
     let menuAtivo = ["icone-collapse"];
+
     if (this.state.addClass) {
       menuAtivo.push("click");
     }
+
+    console.log(window.pageYOffset)
+
     return (
-      <header>
+      <header className={this.state.header}>
         <nav className="Navbar">
           <div className="navbar-conteiner">
             <div className="logo-menu" onClick={this.remove.bind(this)}>
@@ -60,10 +87,10 @@ class Topo extends React.Component {
                     <Link to="/imoveis?categoriaImovel=Casa em Condomínio,Lote+em Condomínio&tipoNegociacao=Revenda&pagina=1">Condomínios Horizontais</Link>
                   </li>
                   <li onClick={this.remove.bind(this)}>
-                  <Link to="/imoveis?categoriaImovel=Apartamento Padrão,Cobertura&tipoNegociacao=Revenda&pagina=1">Apartamentos</Link>
+                    <Link to="/imoveis?categoriaImovel=Apartamento Padrão,Cobertura&tipoNegociacao=Revenda&pagina=1">Apartamentos</Link>
                   </li>
                   <li onClick={this.remove.bind(this)}>
-                  <Link to="/imoveis?categoriaImovel=Casa Residencial,Casa em Condomínio&tipoNegociacao=Revenda&pagina=1">Casas</Link>
+                    <Link to="/imoveis?categoriaImovel=Casa Residencial,Casa em Condomínio&tipoNegociacao=Revenda&pagina=1">Casas</Link>
                   </li>
                 </ul>
               </div>
@@ -102,7 +129,7 @@ class Topo extends React.Component {
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                     {Facebook}
+                      {Facebook}
                     </a>
                   </li>
                   <li onClick={this.remove.bind(this)}>

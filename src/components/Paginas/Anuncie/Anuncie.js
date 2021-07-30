@@ -1,10 +1,68 @@
 import React from "react";
+import { useMutation } from '@apollo/client';
+import { GQL_CRIAR_LEAD } from '../../graphql/graphql';
+import { LoadingButton } from "../../../assets/SVG";
 
 import "./Anuncie.scss";
 
-const Anuncie = (props) => {
+const Anuncie = () => {
+
+  const [createLeadCont] = useMutation(GQL_CRIAR_LEAD)
+
+	function criarLeadCont() {
+		let FNome = document.querySelector("input[name='nome']")?.value
+		let FEmail = document.querySelector("input[name='email']")?.value
+		let FTel = document.querySelector("input[name='telefone']")?.value
+    let FComen = document.querySelector("textarea[name='mensagem']")?.value
+		let FTipoN = document.querySelector("select[name='tipoNegociacao']")?.value
+		let FCatI = document.querySelector("select[name='categoriaImovel']")?.value
+
+
+    console.log(FNome, FEmail, FTel, FTipoN, FCatI)
+
+		let buttonEnviar = document.querySelector('button')
+
+		buttonEnviar.classList.remove('enviar')
+		buttonEnviar.classList.add('enviando')
+		buttonEnviar.disabled = true
+
+		createLeadCont({
+			variables: {
+				input: {
+					tipoLead: "Anunciar meu Imóvel",
+					nome: (FNome ? FNome : ""),
+					email: (FEmail ? FEmail : ""),
+					telefone: (+FTel ? +FTel : 0),
+          comentarios: (FComen ? FComen : ""),
+					tipoNegociacao: (FTipoN ? FTipoN : ""),
+					categoriaImovel: (FCatI ? FCatI : "")
+				}
+			}
+		}).then((res) => {
+			if (res.data) {
+				buttonEnviar.classList.remove('enviando')
+				buttonEnviar.classList.add('enviado')
+				setTimeout(() => {
+					buttonEnviar.classList.remove('enviado')
+					buttonEnviar.classList.add('enviar')
+					buttonEnviar.disabled = false
+				}, 5000);
+			}
+		}).catch((err) => {
+			console.log(err)
+			buttonEnviar.classList.remove('enviando')
+			buttonEnviar.classList.add('erro')
+			setTimeout(() => {
+				buttonEnviar.classList.remove('erro')
+				buttonEnviar.classList.add('enviar')
+				buttonEnviar.disabled = false
+			}, 5000);
+			window.alert("Ocorreu algum erro, ligue para nós, ou mande mensagem no Whatsapp")
+		})
+	}
+
   return (
-    <div className="parceiro">
+    <div className="anuncie">
       <div className="containerParceiro">
         <div className="imagemTexto">
           <div className="imagem">
@@ -36,13 +94,13 @@ const Anuncie = (props) => {
               </div>
             </div>
             <div className="coluna">
-              <input type="text" placeholder="Nome completo" />
-              <input type="text" placeholder="Telefone / Whatsapp" />
-              <input type="text" placeholder="E-mail" />
+              <input type="text" name="nome" placeholder="Nome completo" />
+              <input type="text" name="telefone" placeholder="Telefone / Whatsapp" />
+              <input type="text" name="email" placeholder="E-mail" />
 
               <label htmlFor="tipoNegociacao">Revenda ou aluguel?</label>
               <select name="tipoNegociacao" id="tipoNegociacao">
-                <option value="Venda">Revenda</option>
+                <option value="Revenda">Revenda</option>
                 <option value="Aluguel">Aluguel</option>
               </select>
 
@@ -59,8 +117,6 @@ const Anuncie = (props) => {
                 <option value="Lote urbano">Lote urbano</option>
                 <option value="Casa em Condomínio">Casa em Condomínio</option>
                 <option value="Lote em Condomínio">Lote em Condomínio</option>
-                <option value="Venda">Revenda</option>
-                <option value="Aluguel">Aluguel</option>
               </select>
 
               <label htmlFor="descricaoImovel">
@@ -70,7 +126,12 @@ const Anuncie = (props) => {
                   placeholder="Linda e ampla casa para morar com sua família"
                 ></textarea>
               </label>
-              <button>Enviar</button>
+              <button type="button" className="enviar" onClick={criarLeadCont} >
+								<p className="enviar">Enviar</p>
+								<p className="enviando">{LoadingButton}</p>
+								<p className="enviado">Enviado</p>
+								<p className="erro">Erro</p>
+							</button>
             </div>
           </form>
         </div>

@@ -3,9 +3,10 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEL, GQL_CRIAR_LEAD } from '../../../../graphql/graphql';
 import { QParamsImovel } from '../../../../Helpers/HelpersFunction';
 import SimpleReactLightbox, { SRLWrapper } from 'simple-react-lightbox';
+import { MarcaDaAgua } from '../../../../../assets/Imagens';
+import { LoadingButton } from '../../../../../assets/SVG';
 
 import './ImoveisVenda.scss';
-import { MarcaDaAgua } from '../../../../../assets/Imagens';
 
 function ImoveisVenda() {
 
@@ -58,35 +59,47 @@ function ImoveisVenda() {
 		let FNome = document.querySelector("input[name='nome']")?.value
 		let FEmail = document.querySelector("input[name='email']")?.value
 		let FTel = document.querySelector("input[name='telefone']")?.value
-		let FComen = document.querySelector("textarea[name='mensagem']")?.value
-		let FPCons = document.querySelectorAll("input[name='pcontato']")
+		let FPCons = document.querySelector("input[name='pcontato']:checked")?.value
 
-		function RadioFPCons() {
-			for (let FPCon of FPCons) {
-				if (FPCon.checked === true) {
-					return FPCon.value
-				}
-			}
-		}
+		console.log(FNome, FEmail, FTel, FPCons)
 
-		console.log(FEmail)
-
+		let buttonEnviar = document.querySelector('button.imovel')
+		
+		buttonEnviar.classList.remove('enviar')
+		buttonEnviar.classList.add('enviando')
+		buttonEnviar.disabled = true
+		
 		createLead({
 			variables: {
 				input: {
-					tipoLead: "Interesse em Imóvel",
+					tipoLead: "Imóvel Venda",
 					nome: (FNome ? FNome : ""),
 					email: (FEmail ? FEmail : ""),
 					telefone: (+FTel ? +FTel : 0),
-					comentarios: (FComen ? FComen : ""),
-					preferenciaDeContato: RadioFPCons(),
+					preferenciaDeContato: FPCons,
 					imoveis: [data.imovel._id]
 				}
 			}
 		}).then((res) => {
-			if (res.data) window.alert("Deu bom meu chapa!")
+			if (res.data) {
+				buttonEnviar.classList.remove('enviando')
+				buttonEnviar.classList.add('enviado')
+				setTimeout(() => {
+					buttonEnviar.classList.remove('enviado')
+					buttonEnviar.classList.add('enviar')
+					buttonEnviar.disabled = false
+				}, 5000);
+			}
 		}).catch((err) => {
-			console.log(err);
+			console.log(err)
+			buttonEnviar.classList.remove('enviando')
+			buttonEnviar.classList.add('erro')
+			setTimeout(() => {
+				buttonEnviar.classList.remove('erro')
+				buttonEnviar.classList.add('enviar')
+				buttonEnviar.disabled = false
+			}, 5000);
+			window.alert("Ocorreu algum erro, ligue para nós, ou mande mensagem no Whatsapp")
 		})
 	}
 
@@ -155,12 +168,12 @@ function ImoveisVenda() {
 					</div>
 					<div>
 						<form>
-							<input type="text" placeholder="Nome completo" />
-							<input type="email" placeholder="E-mail" />
-							<input type="tel" placeholder="Telefone / Whatsapp" />
+							<input type="text" name="nome" placeholder="Nome completo" />
+							<input type="email" name="email" placeholder="E-mail" />
+							<input type="tel" name="telefone" placeholder="Telefone / Whatsapp" />
 							<div className="checkFormImovel">
 								<label>
-									<input name="pcontato" type="radio" value="Telefone" checked /> Telefone
+									<input name="pcontato" type="radio" value="Telefone" checked/> Telefone
 								</label>
 								<label>
 									<input name="pcontato" type="radio" value="Email" /> Email
@@ -169,7 +182,12 @@ function ImoveisVenda() {
 									<input name="pcontato" type="radio" value="Whatsapp" /> Whatsapp
 								</label>
 							</div>
-							<button type="button" onClick={criarLead}>Entrar em contato</button>
+							<button type="button" className="imovel enviar" onClick={criarLead} >
+								<p className="enviar">Entrar em contato</p>
+								<p className="enviando">{LoadingButton}</p>
+								<p className="enviado">Enviado</p>
+								<p className="erro">Erro</p>
+							</button>
 						</form>
 					</div>
 					<div className="informacoesCadastro">

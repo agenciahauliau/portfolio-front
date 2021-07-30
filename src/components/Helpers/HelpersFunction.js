@@ -70,25 +70,6 @@ export function buttonClickL(el) {
 	el.target.closest(".valorInput").children[1].value = valor;
 }
 
-export const  QuantImoveis = () => {
-	const quantImovel = localStorage.getItem("quantImoveis")
-	const url = new URL(window.location)
-	const quantImovelURL = url.searchParams.get("quant")
-
-	if (quantImovelURL && +quantImovelURL >= 12) {
-		localStorage.setItem("quantImoveis", quantImovelURL)
-		return +quantImovelURL
-	} else if (quantImovel) {
-		url.searchParams.set('quant', quantImovel);
-		window.history.pushState({}, '', url)
-		return +quantImovel
-	} else {
-		url.searchParams.set('quant', 12);
-		window.history.pushState({}, '', url)
-		return 12
-	}
-}
-
 export const  PagImovel = () => {
 	const paginaImovel = sessionStorage.getItem("paginaImovel")
 	const url = new URL(window.location)
@@ -106,7 +87,6 @@ export const  PagImovel = () => {
 		return +paginaImovel -1
 
 	} else {
-
 		url.searchParams.set('pagina', 1);
 		window.history.pushState({}, '', url)
 		return 0

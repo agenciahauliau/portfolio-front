@@ -1,12 +1,17 @@
 import React from 'react';
-import SlideFGRBanner from './SlideFGRBanner';
-import { SlidesFGRBanner } from './SlidesFGRBanner';
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
+import { SlidesFGRBanner } from './FGRImagens';
+
 import { CasasFGRlogo, CondominiosFGRlogo, FGRlogo } from '../../../assets/Imagens'
 import { SetaDireita } from '../../../assets/SVG';
 
 import './FGRBanner.scss';
 
 function FGRBanner() {
+
+	const handleDragStart = (e) => e.preventDefault();
+
 	return (
 		<section className="FGRBanner">
 			<div className="container">
@@ -27,7 +32,11 @@ function FGRBanner() {
 					</div>
 				</div>
 				<div className="slideFGRBanner">
-					<SlideFGRBanner slides={SlidesFGRBanner} />
+					<AliceCarousel autoPlay infinite disableButtonsControls autoPlayInterval={5000}>
+						{SlidesFGRBanner.map((slide, index) => (
+							<img key={`banner-fgr-${index}`} src={slide.image} className="sliderimg" alt="FGR" onDragStart={handleDragStart} />
+						))}
+					</AliceCarousel>
 				</div>
 			</div>
 		</section>

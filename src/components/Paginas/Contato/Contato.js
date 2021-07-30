@@ -1,10 +1,10 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { GQL_CRIAR_LEAD } from '../../graphql/graphql';
-import { Facebook, Instagram, Twitter, WhatsApp } from '../../../assets/SVG';
+import { Facebook, Instagram, LoadingButton, Twitter, WhatsApp } from '../../../assets/SVG';
+import { ContatoBackground } from '../../../assets/Videos';
 
 import './Contato.scss';
-import ContatoBack from '../../../assets/Videos/contato.webm';
 
 function Contato() {
 
@@ -17,21 +17,42 @@ function Contato() {
 		let FTel = document.querySelector("input[name='telefone']")?.value
 		let FComen = document.querySelector("textarea[name='mensagem']")?.value
 
-		console.log(FTipo, FNome, FEmail, FTel, FComen)
-		
+		let buttonEnviar = document.querySelector('button')
 
-		createLeadCont({variables: {
-			input:  {
-				tipoLead: (FTipo ? FTipo : ""),
-				nome: (FNome ? FNome : ""),
-				email: (FEmail ? FEmail : ""),
-				telefone: (+FTel ? +FTel : 0),
-				comentarios: (FComen ? FComen : ""),
-			}			
-		}}).then((res) => {
-			if (res.data) window.alert("Deu bom meu chapa!")
+		buttonEnviar.classList.remove('enviar')
+		buttonEnviar.classList.add('enviando')
+		buttonEnviar.disabled = true
+
+		createLeadCont({
+			variables: {
+				input: {
+					tipoLead: (FTipo ? FTipo : ""),
+					nome: (FNome ? FNome : ""),
+					email: (FEmail ? FEmail : ""),
+					telefone: (+FTel ? +FTel : 0),
+					comentarios: (FComen ? FComen : ""),
+				}
+			}
+		}).then((res) => {
+			if (res.data) {
+				buttonEnviar.classList.remove('enviando')
+				buttonEnviar.classList.add('enviado')
+				setTimeout(() => {
+					buttonEnviar.classList.remove('enviado')
+					buttonEnviar.classList.add('enviar')
+					buttonEnviar.disabled = false
+				}, 5000);
+			}
 		}).catch((err) => {
-			console.log(err);
+			console.log(err)
+			buttonEnviar.classList.remove('enviando')
+			buttonEnviar.classList.add('erro')
+			setTimeout(() => {
+				buttonEnviar.classList.remove('erro')
+				buttonEnviar.classList.add('enviar')
+				buttonEnviar.disabled = false
+			}, 5000);
+			window.alert("Ocorreu algum erro, ligue para nós, ou mande mensagem no Whatsapp")
 		})
 	}
 	return (
@@ -39,7 +60,7 @@ function Contato() {
 			<div className="containerContato">
 				<div className="bg">
 					<video autoPlay loop>
-						<source src={ContatoBack} type="video/webm" />
+						<source src={ContatoBackground.video.default} type="video/mp4" />
 					</video>
 				</div>
 				<div className="info">
@@ -102,12 +123,17 @@ function Contato() {
 							</div>
 						</div>
 						<form>
-							<input name="tipo" type="hidden" value="Página de Contato"/>
+							<input name="tipo" type="hidden" value="Contato" />
 							<input name="nome" type="text" placeholder="Nome completo" />
 							<input name="telefone" type="tel" placeholder="Telefone / WhatsApp" />
 							<input name="email" type="text" placeholder="E-mail" />
 							<textarea name="mensagem" placeholder="Deixe sua mensagem"></textarea>
-							<button type="button" onClick={criarLeadCont} >Enviar</button>
+							<button type="button" className="enviar" onClick={criarLeadCont} >
+								<p className="enviar">Enviar</p>
+								<p className="enviando">{LoadingButton}</p>
+								<p className="enviado">Enviado</p>
+								<p className="erro">Erro</p>
+							</button>
 						</form>
 					</div>
 				</div>

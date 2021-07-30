@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import { PagImovel, QParamsPesquisa, QuantImoveis, queryURL, Redirect } from '../../Helpers/HelpersFunction';
+import { PagImovel, QParamsPesquisa} from '../../Helpers/HelpersFunction';
 import ReactPaginate from 'react-paginate';
 import { Quarto, Banheiro, Garagem, Esquerda, Direita } from '../../../assets/SVG';
 
@@ -10,13 +10,22 @@ import BarraPesquisa from '../../Estruturas/BarraPesquisa/BarraPesquisa';
 import FGRBanner from '../../Estruturas/FGRBanner/FGRBanner';
 import BarraAjuda from '../../Estruturas/BarraAjuda/BarraAjuda';
 import Newsletter from '../../Estruturas/Newsletter/Newsletter';
-import { MarcaDaAgua, MarcaDaAguaPequena } from '../../../assets/Imagens';
+import { MarcaDaAguaPequena } from '../../../assets/Imagens';
 
 //import SCSS
 import './Pesquisa.scss';
 import '../../Estruturas/Cards/CardImoveis.scss';
 
 function Pesquisa() {
+
+	const quantImovel = localStorage.getItem("quantImoveis")
+	const [quantState, quantSetstate] = useState(quantImovel ? quantImovel : 12)
+
+	function LinkQuantImoveis(el) {
+		localStorage.setItem("quantImoveis", el.target.textContent)
+		quantSetstate(document.querySelector(`.QuantImo${localStorage.getItem("quantImoveis")}`).textContent)
+	}
+
 	const { loading, error, data } = useQuery(GQL_BUSCAR_IMOVEIS_COM_FILTRO, {
 		variables: {
 			input: QParamsPesquisa(),
@@ -26,7 +35,7 @@ function Pesquisa() {
 
 	const [pageNumber, setPageNumber] = useState(0);
 
-	const usersPerPage = QuantImoveis();
+	const usersPerPage = +quantState;
 	const pagesVisited = PagImovel() * usersPerPage;
 
 	if (loading) return <p></p>;
@@ -132,7 +141,7 @@ function Pesquisa() {
 
 	return (
 		<>
-			<BarraPesquisa />
+			<BarraPesquisa quant={LinkQuantImoveis.bind()} />
 			<section className="ConteudoPesquisa">
 				<div className="DestaquesPesquisa">
 					<div className="container">

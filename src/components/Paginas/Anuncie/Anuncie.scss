@@ -1,4 +1,4 @@
-.parceiro {
+.anuncie {
   .containerParceiro {
     .imagemTexto {
       position: relative;
@@ -16,7 +16,8 @@
       display: flex;
       justify-content: center;
       padding: 12px;
-      background: url(../../../assets/Imagens/linhas.svg) no-repeat fixed top / cover,
+      background: url(../../../assets/Imagens/linhas.svg) no-repeat fixed top /
+          cover,
         #272727;
       form {
         padding: 12px;
@@ -66,13 +67,59 @@
           }
 
           button {
-            width: fit-content;
+            width: 100px;
             padding: 12px 18px;
             margin: 12px 0;
             align-self: flex-end;
-            background: #db0423;
-            color: #fff;
-            font-weight: 800;
+            background: #db042355;
+            border: 1px solid #fff5;
+            font-weight: 400;
+            transition: 0.4s ease;
+            p {
+              display: none;
+              color: #fff;
+              font-weight: 600;
+              line-height: 25px;
+            }
+            &.enviar {
+              .enviar {
+                display: block;
+              }
+            }
+            &.enviando {
+              background: #db042377;
+              .enviando {
+                display: block;
+              }
+            }
+            &.enviado {
+              background: #0002;
+              .enviado {
+                display: block;
+              }
+            }
+            &.erro {
+              background: #c6db04bb;
+              .erro {
+                display: block;
+                color: #000;
+              }
+            }
+            &:hover {
+              background: #db0423;
+            }
+
+            &[disabled] {
+              pointer-events: none;
+            }
+            svg {
+              height: 18px;
+              rect {
+                width: 10px;
+                height: 20px;
+                fill: #fff;
+              }
+            }
           }
         }
       }
@@ -81,13 +128,12 @@
 }
 
 @media (min-width: 820px) {
-  .parceiro {
+  .anuncie {
     .containerParceiro {
       display: flex;
       flex-wrap: wrap;
-
       .imagemTexto {
-        width: 38%;
+        width: 26%;
         min-height: calc(100vh - 90px);
         .imagem {
           height: 100%;
@@ -100,7 +146,7 @@
       }
 
       .formularioEmpreendimento {
-        width: 62%;
+        width: 74%;
         display: flex;
         align-items: center;
         padding: 38px;

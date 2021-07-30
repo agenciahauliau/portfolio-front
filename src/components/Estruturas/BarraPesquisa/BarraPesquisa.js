@@ -3,13 +3,14 @@ import { useQuery } from '@apollo/client';
 import { GQL_LISTAR_IMOVEIS } from '../../graphql/graphql';
 import { capitalize, CriaInputURL, queryURL } from '../../Helpers/HelpersFunction';
 import { Fechar, Pesquisa } from '../../../assets/SVG';
+
 import QuantidadeFiltro from './QuantidadeFiltro'
 import SelectFiltro from './Inputs/SelectFiltro';
 import RangeFiltro from './Inputs/RangeFiltro';
 
 import './BarraPesquisa.scss';
 
-export default function BarraPesquisa() {
+export default function BarraPesquisa({ quant }) {
 
 	const { loading, data } = useQuery(GQL_LISTAR_IMOVEIS, {
 		returnPartialData: true,
@@ -42,7 +43,6 @@ export default function BarraPesquisa() {
 			}
 		}
 	}
-
 
 	return (
 		<section className="pesquisa">
@@ -84,7 +84,7 @@ export default function BarraPesquisa() {
 								</div>
 							</div>
 							<div className="OQFiltros">
-								<QuantidadeFiltro />
+								<QuantidadeFiltro quantBTN={quant}  />
 								<div className="ordemImoveis"></div>
 							</div>
 							<input type="checkbox" className="chaveMFiltro" id="mFiltro" />
@@ -153,6 +153,12 @@ export default function BarraPesquisa() {
 											Escolha a Construtora que você mais confia
 										</p>
 										<SelectFiltro mode={"tags"} nome={"nomeConstrutora"} placeholder={"Construtora"} className={"SSelect"} itens={data.imoveis.map((x) => capitalize(x.nomeConstrutora))} queryURL={queryURL().nomeConstrutora} />
+									</div>
+									<div className="areaInput ok" onClick={fecharSFiltro}>
+										<p className="textoOk">
+											OK
+										</p>
+										{/* <p>Confirme suas escolhas</p> */}
 									</div>
 								</div>
 							</div>

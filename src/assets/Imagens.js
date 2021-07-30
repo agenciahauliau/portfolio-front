@@ -47,6 +47,54 @@ export const MarcaDaAguaPequena = {
     "height": 500
 }
 
+export const FrenteLoja2 = {
+    "imagem" : require("./Imagens/loja-portfolio-2.jpeg"),
+    "alt": "Fachada da loja / boutique Portfolio Imóveis",
+    "title": "Fachada da loja / boutique Portfolio Imóveis",
+    "width": 1280,
+    "height": 432
+}
+
+export const Reginaldo = {
+    "imagem" : require("./Imagens/reginaldo.jpeg"),
+    "alt": "Reginaldo Abdala, Diretor Portfolio Imóveis",
+    "title": "Reginaldo Abdala, Diretor Portfolio Imóveis",
+    "width": 1000,
+    "height": 1000
+}
+
+export const Alessandro = {
+    "imagem" : require("./Imagens/alessandro.jpeg"),
+    "alt": "Alessandro Rangel, Diretor Portfolio Imóveis",
+    "title": "Alessandro Rangel, Diretor Portfolio Imóveis",
+    "width": 1000,
+    "height": 1000
+}
+
+export const Cristiane = {
+    "imagem" : require("./Imagens/cristiane.jpeg"),
+    "alt": "Cristiane Abdala, Diretor Portfolio Imóveis",
+    "title": "Cristiane Abdala, Diretor Portfolio Imóveis",
+    "width": 1000,
+    "height": 1000
+}
+
+export const Leonardo = {
+    "imagem" : require("./Imagens/leonardo.jpeg"),
+    "alt": "Leonardo Rebouças, Diretor Portfolio Imóveis",
+    "title": "Leonardo Rebouças, Diretor Portfolio Imóveis",
+    "width": 1000,
+    "height":1000
+}
+
+export const Diogo = {
+    "imagem" : require("./Imagens/diogo.jpeg"),
+    "alt": "Diogo Porto, Diretor Portfolio Imóveis",
+    "title": "Diogo Porto, Diretor Portfolio Imóveis",
+    "width": 1000,
+    "height":1000
+}
+
 export const Casal = {
     "imagem" : require("./Imagens/Casal.jpg"),
     "alt": "Casal tomando vinho em um restaurante no bairro em que vive",

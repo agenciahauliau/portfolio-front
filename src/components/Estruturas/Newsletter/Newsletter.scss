@@ -18,10 +18,68 @@
         font-weight: 400;
       }
 
-      button {
-        width: 48px;
-        padding: 12px;
+      button.news {
+        width: 100px;
+        padding: 6px;
+        margin: 12px 0;
+        align-self: flex-end;
         background: none;
+        border: 1px solid #fff5;
+        font-weight: 400;
+        transition: 0.4s ease;
+        p {
+          display: none;
+          font-weight: 600;
+          line-height: 25px;
+        }
+        &.enviar {
+          .enviar {
+            display: block;
+          }
+        }
+        &.enviando {
+          .enviando {
+            display: block;
+          }
+        }
+        &.enviado {
+          .enviado {
+            display: block;
+          }
+        }
+        &.erro {
+          .erro {
+            display: block;
+            color: #000;
+          }
+        }
+        &:hover {
+        }
+
+        &[disabled] {
+          pointer-events: none;
+        }
+
+        svg {
+          height: 18px;
+          path {
+            stroke: #db0423;
+          }
+          rect {
+            width: 10px;
+            height: 20px;
+            fill: #db0423;
+          }
+          g {
+            g {
+              path {
+                fill: none;
+                stroke: #db0423;
+                stroke-width: 16.67px;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -36,15 +94,15 @@
       align-items: center;
       margin: auto;
     }
-    h2{
+    h2 {
       width: 100%;
       padding: 12px 0;
     }
 
-    .formNews{
+    .formNews {
       width: 55%;
     }
-    .textoNews{
+    .textoNews {
       width: 45%;
       padding: 0 24px;
     }

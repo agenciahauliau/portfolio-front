@@ -34,10 +34,60 @@
         background-color: #fff1;
       }
 
-      button {
-        background: #db0423;
+      button.ajuda {
         width: 100px;
-        font-weight: 700;
+        margin: 12px 0;
+        align-self: flex-end;
+        background: #db042355;
+        border: 1px solid #fff5;
+        font-weight: 400;
+        transition: 0.4s ease;
+        p {
+          display: none;
+          color: #fff;
+          font-weight: 600;
+          line-height: 25px;
+        }
+        &.enviar { 
+          .enviar {
+            display: block;
+          }
+        }
+        &.enviando {
+          background: #db042377;
+          .enviando {
+            display: block;
+          }
+        }
+        &.enviado {
+          background: #0002;
+          .enviado {
+            display: block;
+          }
+        }
+        &.erro {
+          background: #c6db04bb;
+          .erro {
+            display: block;
+            color: #000;
+          }
+        }
+        &:hover {
+          background: #db0423;
+        }
+
+        &[disabled] {
+          pointer-events: none;
+        }
+
+        svg {
+          height: 18px;
+          rect {
+            width: 10px;
+            height: 20px;
+            fill: #fff;
+          }
+        }
       }
     }
   }

@@ -91,7 +91,6 @@
     .filtros {
       display: flex;
       flex-wrap: wrap;
-      margin-top: 12px;
       .inputFiltros {
         display: flex;
         height: calc(100vh - 50px);
@@ -138,6 +137,22 @@
                   text-align: center;
                   color: #fff;
                 }
+              }
+            }
+            &.ok {
+              p{
+                margin: 24px auto 6px ;
+                color: #fff;
+                font-weight: 200;
+                text-align: center;
+              }
+              .textoOk {
+                width: 100px;
+                padding: 12px;
+                margin: 12px auto 6px ;
+                border: 1px solid #fff5;
+                box-shadow: 0 10px 10px -5px #db042355;
+                font-weight: 400;
               }
             }
           }
@@ -257,7 +272,6 @@
       .filtros {
         width: 100%;
         padding: 6px;
-        margin-top: 0;
         .inputFiltros {
           width: 100%;
           height: auto;
@@ -268,7 +282,6 @@
           .primeirosFiltros {
             width: 100%;
             display: flex;
-            flex-wrap: wrap;
             padding: 12px;
             background: #27272799;
             box-shadow: 0 0px 8px -5px #ffffff10, 0 0 3px #ffffff09 inset;
@@ -303,7 +316,7 @@
               .tituloQImo {
                 padding: 12px 0;
               }
-              .QuantImo {
+              div[class^="QuantImo"] {
                 a {
                   display: block;
                   color: #fff;
@@ -360,7 +373,6 @@
             .overlay {
               display: flex;
               flex-wrap: wrap;
-              justify-content: space-between;
               padding: 36px;
               position: absolute;
               width: 89%;
@@ -372,7 +384,8 @@
               background: #272727dd;
               box-shadow: 0 0px 20px -5px #ffffff10, 0 0 5px #ffffff09 inset;
               .areaInput {
-                width: 300px;
+                flex-basis: 300px;
+                margin: 6px;
                 padding: 12px;
                 display: flex;
                 flex-direction: column;
@@ -380,6 +393,10 @@
                 .textoMenuMobile {
                   height: 44px;
                   margin-bottom: 24px;
+                }
+                &.ok {
+                  flex-grow: 1;
+                  justify-content: center;
                 }
               }
               .inputButton {
@@ -394,7 +411,8 @@
                   button {
                     background: none;
                     svg {
-                      padding: 12px;
+                      width: 100%;
+                      padding: 6px;
                       path {
                         stroke: #fff;
                       }

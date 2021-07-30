@@ -1,31 +1,195 @@
 .Sobre {
-    padding: 24px;
-    .textoPrincipal{
-        p{
-            margin-bottom: 12px;
+  padding: 24px;
+  color: #fff;
+  .linhasVerticais {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: linear-gradient(
+        -35deg,
+        rgba(27, 27, 27, 0.3),
+        rgba(39, 39, 39, 0.5)
+      ),
+      url(./../../../assets/Imagens/linhas.svg) no-repeat fixed top / cover,
+      linear-gradient(
+        -35deg,
+        rgb(39, 39, 39) 6%,
+        rgb(27, 27, 27) 37%,
+        rgb(27, 27, 27) 57%,
+        rgb(39, 39, 39)
+      );
+    .linhas {
+      display: flex;
+      height: 100%;
+      top: 0;
+      left: 0;
+      .linha {
+        width: 40%;
+        &:nth-child(2) {
+          width: 30%;
+          border-left: 1px solid #5555;
+          border-right: 1px solid #5555;
         }
+      }
     }
-    .diretores{
-        h2{
-            color: #db0423;
-            margin: 48px 0 24px;
-        }
-        h3{
-            margin: 24px 0 12px;
-        }
-        p{
-            margin-bottom: 6px;
-            &:last-child{
-                margin-bottom: 12px;
-            }
-        }
+  }
+  .textoPrincipal {
+    .titulo {
+      width: 62%;
+      margin: 24px 0;
+      font-weight: 800;
     }
+    p {
+      width: 62%;
+      margin: 24px 0;
+      font-weight: 200;
+      text-align: right;
+    }
+    .imagem {
+      width: 100%;
+      height: 125px;
+      margin: 24px 0;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .diretores {
+    .titulo {
+      margin: 24px 0;
+    }
+
+    .informacoes {
+      > * {
+        display: none;
+      }
+      h3 {
+        margin: 48px 0;
+      }
+      p {
+        margin: 24px 0;
+        font-weight: 200;
+        line-height: 24px;
+        &:last-child {
+          margin-bottom: 12px;
+        }
+      }
+    }
+
+    input {
+      display: none;
+      &[id="default"]:checked {
+        & ~ .informacoes {
+          .default {
+            display: block;
+          }
+        }
+      }
+      &[id="leonardo"]:checked {
+        & ~ .informacoes {
+          .leonardo {
+            display: block;
+          }
+        }
+      }
+      &[id="cristiane"]:checked {
+        & ~ .informacoes {
+          .cristiane {
+            display: block;
+          }
+        }
+      }
+      &[id="reginaldo"]:checked {
+        & ~ .informacoes {
+          .reginaldo {
+            display: block;
+          }
+        }
+      }
+      &[id="alessandro"]:checked {
+        & ~ .informacoes {
+          .alessandro {
+            display: block;
+          }
+        }
+      }
+      &[id="diogo"]:checked {
+        & ~ .informacoes {
+          .diogo {
+            display: block;
+          }
+        }
+      }
+    }
+    .fotografias {
+      display: flex;
+      div {
+        height: 325px;
+        display: block;
+      }
+    }
+  }
 }
 
-@media screen and (min-width:820px) {
-    .Sobre {
-        .container{
-            margin: auto;
-        }
+@media screen and (min-width: 820px) {
+  .Sobre {
+    .container {
+      margin: auto;
     }
+    .textoPrincipal {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      .titulo {
+        margin: 48px 0;
+        font-size: 1.5em;
+      }
+      p {
+        align-self: flex-end;
+        margin: 48px 0;
+        font-size: 1.1em;
+      }
+      .slide {
+        width: 74%;
+        height: 375px;
+        display: flex;
+        margin: 48px 0;
+        left: calc((1140px - 100vw) / 4);
+        .alice-carousel__wrapper {
+          height: 375px;
+        }
+        &.Incorporadora{
+          width: 100vw;
+          margin-left: calc((1140px - 100vw) / 2);
+        }
+      }
+    }
+    .diretores {
+      .titulo {
+        margin: 48px 0;
+        font-size: 1.5em;
+      }
+      h3 {
+        margin: 24px 0 12px;
+      }
+      p {
+        margin-bottom: 6px;
+        &:last-child {
+          margin-bottom: 12px;
+        }
+      }
+      .informacoes{
+        min-height: 300px;
+        margin: 24px 0 ;
+      }
+      .fotografias{
+        margin: 24px 0 ;
+      }
+    }
+  }
 }
