@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GQL_BUSCAR_IMOVEIS_COM_FILTRO } from '../../graphql/graphql';
 import { Link } from 'react-router-dom';
-import { PagImovel, QParamsPesquisa} from '../../Helpers/HelpersFunction';
+import { PagImovel, QParamsPesquisa } from '../../Helpers/HelpersFunction';
 import ReactPaginate from 'react-paginate';
 import { Quarto, Banheiro, Garagem, Esquerda, Direita } from '../../../assets/SVG';
 
@@ -76,7 +76,7 @@ function Pesquisa() {
 						alt={tituloImovel}
 					/>
 					<div className="TipoImovel">
-						
+
 					</div>
 				</div>
 				<Link
@@ -132,11 +132,23 @@ function Pesquisa() {
 	const pageCount = Math.ceil(data.imoveis.length / usersPerPage);
 
 	const changePage = ({ selected }) => {
+
 		setPageNumber(selected);
+
+		const elementScroll = document.querySelector('.DestaquesPesquisa .container').offsetTop
+
+		window.scroll({
+			top: elementScroll - 89,
+			behavior: "smooth"
+		  })
+
+		console.log( elementScroll )
 
 		const url = new URL(window.location)
 		url.searchParams.set('pagina', selected + 1);
 		window.history.pushState({}, '', url)
+
+		
 	};
 
 	return (

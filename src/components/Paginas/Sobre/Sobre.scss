@@ -38,43 +38,86 @@
   }
   .textoPrincipal {
     .titulo {
-      width: 62%;
       margin: 24px 0;
       font-weight: 800;
     }
     p {
-      width: 62%;
-      margin: 24px 0;
+      padding-left: 12px;
+      margin: 48px 0;
       font-weight: 200;
       text-align: right;
+      border-left: #fff1 1px solid;
+      line-height: 20px;
     }
-    .imagem {
-      width: 100%;
-      height: 125px;
-      margin: 24px 0;
-      img {
+    .slide {
+      display: flex;
+      margin: 72px 0;
+      position: relative;
+
+      .alice-carousel__wrapper {
+        height: 175px;
+      }
+      .alice-carousel__dots {
+        margin: 12px 3px 5px;
+        .alice-carousel__dots-item {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #fff2;
+          transition: 0.4s ease;
+          &:hover {
+            background: #fff9;
+            transition: 0.4s ease;
+          }
+          &.__active {
+            background: #db0423;
+            transition: 0.4s ease;
+          }
+        }
+      }
+      &.Loja {
+        margin-left: -24px;
+      }
+      &.Loja::before {
+        content: " ";
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        position: absolute;
+        top: 12px;
+        left: 6px;
+        background: url(./../../../assets/Imagens/grade-b.png) no-repeat center /
+          cover;
+      }
+      &.Incorporadora {
+        width: 100vw;
+        margin-left: -24px;
       }
     }
   }
   .diretores {
+    margin-top: 72px;
     .titulo {
       margin: 24px 0;
     }
 
     .informacoes {
+      min-height: 378px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 48px 0;
+      padding-right: 24px;
+      border-right: #fff1 1px solid;
       > * {
         display: none;
       }
       h3 {
-        margin: 48px 0;
+        margin: 24px 0;
       }
       p {
-        margin: 24px 0;
+        margin: 12px 0;
         font-weight: 200;
-        line-height: 24px;
+        line-height: 20px;
         &:last-child {
           margin-bottom: 12px;
         }
@@ -128,9 +171,47 @@
     }
     .fotografias {
       display: flex;
-      div {
-        height: 325px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 48px 0 24px;
+      .imagem {
+        width: calc((100% / 3) - 6px);
+        height: 125px;
+        margin: 3px;
         display: block;
+        filter: grayscale(100%);
+        overflow: hidden;
+        transition: 0.4s ease;
+        &#reginaldo {
+          order: 1;
+        }
+        &#cristiane {
+          order: 2;
+        }
+        &#alessandro {
+          order: 3;
+        }
+        &#leonardo {
+          order: 4;
+        }
+        &#diogo {
+          order: 5;
+        }
+        img {
+          transition: 0.4s ease;
+        }
+        &:hover{
+          filter: grayscale(0);
+          transition: 0.4s ease;
+        }
+        &.ativo {
+          filter: grayscale(0);
+          transition: 0.4s ease;
+          img {
+            transform: scale(1.05);
+            transition: 0.4s ease;
+          }
+        }
       }
     }
   }
@@ -146,26 +227,36 @@
       flex-direction: column;
       position: relative;
       .titulo {
+        width: 72%;
         margin: 48px 0;
         font-size: 1.5em;
       }
       p {
+        width: 90%;
         align-self: flex-end;
+        padding-left: 38%;
         margin: 48px 0;
         font-size: 1.1em;
+        line-height: 24px;
       }
       .slide {
         width: 74%;
-        height: 375px;
-        display: flex;
-        margin: 48px 0;
         left: calc((1140px - 100vw) / 4);
         .alice-carousel__wrapper {
           height: 375px;
         }
-        &.Incorporadora{
+        &.Loja::before {
+          content: " ";
+          width: 100%;
+          height: 100%;
+          padding: 0 12px;
+          position: absolute;
+          top: 12px;
+          left: 24px;
+        }
+        &.Incorporadora {
           width: 100vw;
-          margin-left: calc((1140px - 100vw) / 2);
+          margin-left: calc((1140px - 100vw) / 4);
         }
       }
     }
@@ -174,21 +265,24 @@
         margin: 48px 0;
         font-size: 1.5em;
       }
-      h3 {
-        margin: 24px 0 12px;
-      }
-      p {
-        margin-bottom: 6px;
-        &:last-child {
-          margin-bottom: 12px;
+      .informacoes {
+        width: 100%;
+        padding-right: 10%;
+        min-height: 350px;
+        margin: 24px 0;
+        h3 {
+          margin: 48px 0;
+        }
+        p {
+          margin: 24px 0;
         }
       }
-      .informacoes{
-        min-height: 300px;
-        margin: 24px 0 ;
-      }
-      .fotografias{
-        margin: 24px 0 ;
+      .fotografias {
+        margin: 24px 0;
+        flex-wrap: nowrap;
+        .imagem {
+          height: 375px;
+        }
       }
     }
   }

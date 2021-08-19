@@ -3,16 +3,64 @@
     color: #fff;
     .topo {
       padding: 12px;
+      .imagemGrade {
+        position: relative;
+        .imagem {
+          position: absolute;
+        }
+      }
       .textoTopoHome {
         padding: 6px;
-        h1 {
-          padding: 0 12px;
-          margin-bottom: 12px 0;
-        }
-        p {
-          padding: 0 12px;
-          margin: 12px 0;
-          font-weight: 200;
+        .textoBanner {
+          position: relative;
+          .texto {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            h1 {
+              padding: 0 12px;
+              margin-bottom: 24px;
+              position: relative;
+              top: 24px;
+              opacity: 0;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+              transition: 0.4s ease 0.2s;
+            }
+            p {
+              padding: 0 12px;
+              margin: 12px 0;
+              font-weight: 200;
+              position: relative;
+              top: 24px;
+              opacity: 0;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+              overflow: hidden;
+              transition: 0.4s ease 0.4s;
+            }
+            &.ativo {
+              opacity: 1;
+              position: relative;
+              z-index: 0;
+              h1 {
+                top: 0;
+                opacity: 1;
+                transition: 0.4s ease 0.4s;
+              }
+              p {
+                top: 0;
+                opacity: 1;
+                transition: 0.4s ease 0.6s;
+              }
+            }
+          }
         }
         .botaoTipo {
           display: flex;
@@ -27,6 +75,53 @@
             }
           }
         }
+        .controleSlide {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          .arrows {
+            width: 36px;
+          }
+          .posicaoBanner {
+            margin: 0 36px;
+            font-weight: 200;
+          }
+          .dots {
+            width: 100%;
+            display: flex;
+            .dot {
+              padding: 6px;
+              cursor: pointer;
+              p {
+                display: block;
+                width: 50px;
+                height: 1px;
+                margin: 6px;
+                background: #fff2;
+                transition: 0.4s ease;
+              }
+              &.ativo {
+                p {
+                  width: 100px;
+                  background: #db0423;
+                  transition: 0.4s ease;
+                }
+              }
+            }
+          }
+        }
+      }
+      .imagemTopoHome {
+        .imagem {
+          opacity: 0;
+          position: relative;
+          transition: 0.4s ease;
+          &.ativo {
+            opacity: 1;
+            position: absolute;
+            transition: 0.4s ease;
+          }
+        }
       }
     }
   }
@@ -35,41 +130,52 @@
 @media screen and (min-width: 820px) {
   .Home {
     .topoHome {
-      min-height: 528px;
       .topo {
-        padding: 48px 0;
+        height: 100%;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        padding: 0;
         border-bottom: 1px solid #5555;
-        .container {
-          display: flex;
-          margin: auto;
+        margin: auto;
+        .imagemGrade {
+          width: 10%;
+          min-height: 60vh;
+          .imagem {
+            width: 100%;
+            height: 100%;
+          }
         }
         .textoTopoHome {
-          width: 55%;
-          min-height: 396px;
+          width: 40%;
+          min-height: 450px;
           display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+          flex-wrap: wrap;
+          align-items: flex-end;
           padding: 12px 36px;
-          .texto {
-            margin-top: 6px;
-            h1 {
-              padding: 0 12px;
-              margin-bottom: 12px 0;
-            }
-            p {
-              padding: 0 12px;
-              margin: 12px 0;
-              font-weight: 200;
-            }
+          margin-left: -5%;
+          position: relative;
+          z-index: 1;
+          .textoBanner{
+            max-width: 600px;
+            align-self: flex-start;
+          }
+          .botaoTipo{
+            width: 100%;
           }
         }
         .imagemTopoHome {
-          width: 45%;
+          width: 55%;
+          min-height: 70vh;
           position: relative;
           .imagem {
-            width: calc((100vw - (100% * 2)) / 2 + 100%);
-            height: 528px;
+            width: 100%;
+            height: calc(70vh + 34px);
             position: absolute;
+            left: 24px;
+            &.ativo{
+              left: 0;
+            }
           }
         }
       }

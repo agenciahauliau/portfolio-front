@@ -103,3 +103,11 @@ export const Casal = {
     "height": 1333
 }
 
+export const GradeBranca = {
+    "imagem" : require("./Imagens/grade-b.png"),
+    "alt": "Grade, Portfolio Imóveis",
+    "title": "Grade, Portfolio Imóveis",
+    "width": 1000,
+    "height": 502
+}
+

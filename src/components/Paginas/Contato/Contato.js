@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { GQL_CRIAR_LEAD } from '../../graphql/graphql';
-import { Facebook, Instagram, LoadingButton, Twitter, WhatsApp } from '../../../assets/SVG';
+import { Facebook, Instagram, Linkedin, LoadingButton, WhatsApp } from '../../../assets/SVG';
 import { ContatoBackground } from '../../../assets/Videos';
 
 import './Contato.scss';
@@ -96,11 +96,11 @@ function Contato() {
 									<li>
 										<a
 											href="https://twitter.com/portfolioimb/"
-											aria-label="Abrir Twitter Portfolio Imóveis"
+											aria-label="Abrir Linkedin Portfolio Imóveis"
 											rel="noopener noreferrer"
 											target="_blank"
 										>
-											{Twitter}
+											{Linkedin}
 										</a>
 									</li>
 									<li>

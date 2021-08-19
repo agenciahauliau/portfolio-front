@@ -63,9 +63,7 @@ function ImoveisLancamento() {
 		let FEmail = document.querySelector("input[name='email']")?.value
 		let FTel = document.querySelector("input[name='telefone']")?.value
 		let FPCons = document.querySelector("input[name='pcontato']:checked")?.value
-
-		console.log(FNome, FEmail, FTel, FPCons)
-
+		
 		let buttonEnviar = document.querySelector('button.imovel')
 
 		buttonEnviar.classList.remove('enviar')

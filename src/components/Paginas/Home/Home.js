@@ -1,6 +1,5 @@
 import React from 'react';
 import BlocoTopo from './Blocos/BlocoTopo'
-import BlocoJardins from './Blocos/BlocoJardins'
 import BlocoCaptacao from './Blocos/BlocoCaptacao'
 import BlocoVenda from './Blocos/BlocoVenda'
 import BlocoAluguel from './Blocos/BlocoAluguel'

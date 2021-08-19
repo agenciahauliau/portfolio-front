@@ -47,8 +47,6 @@ class Topo extends React.Component {
       menuAtivo.push("click");
     }
 
-    console.log(window.pageYOffset)
-
     return (
       <header className={this.state.header}>
         <nav className="Navbar">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { LogoPortfolio } from '../../../assets/Imagens'
-import { Facebook, Instagram, WhatsApp } from '../../../assets/SVG'
+import { Facebook, Instagram, Linkedin, WhatsApp } from '../../../assets/SVG'
 
 import './Rodape.scss'
 
@@ -17,6 +17,7 @@ export default function Rodape() {
                         <ul>
                             <li><a href="https://www.facebook.com/portfolioimb" aria-label="Facebook Portfólio Imóveis" target="_blank" rel="nofollow, noopener, noreferrer">{Facebook}</a></li>
                             <li><a href="https://www.instagram.com/portfolioimb" aria-label="Facebook Portfólio Imóveis" target="_blank" rel="nofollow, noopener, noreferrer">{Instagram}</a></li>
+                            <li><a href="https://api.whatsapp.com/send?phone=+556240035444" aria-label="Linkedin Portfólio Imóveis" target="_blank" rel="nofollow, noopener, noreferrer">{Linkedin}</a></li>
                             <li><a href="https://api.whatsapp.com/send?phone=+556240035444" aria-label="WhatsApp Portfólio Imóveis" target="_blank" rel="nofollow, noopener, noreferrer">{WhatsApp}</a></li>
                         </ul>
                     </div>

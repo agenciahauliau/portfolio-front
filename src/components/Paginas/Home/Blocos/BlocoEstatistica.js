@@ -17,6 +17,11 @@ export default function BlocoEstatistica() {
 		soma += imovel.valorImovel
 	}
 
+	const now = new Date(); // Data de hoje
+	const past = new Date('2006-05-01'); // Outra data no passado
+	const diff = Math.abs(now.getTime() - past.getTime()); // Subtrai uma data pela outra
+	const ano = Math.ceil(diff / (1000 * 60 * 60 * 24 * 365.25));
+
 	return (
 		<div className="BlocoEstatistica">
 			<div className="container">
@@ -28,8 +33,8 @@ export default function BlocoEstatistica() {
 									{Corretor}
 								</div>
 								<div className="texto">
-									<h3> {new Date().getFullYear() - 2006} anos</h3>
-									<p> Mais de {new Date().getFullYear() - 2006} de história e experiência, atendendo a mercado goiano e região</p>
+									<h3> {ano} anos</h3>
+									<p> Mais de {ano} de história e experiência, atendendo a mercado goiano e região</p>
 								</div>
 							</div>
 							<div className="item">
@@ -46,8 +51,8 @@ export default function BlocoEstatistica() {
 									{PortfolioImoveis}
 								</div>
 								<div className="texto">
-									<h3>{data.imoveis.length} imóveis</h3>
-									<p>Temos mais de {data.imoveis.length} para você, olhe todos nosso portfolio de imóveis e veja o qual é o melhor para você</p>
+									<h3>+ de 1000 imóveis</h3>
+									<p>Temos mais de 1000 imóveis pra você, olhe nosso portfolio e veja qual melhor te atende!</p>
 								</div>
 							</div>
 						</div>
